@@ -55,7 +55,7 @@ func HexadecimalToBinary() string {
 
 			continue
 		} else {
-			fmt.Println(helpers.TwoSpace, "Binary", ":", optionInput)
+			fmt.Println(helpers.TwoSpace, "Binary", helpers.SixSpace, ":", optionInput)
 			helpers.AddNewLine()
 
 			// Ask user if want to try again, go back, or quit.
