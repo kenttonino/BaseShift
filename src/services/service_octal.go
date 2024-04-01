@@ -110,7 +110,7 @@ func OctalToHexadecimal() {
 
 	for backToMainMenu == false {
 		helpers.Clear()
-		displays.Option8Description()
+		displays.Option9Description()
 		helpers.AddNewLine()
 
 		// Display error message.

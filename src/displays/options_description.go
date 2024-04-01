@@ -65,7 +65,15 @@ func Option7Description() {
 func Option8Description() {
 	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
 	helpers.AddNewLine()
-	fmt.Println(helpers.OneSpace, helpers.ColorGreen, "       [7] Octal to Decimal		        ", helpers.ColorReset)
+	fmt.Println(helpers.OneSpace, helpers.ColorGreen, "       [8] Octal to Decimal		        ", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+}
+
+func Option9Description() {
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorGreen, "       [9] Octal to Hexadecimal		  ", helpers.ColorReset)
 	helpers.AddNewLine()
 	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
 }
