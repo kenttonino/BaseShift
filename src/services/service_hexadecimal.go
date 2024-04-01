@@ -9,27 +9,6 @@ import (
 )
 
 func HexadecimalToBinary() string {
-	hexadecimalToBinaryMap := map[string]string{
-		"0": "0000",
-		"1": "0001",
-		"2": "0010",
-		"3": "0011",
-		"4": "0100",
-		"5": "0101",
-		"6": "0110",
-		"7": "0111",
-		"8": "1000",
-		"9": "1001",
-		"A": "1010",
-		"B": "1011",
-		"C": "1100",
-		"D": "1101",
-		"E": "1110",
-		"F": "1111",
-	}
-
-	fmt.Println(hexadecimalToBinaryMap)
-
 	optionMenu := "0"
 	optionInput := ""
 	optionHasError := false
@@ -49,13 +28,13 @@ func HexadecimalToBinary() string {
 		// Ask binary input.
 		optionInput = getHexadecimalInput()
 
-		if optionInput == "-2" {
+		if optionInput == "-1" {
 			// Signal the app that there is an error.
 			optionHasError = true
 
 			continue
 		} else {
-			fmt.Println(helpers.TwoSpace, "Binary", helpers.SixSpace, ":", optionInput)
+			fmt.Println(helpers.TwoSpace, "Binary", helpers.SixSpace, ":", getHexadecimalToBinary(optionInput))
 			helpers.AddNewLine()
 
 			// Ask user if want to try again, go back, or quit.

@@ -20,7 +20,6 @@ func getHexadecimalInput() string {
 
 	// Check if hexadecimal input is valid.
 	hexadecimalArray := strings.SplitAfter(optionChecker, "")
-	fmt.Println(hexadecimalArray)
 	for i := 0; i < len(hexadecimalArray); i++ {
 		if slices.Contains(validOptions, hexadecimalArray[i]) == false {
 			return "-1"
