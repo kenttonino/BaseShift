@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"slices"
 
 	"github.com/kentlouisetonino/baseshift/src/displays"
@@ -38,7 +39,7 @@ func main() {
 		userInput := helpers.MainOptionInput()
 
 		// Exit the application.
-		if userInput == 10 {
+		if userInput == 11 {
 			break
 		}
 
@@ -85,6 +86,9 @@ func main() {
 				services.OctalToHexadecimal()
 			}
 
+			if userInput == 10 {
+				fmt.Println(userInput)
+			}
 		} else {
 			hasError = true
 		}
