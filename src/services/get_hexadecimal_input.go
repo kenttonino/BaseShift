@@ -19,7 +19,6 @@ func getHexadecimalInput() string {
 	fmt.Scan(&optionChecker)
 
 	// Check if hexadecimal input is valid.
-	// Allowed numbers are 0 to 7.
 	hexadecimalArray := strings.SplitAfter(optionChecker, "")
 	fmt.Println(hexadecimalArray)
 	for i := 0; i < len(hexadecimalArray); i++ {
