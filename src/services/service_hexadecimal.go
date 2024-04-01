@@ -8,7 +8,7 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/helpers"
 )
 
-func HexadecimalToBinary() string {
+func HexadecimalToBinary() {
 	optionMenu := "0"
 	optionInput := ""
 	optionHasError := false
@@ -52,6 +52,4 @@ func HexadecimalToBinary() string {
 			}
 		}
 	}
-
-	return "001000000110"
 }
