@@ -25,7 +25,7 @@ func HexadecimalToBinary() string {
 			helpers.AddNewLine()
 		}
 
-		// Ask binary input.
+		// Ask hexadecmial input.
 		optionInput = getHexadecimalInput()
 
 		if optionInput == "-1" {
