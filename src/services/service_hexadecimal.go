@@ -1,8 +1,14 @@
 package services
 
-import "fmt"
+import (
+	"fmt"
 
-func HexadecimalToBinary(hex string) string {
+	"github.com/kentlouisetonino/baseshift/src/displays"
+	"github.com/kentlouisetonino/baseshift/src/errors"
+	"github.com/kentlouisetonino/baseshift/src/helpers"
+)
+
+func HexadecimalToBinary() string {
 	hexadecimalToBinaryMap := map[string]string{
 		"0": "0000",
 		"1": "0001",
@@ -22,11 +28,52 @@ func HexadecimalToBinary(hex string) string {
 		"F": "1111",
 	}
 
-	for i := 0; i < len(hex); i++ {
-		fmt.Println(hex[i])
-	}
-
 	fmt.Println(hexadecimalToBinaryMap)
+
+	optionMenu := "0"
+	optionInput := ""
+	optionHasError := false
+	backToMainMenu := false
+
+	for backToMainMenu == false {
+		helpers.Clear()
+		displays.Option10Description()
+		helpers.AddNewLine()
+
+		// Display error message.
+		if optionHasError {
+			errors.InvalidOption()
+			helpers.AddNewLine()
+		}
+
+		// Ask binary input.
+		optionInput = getHexadecimalInput()
+
+		if optionInput == "-2" {
+			// Signal the app that there is an error.
+			optionHasError = true
+
+			continue
+		} else {
+			fmt.Println(helpers.TwoSpace, "Binary", ":", optionInput)
+			helpers.AddNewLine()
+
+			// Ask user if want to try again, go back, or quit.
+			// Any other key except 1 and 2 will be treated as quit.
+			fmt.Print(helpers.TwoSpace, helpers.ColorGreen, " [1-Retry, 2-Back] : ", helpers.ColorReset)
+			fmt.Scan(&optionMenu)
+
+			if optionMenu == "1" {
+				optionHasError = false
+				continue
+			} else if optionMenu == "2" {
+				backToMainMenu = true
+			} else {
+				helpers.Clear()
+				helpers.Exit()
+			}
+		}
+	}
 
 	return "001000000110"
 }

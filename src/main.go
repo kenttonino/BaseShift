@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 
 	"github.com/kentlouisetonino/baseshift/src/displays"
@@ -87,7 +86,7 @@ func main() {
 			}
 
 			if userInput == 10 {
-				fmt.Println(userInput)
+				services.HexadecimalToBinary()
 			}
 		} else {
 			hasError = true

@@ -77,3 +77,11 @@ func Option9Description() {
 	helpers.AddNewLine()
 	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
 }
+
+func Option10Description() {
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorGreen, "     [10] Hexadecimal to Binary		  ", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+}
