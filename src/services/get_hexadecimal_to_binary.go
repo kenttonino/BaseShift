@@ -25,7 +25,7 @@ func getHexadecimalToBinary(hexadecimal string) string {
 	// Store the equivalent of each hex value.
 	binaryArray := []string{}
 
-	// SPlit the hexadecimal string.
+	// Split the hexadecimal string.
 	hexadecimalArray := strings.SplitAfter(hexadecimal, "")
 
 	for i := 0; i < len(hexadecimalArray); i++ {
