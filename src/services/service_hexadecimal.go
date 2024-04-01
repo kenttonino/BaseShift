@@ -31,7 +31,6 @@ func HexadecimalToBinary() string {
 		if optionInput == "-1" {
 			// Signal the app that there is an error.
 			optionHasError = true
-
 			continue
 		} else {
 			fmt.Println(helpers.TwoSpace, "Binary", helpers.SixSpace, ":", getHexadecimalToBinary(optionInput))
