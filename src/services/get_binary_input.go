@@ -10,11 +10,9 @@ import (
 
 // This handles the binary input value and its validation.
 func getBinaryInput() int64 {
-
-	// Declare the variables.
-	invalidNumbers := []int64{2, 3, 4, 5, 6, 7, 8, 9}
 	var option int64
 	var optionChecker string
+	invalidNumbers := []int64{2, 3, 4, 5, 6, 7, 8, 9}
 
 	// Ask the option.
 	fmt.Print(helpers.ThreeSpace, "Binary", helpers.ThreeSpace, helpers.ThreeSpace, ": ")
