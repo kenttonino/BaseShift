@@ -21,6 +21,9 @@
 ### System Design
 #
 
+<br />
+
+![System Design](./docs/image-system-design.png)
 
 <br />
 <br />
