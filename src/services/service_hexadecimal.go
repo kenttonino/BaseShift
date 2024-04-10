@@ -62,7 +62,7 @@ func HexadecimalToDecimal() {
 
 	for backToMainMenu == false {
 		helpers.Clear()
-		displays.Option10Description()
+		displays.Option11Description()
 		helpers.AddNewLine()
 
 		// Display error message.
