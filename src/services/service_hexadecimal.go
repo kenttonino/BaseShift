@@ -79,7 +79,7 @@ func HexadecimalToDecimal() {
 			optionHasError = true
 			continue
 		} else {
-			fmt.Println(helpers.TwoSpace, "Binary", helpers.SixSpace, ":", getHexadecimalToBinary(optionInput))
+			fmt.Println(helpers.TwoSpace, "Decimal", helpers.FiveSpace, ":", getHexadecimalToDecimal(optionInput))
 			helpers.AddNewLine()
 
 			// Ask user if want to try again, go back, or quit.
