@@ -25,8 +25,8 @@ func AppOptions() {
 	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(8), closeBracket, "Octal to Decimal")
 	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(9), closeBracket, "Octal to Hexadecimal")
 	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(10), closeBracket, "Hexadecimal to Binary")
-	// fmt.Println(helpers.TwoSpace, openBracket, optionNumber(11), closeBracket, "Hexadecimal to Decimal")
+	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(11), closeBracket, "Hexadecimal to Decimal")
 	// fmt.Println(helpers.TwoSpace, openBracket, optionNumber(12), closeBracket, "Hexadecimal to Octal")
 	// fmt.Println(helpers.TwoSpace, openBracket, optionNumber(13), closeBracket, "Exit Application")
-	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(11), closeBracket, "Exit Application")
+	fmt.Println(helpers.TwoSpace, openBracket, optionNumber(12), closeBracket, "Exit Application")
 }
