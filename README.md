@@ -21,7 +21,6 @@
 ### System Design
 #
 
-![base-shift-system-design](https://github.com/kentlouisetonino/baseshift/assets/69438999/13c7d142-0186-417d-94fa-192f96fdac0d)
 
 <br />
 <br />
