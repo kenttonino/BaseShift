@@ -23,3 +23,9 @@
     binary or base 10 to base 2, this will also produce a binary number with the
     right-hand most bit being the least significant bit or LSB, and the left-hand bit
     being the most significant bit or MSB.
+
+<br />
+
+![Binary Number Bits Representation](./image-table-binary-number.jpg)
+
+<br />
