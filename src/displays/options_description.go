@@ -93,3 +93,11 @@ func Option11Description() {
 	helpers.AddNewLine()
 	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
 }
+
+func Option12Description() {
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorGreen, "     [12] Hexadecimal to Octal     ", helpers.ColorReset)
+	helpers.AddNewLine()
+	fmt.Println(helpers.OneSpace, helpers.ColorBlue, "--------------------------------------", helpers.ColorReset)
+}
