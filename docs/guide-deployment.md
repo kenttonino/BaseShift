@@ -9,6 +9,6 @@ sudo systemctl restart snap.multipass.multipassd.service
 # Deploy to snap store.
 snapcraft login
 snapcraft clean
-snapcraft
+snapcraft --debug
 snapcraft push baseshift_<version-number-in-snapcraft-yaml>_amd64.snap --release=stable
 ```
