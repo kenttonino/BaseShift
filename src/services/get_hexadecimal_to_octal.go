@@ -1,7 +1,7 @@
 package services
 
 import (
-	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -25,7 +25,7 @@ var hexToBinaryArrayMap = map[string][]int{
 }
 
 func getHexadecimalToOctal(hexadecimal string) string {
-	// Store the equivalent of each hex value.
+	octalArray := []string{}
 	binaryArray := []int{}
 
 	// Split the hexadecimal string.
@@ -35,7 +35,20 @@ func getHexadecimalToOctal(hexadecimal string) string {
 		binaryArray = append(binaryArray, hexToBinaryArrayMap[hexadecimalArray[i]]...)
 	}
 
-	fmt.Println(binaryArray)
+	octalSum := 0
+	for i := 0; i < len(binaryArray); i++ {
+		if i%3 == 0 {
+			octalSum += binaryArray[i] * 4
+			continue
+		}
+		if i%3 == 1 {
+			octalSum += binaryArray[i] * 2
+			continue
+		}
+		if i%3 == 2 {
+			octalArray = append(octalArray, strconv.Itoa(octalSum+binaryArray[i]*1))
+		}
+	}
 
-	return "1006"
+	return strings.Join(octalArray, "")
 }
