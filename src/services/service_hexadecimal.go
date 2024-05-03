@@ -108,7 +108,7 @@ func HexadecimalToOctal() {
 
 	for backToMainMenu == false {
 		helpers.Clear()
-		displays.Option11Description()
+		displays.Option12Description()
 		helpers.AddNewLine()
 
 		// Display error message.
@@ -125,7 +125,7 @@ func HexadecimalToOctal() {
 			optionHasError = true
 			continue
 		} else {
-			fmt.Println(helpers.TwoSpace, "Decimal", helpers.FiveSpace, ":", getHexadecimalToDecimal(optionInput))
+			fmt.Println(helpers.TwoSpace, "Octal", helpers.FiveSpace, ":", getHexadecimalToOctal(optionInput))
 			helpers.AddNewLine()
 
 			// Ask user if want to try again, go back, or quit.
