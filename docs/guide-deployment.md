@@ -2,9 +2,6 @@
 #
 
 ```bash
-# Manually compile the app.
-g++ -o app src/app.cpp
-
 # Run the multipass.
 sudo systemctl restart snap.multipass.multipassd.service
 
