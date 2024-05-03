@@ -42,7 +42,7 @@
 sudo chmod +x run.sh
 
 # Run the app.
-./run
+./run.sh
 ```
 
 > - Below are the installation commands.
