@@ -35,6 +35,16 @@ func getHexadecimalToOctal(hexadecimal string) string {
 		binaryArray = append(binaryArray, hexToBinaryArrayMap[hexadecimalArray[i]]...)
 	}
 
+	// Add two zeroes at the beginning.
+	if len(binaryArray)%3 == 1 {
+		binaryArray = append([]int{0, 0}, binaryArray...)
+	}
+
+	// Add 1 zero at the beginning.
+	if len(binaryArray)%3 == 2 {
+		binaryArray = append([]int{0}, binaryArray...)
+	}
+
 	octalSum := 0
 	for i := 0; i < len(binaryArray); i++ {
 		if i%3 == 0 {
@@ -47,6 +57,7 @@ func getHexadecimalToOctal(hexadecimal string) string {
 		}
 		if i%3 == 2 {
 			octalArray = append(octalArray, strconv.Itoa(octalSum+binaryArray[i]*1))
+			octalSum = 0
 		}
 	}
 
