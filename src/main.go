@@ -7,6 +7,7 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/errors"
 	"github.com/kentlouisetonino/baseshift/src/helpers"
 	"github.com/kentlouisetonino/baseshift/src/services"
+	"github.com/kentlouisetonino/baseshift/src/services/binary"
 )
 
 func main() {
@@ -49,15 +50,15 @@ func main() {
 			hasError = false
 
 			if userInput == 1 {
-				services.BinaryToDecimal()
+				binary.BinaryToDecimal()
 			}
 
 			if userInput == 2 {
-				services.BinaryToOctal()
+				binary.BinaryToOctal()
 			}
 
 			if userInput == 3 {
-				services.BinaryToHexadecimal()
+				binary.BinaryToHexadecimal()
 			}
 
 			if userInput == 4 {
