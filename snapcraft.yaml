@@ -3,7 +3,7 @@ summary: CLI Tool
 description: |
   A CLI tool that converts number system. This will support
   binary, decimal, octal, and hexadecimal system.
-version: "1.10.0"
+version: "1.10.1"
 grade: stable
 base: core20
 confinement: strict
