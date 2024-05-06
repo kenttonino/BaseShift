@@ -9,6 +9,7 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/services"
 	"github.com/kentlouisetonino/baseshift/src/services/binary"
 	"github.com/kentlouisetonino/baseshift/src/services/decimal"
+	"github.com/kentlouisetonino/baseshift/src/services/hexadecimal"
 )
 
 func main() {
@@ -87,15 +88,15 @@ func main() {
 			}
 
 			if userInput == 10 {
-				services.HexadecimalToBinary()
+				hexadecimal.ConvertToBinary()
 			}
 
 			if userInput == 11 {
-				services.HexadecimalToDecimal()
+				hexadecimal.ConvertToDecimal()
 			}
 
 			if userInput == 12 {
-				services.HexadecimalToOctal()
+				hexadecimal.ConvertToOctal()
 			}
 		} else {
 			hasError = true
