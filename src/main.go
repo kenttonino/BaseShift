@@ -50,15 +50,15 @@ func main() {
 			hasError = false
 
 			if userInput == 1 {
-				binary.BinaryToDecimal()
+				binary.ConvertToDecimal()
 			}
 
 			if userInput == 2 {
-				binary.BinaryToOctal()
+				binary.ConvertToOctal()
 			}
 
 			if userInput == 3 {
-				binary.BinaryToHexadecimal()
+				binary.ConvertToHexadecimal()
 			}
 
 			if userInput == 4 {
