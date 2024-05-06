@@ -1,4 +1,4 @@
-package services
+package octal
 
 // Split a number into array.
 func getNumberArray(num int64) []int64 {

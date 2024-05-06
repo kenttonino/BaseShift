@@ -1,4 +1,4 @@
-package services
+package octal
 
 var octalSystemMap = map[int]string{
 	0: "000",
