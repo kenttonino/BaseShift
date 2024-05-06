@@ -8,6 +8,7 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/helpers"
 	"github.com/kentlouisetonino/baseshift/src/services"
 	"github.com/kentlouisetonino/baseshift/src/services/binary"
+	"github.com/kentlouisetonino/baseshift/src/services/decimal"
 )
 
 func main() {
@@ -62,15 +63,15 @@ func main() {
 			}
 
 			if userInput == 4 {
-				services.DecimalToBinary()
+				decimal.ConvertToBinary()
 			}
 
 			if userInput == 5 {
-				services.DecimalToOctal()
+				decimal.ConvertToOctal()
 			}
 
 			if userInput == 6 {
-				services.DecimalToHexadecimal()
+				decimal.ConvertToHexadecimal()
 			}
 
 			if userInput == 7 {
