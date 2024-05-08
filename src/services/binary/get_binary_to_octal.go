@@ -1,13 +1,18 @@
 package binary
 
-import "strconv"
+import (
+	"strconv"
+)
 
-// Converts binary number to octal.
 func getBinaryToOctal(binary int64) string {
 	reversedBinaryArray := getReversedBinaryArray(binary)
 	octal := ""
 	arrayOfOctal := []int64{}
 	groupSum := int64(0)
+
+	if binary == 0 {
+		return "0"
+	}
 
 	for i := 0; i < len(reversedBinaryArray); i++ {
 		numWeight := i % 3
