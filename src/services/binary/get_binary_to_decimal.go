@@ -2,7 +2,6 @@ package binary
 
 import "math"
 
-// Converts binary number to decimal.
 func getBinaryToDecimal(binary int64) int64 {
 	binaryToArray := getReversedBinaryArray(binary)
 	decimal := int64(0)

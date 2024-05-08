@@ -1,6 +1,5 @@
 package binary
 
-// Reversed the binary and return an array of binary.
 func getReversedBinaryArray(binary int64) []int64 {
 	var arrayOfBinary []int64
 
