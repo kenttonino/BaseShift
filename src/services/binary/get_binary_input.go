@@ -8,7 +8,6 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/helpers"
 )
 
-// This handles the binary input value and its validation.
 func getBinaryInput() int64 {
 	var option int64
 	var optionChecker string

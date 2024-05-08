@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-// Converts binary number to decimal.
 func getDecimalToBinary(decimal int64) int64 {
 	binaryStringArray := []string{}
 

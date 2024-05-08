@@ -7,7 +7,6 @@ import (
 	"github.com/kentlouisetonino/baseshift/src/helpers"
 )
 
-// This handles the decimal input value and its validation.
 func getDecimalInput() int64 {
 
 	// Declare the variables.

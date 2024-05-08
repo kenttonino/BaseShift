@@ -2,7 +2,6 @@ package binary
 
 import "strconv"
 
-// Converts binary number to hexadecial.
 func getBinaryToHexadecimal(binary int64) string {
 	hexadecimal := ""
 	reversedBinaryArray := getReversedBinaryArray(binary)

@@ -37,3 +37,5 @@ var hexToBinaryArrayMap = map[string][]int{
 	"E": {1, 1, 1, 0},
 	"F": {1, 1, 1, 1},
 }
+
+var hexValidOptions = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}

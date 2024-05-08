@@ -1,6 +1,5 @@
 package binary
 
-// Reversed the array of int64.
 func getReverseIntArray(array []int64) []int64 {
 	lastIndex := len(array) - 1
 	reversedArray := []int64{}
