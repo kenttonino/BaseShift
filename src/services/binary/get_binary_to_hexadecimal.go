@@ -1,13 +1,18 @@
 package binary
 
-import "strconv"
+import (
+	"strconv"
+)
 
-// Converts binary number to hexadecial.
 func getBinaryToHexadecimal(binary int64) string {
 	hexadecimal := ""
 	reversedBinaryArray := getReversedBinaryArray(binary)
 	arrayOfHexadecimal := []int64{}
 	groupSum := int64(0)
+
+	if binary == 0 {
+		return "0"
+	}
 
 	for i := 0; i < len(reversedBinaryArray); i++ {
 		numWeight := i % 4
