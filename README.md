@@ -32,10 +32,10 @@
 #
 > - Note: `The root main.go is a symbolic link`.
 
-> - Build and run the app.
+> - Run the app.
 
 ```bash
-# Change permission for the build script.
+# Change permission for the run script.
 sudo chmod +x run.sh
 
 # Run the app.
