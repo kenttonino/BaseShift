@@ -5,7 +5,7 @@
 
 <br />
 
-> - A CLI tool for converting number systems.
+> - A CLI tool that converts number system.
 
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
