@@ -21,7 +21,7 @@
 
 <br />
 
-![System Design](./docs/image-system-design.png)
+![System Design](./docs/image-system-design.gif)
 
 <br />
 <br />
