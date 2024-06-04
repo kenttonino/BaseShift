@@ -5,7 +5,7 @@
 
 <br />
 
-> - A CLI tool for converting number systems.
+> - A CLI tool that converts number system.
 
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
@@ -32,10 +32,10 @@
 #
 > - Note: `The root main.go is a symbolic link`.
 
-> - Build and run the app.
+> - Run the app.
 
 ```bash
-# Change permission for the build script.
+# Change permission for the run script.
 sudo chmod +x run.sh
 
 # Run the app.
