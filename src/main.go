@@ -13,96 +13,67 @@ import (
 )
 
 func main() {
-	validOptions := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+	validOptions := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
 	isValidMainOption := false
 	hasError := false
 
 	for {
-		// Clear up the screen first.
 		helpers.Clear()
 		helpers.AddNewLine()
-
-		// Display the app description.
 		displays.AppDescription()
 		helpers.AddNewLine()
 
-		// Display error message.
 		if hasError {
 			errors.InvalidOption()
 			helpers.AddNewLine()
 		}
 
-		// Display the options.
 		displays.AppOptions()
 		helpers.AddNewLine()
 
-		// Ask input.
 		userInput := helpers.MainOptionInput()
 
-		// Exit the application.
 		if userInput == 13 {
 			break
 		}
 
-		// Check if the option is valid.
 		isValidMainOption = slices.Contains(validOptions, userInput)
 
 		if isValidMainOption {
-			// helpers.Clear()
 			hasError = false
 
-			if userInput == 1 {
+			switch userInput {
+			case 1:
 				binary.ConvertToDecimal()
-			}
-
-			if userInput == 2 {
+			case 2:
 				binary.ConvertToOctal()
-			}
-
-			if userInput == 3 {
+			case 3:
 				binary.ConvertToHexadecimal()
-			}
-
-			if userInput == 4 {
+			case 4:
 				decimal.ConvertToBinary()
-			}
-
-			if userInput == 5 {
+			case 5:
 				decimal.ConvertToOctal()
-			}
-
-			if userInput == 6 {
+			case 6:
 				decimal.ConvertToHexadecimal()
-			}
-
-			if userInput == 7 {
+			case 7:
 				octal.ConvertToBinary()
-			}
-
-			if userInput == 8 {
+			case 8:
 				octal.ConvertToDecimal()
-			}
-
-			if userInput == 9 {
+			case 9:
 				octal.ConvertToHexadecimal()
-			}
-
-			if userInput == 10 {
+			case 10:
 				hexadecimal.ConvertToBinary()
-			}
-
-			if userInput == 11 {
+			case 11:
 				hexadecimal.ConvertToDecimal()
-			}
-
-			if userInput == 12 {
+			case 12:
 				hexadecimal.ConvertToOctal()
+			default:
+				hasError = true
 			}
 		} else {
 			hasError = true
 		}
 	}
 
-	// Clear the terminal upon exit.
 	helpers.Clear()
 }
