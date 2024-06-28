@@ -11,7 +11,7 @@
 
 > - Snap : https://snapcraft.io/baseshift
 
-> - If you want to check how I made this project from scratch, you can <br />
+> - If you want to check how I made this project, you can <br />
     view it [here](https://www.youtube.com/playlist?list=PLPks-uiro_XLkNPKPjwAcL6ifiqpIIPgu). Spoiler alert, it's pretty boring.
 
 <br />
