@@ -14,6 +14,7 @@ int main(void) {
   app_description();
   add_new_tab();
   add_new_line();
+  add_new_line();
 
   // Show the app options.
   app_options();
