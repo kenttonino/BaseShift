@@ -2,7 +2,7 @@
 #include "escape_sequence.h"
 #include <stdlib.h>
 
-char *option(int num) {
+char *format_option(int num) {
   char *formatted_option = malloc(sizeof(char) * 50);
 
   // Write the formatted output in formatted_option variable.
@@ -13,14 +13,14 @@ char *option(int num) {
 }
 
 void app_options(void) {
-  printf("%s Convert Binary", option(1));
+  printf("%s Convert Binary", format_option(1));
   add_new_line();
-  printf("%s Convert Decimal", option(2));
+  printf("%s Convert Decimal", format_option(2));
   add_new_line();
-  printf("%s Convert Octal", option(3));
+  printf("%s Convert Octal", format_option(3));
   add_new_line();
-  printf("%s Convert Hexadecimal", option(4));
+  printf("%s Convert Hexadecimal", format_option(4));
   add_new_line();
-  printf("%s Exit", option(5));
+  printf("%s Exit", format_option(5));
   add_new_line();
 }
