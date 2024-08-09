@@ -4,6 +4,7 @@
 #include "displays/error_message.h"
 #include "displays/escape_sequence.h"
 #include "inputs/main_option.h"
+#include "scales/celsius_scale.h"
 #include <stdio.h>
 
 int main(void) {
@@ -43,7 +44,8 @@ int main(void) {
 
     if (option == 1) {
       invalid_option = 0;
-      continue;
+      celsius_scale();
+      break;
     }
 
     if (option == 2) {
