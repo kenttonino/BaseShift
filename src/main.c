@@ -4,6 +4,7 @@
 #include "displays/error_message.h"
 #include "displays/escape_sequence.h"
 #include "inputs/main_option.h"
+#include "number_systems/binary_system.h"
 
 int main(void) {
   int option;
@@ -41,8 +42,9 @@ int main(void) {
     }
 
     if (option == 1) {
+      binary_system();
       invalid_option = 0;
-      break;
+      continue;
     }
 
     if (option == 2) {
