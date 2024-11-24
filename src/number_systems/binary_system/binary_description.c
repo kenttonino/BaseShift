@@ -1,5 +1,5 @@
-#include "../displays/ansi_color.h"
-#include "../displays/escape_sequence.h"
+#include "../../displays/ansi_color.h"
+#include "../../displays/escape_sequence.h"
 
 void binary_description(void) {
   printf("%-15s--------------------------------------------------------%s",

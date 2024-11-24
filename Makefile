@@ -1,5 +1,5 @@
 build:
-	gcc -g -o bin/baseshift src/main.c
+	gcc -g -o bin/baseshift src/main.c -lm
 
 debug:
 	make build

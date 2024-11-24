@@ -4,7 +4,7 @@
 #include "displays/error_message.h"
 #include "displays/escape_sequence.h"
 #include "inputs/main_option.h"
-#include "number_systems/binary_system.h"
+#include "number_systems/binary_system/binary_system.h"
 
 int main(void) {
   int option;
