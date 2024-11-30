@@ -14,18 +14,6 @@
 <br />
 
 
-
-## $\textnormal{System \ Design}$
-
-<br />
-
-![System Design](./docs/image-system-design.gif)
-
-<br />
-<br />
-
-
-
 ## $\textnormal{Local Development}$
 
 > - Note: `The root main.go is a symbolic link`.
