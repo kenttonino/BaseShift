@@ -14,13 +14,13 @@ char *format_option(int num) {
 
 void app_options(void) {
   printf("%s Convert Binary", format_option(1));
-  add_new_line();
+  add_new_line(1);
   printf("%s Convert Decimal", format_option(2));
-  add_new_line();
+  add_new_line(1);
   printf("%s Convert Octal", format_option(3));
-  add_new_line();
+  add_new_line(1);
   printf("%s Convert Hexadecimal", format_option(4));
-  add_new_line();
+  add_new_line(1);
   printf("%s Exit", format_option(5));
-  add_new_line();
+  add_new_line(1);
 }

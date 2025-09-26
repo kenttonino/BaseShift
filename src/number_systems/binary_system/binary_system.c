@@ -16,13 +16,11 @@ void binary_system(void) {
   while (1) {
     // Clean up the terminal.
     clear_terminal();
-    add_new_line();
-    add_new_line();
+    add_new_line(2);
 
     // Show the description.
     binary_description();
-    add_new_line();
-    add_new_line();
+    add_new_line(2);
 
     // Ask the input.
     printf("%-16s[%s %sBinary%s %s]%s : ", BLUE, RESET, GREEN, RESET, BLUE,
@@ -33,10 +31,9 @@ void binary_system(void) {
     // Check the validity of binary input.
     if (binary_validate(binary_input) == 0) {
       // Display error message.
-      add_new_line();
+      add_new_line(1);
       printf("%-16sError: Invalid input.%s", RED, RESET);
-      add_new_line();
-      add_new_line();
+      add_new_line(2);
 
       // Ask to try again.
       printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
@@ -53,19 +50,17 @@ void binary_system(void) {
     // TODO: Handle the computation for negative binary input to decimal.
     // TODO: Handle the computation for binary with dot to decimal.
     binary_to_decimal(binary_input);
-    add_new_line();
+    add_new_line(1);
 
     // TODO: Handle the computation for binary to octal.
     printf("%-16s[%s %sOctal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN, RESET,
            BLUE, RESET, YELLOW, RESET);
-    add_new_line();
+    add_new_line(1);
 
     // TODO: Handle the computation for binary to hexadecimal.
     printf("%-16s[%s %sHexadecimal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN,
            RESET, BLUE, RESET, YELLOW, RESET);
-    add_new_line();
-    add_new_line();
-    add_new_line();
+    add_new_line(3);
 
     // Ask to try again.
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
