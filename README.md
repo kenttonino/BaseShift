@@ -14,16 +14,11 @@
 
 ## Local Development
 
-> - Note: `The root main.go is a symbolic link`.
-
-> - Run the app.
+> - Make sure you have a [`GNU Make`](https://www.gnu.org/software/make/).
 
 ```bash
-# Change permission for the run script.
-sudo chmod +x run.sh
-
 # Run the app.
-./run.sh
+make run
 ```
 
 > - Below are the installation commands.
