@@ -5,6 +5,6 @@ debug:
 	make build
 	gdb bin/baseshift
 
-baseshift:
+run:
 	make build
 	bin/baseshift
