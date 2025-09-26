@@ -14,7 +14,7 @@
 
 ## Local Development
 
-> - Make sure you have a [`GNU Make`](https://www.gnu.org/software/make/).
+> - Make sure you have a [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), and [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/).
 
 ```bash
 # Run the app.
