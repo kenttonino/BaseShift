@@ -4,11 +4,9 @@
 void binary_description(void) {
   printf("%-15s--------------------------------------------------------%s",
          BLUE, RESET);
-  add_new_line();
-  add_new_line();
+  add_new_line(1);
   printf("%-32sBinary to Other System%s", GREEN, RESET);
-  add_new_line();
-  add_new_line();
+  add_new_line(1);
   printf("%-15s--------------------------------------------------------%s",
          BLUE, RESET);
 }

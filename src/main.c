@@ -13,25 +13,22 @@ int main(void) {
   while (1) {
     // Cleanup the terminal.
     clear_terminal();
-    add_new_line();
-    add_new_line();
+    add_new_line(2);
 
     // App description.
     app_description();
     add_new_tab();
-    add_new_line();
-    add_new_line();
+    add_new_line(2);
 
     // Show the error message.
     if (invalid_option) {
       error_message("Invalid main option. Please try again.");
-      add_new_line();
-      add_new_line();
+      add_new_line(2);
     }
 
     // Show the app options.
     app_options();
-    add_new_line();
+    add_new_line(1);
 
     // Ask the user choosen option.
     option = main_option();
@@ -65,7 +62,6 @@ int main(void) {
     invalid_option = 1;
   }
 
-  add_new_line();
-  add_new_line();
+  add_new_line(2);
   return 0;
 }
