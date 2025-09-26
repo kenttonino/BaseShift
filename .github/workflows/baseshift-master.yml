@@ -1,10 +1,10 @@
-name: BaseShift (develop)
+name: BaseShift (master)
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 jobs:
   build:
