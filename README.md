@@ -1,10 +1,9 @@
 ## Description
 
 > - A CLI tool that converts number system.
-
 > - This will support binary, decimal, octal, and hexadecimal systems.
-
 > - Snap : https://snapcraft.io/baseshift
+> - BaseShift Development Board: https://github.com/users/kenttonino/projects/16
 
 <br />
 <br />
