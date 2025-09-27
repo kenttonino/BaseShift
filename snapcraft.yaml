@@ -14,4 +14,4 @@ parts:
   baseshift:
     plugin: go
     source-type: git
-    source: https://github.com/kentlouisetonino/baseshift.git
+    source: https://github.com/kenttonino/baseshift.git
