@@ -17,7 +17,7 @@ int main(void) {
 
     // App description.
     app_description();
-    add_new_tab();
+    add_new_tab(1);
     add_new_line(2);
 
     // Show the error message.
