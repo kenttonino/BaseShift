@@ -13,14 +13,18 @@
 #include "./ansi_color.h"
 #include <stdio.h>
 
-void text_white(char *message, int width) {
-  printf("%-*s%s%s", width, WHITE, message, RESET);
+void text_red(char *text, int width) {
+  printf("%-*s%s%s", width, RED, text, RESET);
 }
 
-void text_green(char *message, int width) {
-  printf("%-*s%s%s", width, GREEN, message, RESET);
+void text_white(char *text, int width) {
+  printf("%-*s%s%s", width, WHITE, text, RESET);
 }
 
-void text_blue(char *message, int width) {
-  printf("%-*s%s%s", width, BLUE, message, RESET);
+void text_green(char *text, int width) {
+  printf("%-*s%s%s", width, GREEN, text, RESET);
+}
+
+void text_blue(char *text, int width) {
+  printf("%-*s%s%s", width, BLUE, text, RESET);
 }
