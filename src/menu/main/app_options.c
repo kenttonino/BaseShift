@@ -1,5 +1,5 @@
-#include "ansi_color.h"
-#include "utils.h"
+#include "../../utils/ansi_color.h"
+#include "../../utils/utils.h"
 #include <stdlib.h>
 
 char *format_option(int num) {
