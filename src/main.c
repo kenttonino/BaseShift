@@ -1,6 +1,5 @@
 #include "menu/binary_system/binary_system.h"
 #include "menu/main/menu_main.h"
-#include "utils/clear_terminal.h"
 #include "utils/utils.h"
 
 int main(void) {
