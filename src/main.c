@@ -1,6 +1,5 @@
 #include "menu/binary_system/binary_system.h"
 #include "menu/main/menu_main.h"
-#include "utils/app_description.h"
 #include "utils/app_options.h"
 #include "utils/clear_terminal.h"
 #include "utils/error_print.h"
