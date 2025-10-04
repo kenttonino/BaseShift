@@ -1,10 +1,10 @@
-#include "displays/app_description.h"
-#include "displays/app_options.h"
-#include "displays/clear_terminal.h"
-#include "displays/error_print.h"
-#include "displays/escape_sequence.h"
 #include "inputs/main_option.h"
 #include "number_systems/binary_system/binary_system.h"
+#include "utils/app_description.h"
+#include "utils/app_options.h"
+#include "utils/clear_terminal.h"
+#include "utils/error_print.h"
+#include "utils/escape_sequence.h"
 
 int main(void) {
   int option;
