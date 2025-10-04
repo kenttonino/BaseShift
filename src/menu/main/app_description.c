@@ -1,4 +1,3 @@
-#include "../../utils/custom_print.h"
 #include "../../utils/utils.h"
 
 void app_description(void) {

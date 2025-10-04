@@ -10,7 +10,7 @@
  *
  * */
 
-#include "./ansi_codes.c"
+#include "ansi_codes.c"
 #include <stdio.h>
 
 void text_red(char *text, int width) {

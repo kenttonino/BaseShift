@@ -1,4 +1,3 @@
-#include "../../utils/custom_print.h"
 #include "../../utils/utils.h"
 
 void binary_description(void) {
