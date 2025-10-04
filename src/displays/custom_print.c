@@ -20,3 +20,7 @@ void text_white(char *message, int width) {
 void text_green(char *message, int width) {
   printf("%-*s%s%s", width, GREEN, message, RESET);
 }
+
+void text_blue(char *message, int width) {
+  printf("%-*s%s%s", width, BLUE, message, RESET);
+}

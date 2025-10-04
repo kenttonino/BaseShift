@@ -4,5 +4,6 @@
 
 extern void text_white(char *message, int width);
 extern void text_green(char *message, int width);
+extern void text_blue(char *message, int width);
 
 #endif
