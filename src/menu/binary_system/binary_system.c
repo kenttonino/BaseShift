@@ -1,6 +1,6 @@
 #include "../../utils/ansi_color.h"
 #include "../../utils/clear_terminal.h"
-#include "../../utils/escape_sequence.h"
+#include "../../utils/utils.h"
 #include "binary_description.h"
 #include "binary_to_decimal.h"
 #include "binary_validate.h"

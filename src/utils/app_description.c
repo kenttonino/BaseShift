@@ -1,6 +1,6 @@
 #include "ansi_color.h"
 #include "custom_print.h"
-#include "escape_sequence.h"
+#include "utils.h"
 
 void app_description(void) {
   text_blue("--------------------------------------------------------", 15);

@@ -1,5 +1,5 @@
-#ifndef ESCAPE_SEQUENCE_H
-#define ESCAPE_SEQUENCE_H
+#ifndef UTILS_H
+#define UTILS_H
 #include "escape_sequence.c"
 
 extern void add_new_line(int num_lines);

@@ -4,7 +4,7 @@
 #include "utils/app_options.h"
 #include "utils/clear_terminal.h"
 #include "utils/error_print.h"
-#include "utils/escape_sequence.h"
+#include "utils/utils.h"
 
 int main(void) {
   int option;

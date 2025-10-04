@@ -1,6 +1,6 @@
 #include "../../utils/ansi_color.h"
 #include "../../utils/custom_print.h"
-#include "../../utils/escape_sequence.h"
+#include "../../utils/utils.h"
 
 void binary_description(void) {
   text_blue("--------------------------------------------------------", 15);

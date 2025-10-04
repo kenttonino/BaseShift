@@ -1,6 +1,7 @@
 #include "../../utils/ansi_color.h"
 #include "reverse_string.h"
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 

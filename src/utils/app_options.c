@@ -1,5 +1,5 @@
 #include "ansi_color.h"
-#include "escape_sequence.h"
+#include "utils.h"
 #include <stdlib.h>
 
 char *format_option(int num) {
