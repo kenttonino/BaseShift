@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *reverse_string(char *input) {
+char *binary_reverse_string(char *input) {
   int input_length = strlen(input);
   int current_index = input_length - 1;
   int index_increment = 0;
