@@ -1,7 +1,7 @@
 #include "../../utils/utils.h"
-#include "binary_description.h"
-#include "binary_to_decimal.h"
-#include "binary_validate.h"
+#include "binary_description.c"
+#include "binary_to_decimal.c"
+#include "binary_validate.c"
 #include <stdio.h>
 #include <stdlib.h>
 
