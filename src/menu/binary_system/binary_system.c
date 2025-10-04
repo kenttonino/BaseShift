@@ -1,4 +1,3 @@
-#include "../../utils/ansi_color.h"
 #include "../../utils/clear_terminal.h"
 #include "../../utils/utils.h"
 #include "binary_description.h"

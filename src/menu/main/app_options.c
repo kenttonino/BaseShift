@@ -1,4 +1,3 @@
-#include "../../utils/ansi_color.h"
 #include "../../utils/utils.h"
 #include <stdlib.h>
 
