@@ -1,13 +1,12 @@
 /*
- * These are the reusable functions where you can
- * print a text or message with ANSI color
- * codes support.
- *
- * This also includes a custom width, to handle
- * the spacing in left side, instead of using
- * spaces manually. Which is kind of similar
- * to C++ setw function.
- *
+  These are the reusable functions where you can
+  print a text or message with ANSI color
+  codes support.
+
+  This also includes a * dynamic field width, to
+  handle the spacing in left side, instead of using
+  spaces manually. Which is kind of similar to C++
+  setw function.
  * */
 
 #include "ansi_codes.c"
