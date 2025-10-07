@@ -1,10 +1,6 @@
-#include "displays/app_description.h"
-#include "displays/app_options.h"
-#include "displays/clear_terminal.h"
-#include "displays/error_message.h"
-#include "displays/escape_sequence.h"
-#include "inputs/main_option.h"
-#include "number_systems/binary_system/binary_system.h"
+#include "menu/binary/menu_binary.h"
+#include "menu/main/menu_main.h"
+#include "utils/utils.h"
 
 int main(void) {
   int option;
@@ -22,7 +18,7 @@ int main(void) {
 
     // Show the error message.
     if (invalid_option) {
-      error_message("Invalid main option. Please try again.");
+      error_print("Invalid main option. Please try again.", 16);
       add_new_line(2);
     }
 

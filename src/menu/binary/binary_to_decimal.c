@@ -1,11 +1,12 @@
-#include "../../displays/ansi_color.h"
-#include "reverse_string.h"
+#include "../../utils/utils.h"
+#include "binary_reverse_string.c"
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 void binary_to_decimal(char *binary_input) {
-  char *reversed_binary_input = reverse_string(binary_input);
+  char *reversed_binary_input = binary_reverse_string(binary_input);
   int reversed_binary_length = strlen(reversed_binary_input);
   int decimal = 0;
 
