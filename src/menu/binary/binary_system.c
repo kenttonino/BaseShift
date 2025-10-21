@@ -9,7 +9,6 @@
 void binary_system(void) {
   char *binary_input = malloc(100);
   char *garbage_buffer = malloc(100);
-  int is_valid_binary = 1;
   int try_again = 0;
 
   while (1) {
@@ -26,7 +25,8 @@ void binary_system(void) {
     fgets(garbage_buffer, 100, stdin);
 
     // Check the validity of binary input.
-    if (binary_validate(binary_input) == 0) {
+    int valid_binary = binary_validate(binary_input);
+    if (valid_binary == 0) {
       // Display error message.
       add_new_line(1);
       printf("%-16sError: Invalid input.%s", RED, RESET);
