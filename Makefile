@@ -4,11 +4,11 @@ build:
 	gcc -Werror -Wfatal-errors -g -o ./bin/main ./src/main.c -lm
 
 build_tests:
-	gcc -Werror -Wfatal-errors -o ./bin/tests/binary_test ./src/menu/binary/__tests__/binary_test.c
+	gcc -Werror -Wfatal-errors -o ./bin/tests/binary_tests ./src/menu/binary/__tests__/binary_tests.c
 
 tests:
 	make build_tests
-	./bin/tests/binary_test
+	./bin/tests/binary_tests
 
 debug:
 	make build

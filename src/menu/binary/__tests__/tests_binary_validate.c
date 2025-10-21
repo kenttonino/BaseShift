@@ -2,10 +2,7 @@
 #include "../binary_validate.c"
 #include <assert.h>
 
-int main(void) {
-  clear_terminal();
-  add_new_line(2);
-
+void tests_binary_validate(void) {
   text_white("[ Unit Testing Binary Functions ]", 10);
   add_new_line(1);
 
@@ -27,7 +24,4 @@ int main(void) {
              "binary point",
              10);
   add_new_line(1);
-
-  add_new_line(2);
-  return 0;
 }
