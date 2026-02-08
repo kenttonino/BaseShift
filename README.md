@@ -1,6 +1,11 @@
 ## Description
 
-> - ⚠️ I’m a tinkerer and dilettante. This project exists purely to explore number system conversion out of curiosity, and I’ll archive it after implementing only the features I needed.
+<br />
+
+⚠️ I’m a tinkerer and dilettante. This project exists purely to explore number system conversion out of curiosity, and I’ll archive it after implementing only the features I needed.
+
+<br />
+
 > - A CLI tool that converts number system.
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
