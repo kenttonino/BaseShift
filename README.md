@@ -2,7 +2,7 @@
 
 <br />
 
-⚠️ I’m a tinkerer and dilettante. This project exists purely to explore number system conversion out of curiosity, and I’ll archive it after implementing only the features I needed.
+⚠️ This project exists purely to explore number system conversion out of curiosity, and I’ll archive it after implementing only the features I needed.
 
 <br />
 
