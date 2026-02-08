@@ -9,8 +9,7 @@ build_tests:
 tests: build_tests
 	./bin/tests/binary_tests
 
-debug:
-	make build
+debug: build
 	gdb ./bin/main
 
 run: build
