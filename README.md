@@ -3,6 +3,9 @@
 > - A CLI tool that converts number system.
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
+<img width="1604" height="1028" alt="Screenshot from 2026-02-08 22-31-12" src="https://github.com/user-attachments/assets/f4285d99-c013-4d03-9f9e-b2a3dc12a23f" />
+
+
 <br />
 <br />
 <br />
