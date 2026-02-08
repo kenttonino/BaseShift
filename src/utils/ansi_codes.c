@@ -6,3 +6,4 @@
 #define BLUE "\e[0;34m"
 #define WHITE "\e[0;37m"
 #define GREY "\e[0;90m"
+#define CYAN "\e[0;36m"
