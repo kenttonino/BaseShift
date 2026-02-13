@@ -2,7 +2,7 @@
 
 <br />
 
-⚠️ I’ll archive this after implementing only the features I needed.
+⚠️ I’ll archive this after implementing the features I needed.
 
 <br />
 
