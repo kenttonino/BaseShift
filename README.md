@@ -2,6 +2,10 @@
 
 <br />
 
+<img width="451" height="312" alt="image" src="https://github.com/user-attachments/assets/40d8aa80-4fcc-44b7-93ca-9dbdfe6da92d" />
+
+<br />
+
 ⚠️ I’ll archive this after implementing the features I needed.
 
 <br />
@@ -9,7 +13,16 @@
 > - A CLI tool that converts number system.
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
-<img width="1604" height="1028" alt="Screenshot from 2026-02-08 22-31-12" src="https://github.com/user-attachments/assets/f4285d99-c013-4d03-9f9e-b2a3dc12a23f" />
+<br />
+
+| `Binary to Decimal` | `Completed` |
+| ------------------- | ----------- |
+| `(1111) to 15 ` | `✅` |
+| `(1111.1) to 15.5 ` | `✅` |
+| `(-1111) to -15 ` | `✅` |
+| `(-1111.1) to -15.5 ` | `✅` | 
+
+
 
 
 <br />
