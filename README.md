@@ -40,7 +40,7 @@
 make build
 
 # Unit tests.
-make tests
+make test
 
 # Run the app with GDB.
 make debug
