@@ -15,12 +15,12 @@
 
 <br />
 
-| `Binary to Decimal` | `Completed` |
+| `Features` | `Completed` |
 | ------------------- | ----------- |
-| `(1111) to 15 ` | `✅` |
-| `(1111.1) to 15.5 ` | `✅` |
-| `(-1111) to -15 ` | `✅` |
-| `(-1111.1) to -15.5 ` | `✅` | 
+| `Binary to Decimal` | `✅` |
+| `Binary to Octal` | `❌` |
+| `Binary to Hexadecimal` | `❌` |
+
 
 
 
