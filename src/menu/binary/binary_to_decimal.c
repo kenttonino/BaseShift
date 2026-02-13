@@ -42,7 +42,6 @@ void binary_to_decimal(char *binary_input) {
     for (int i = 0; i < reversed_binary_length; i++) {
       char current_binary_char = reversed_binary_input[i];
       int current_binary_int = atoi(&current_binary_char);
-      int exponent = current_binary_int * pow(2, i);
       decimal = decimal + (current_binary_int * pow(2, i));
     }
 
@@ -74,7 +73,6 @@ void binary_to_decimal(char *binary_input) {
     for (int i = 0; i < reversed_binary_length; i++) {
       char current_binary_char = reversed_binary_input[i];
       int current_binary_int = atoi(&current_binary_char);
-      int exponent = current_binary_int * pow(2, i);
       decimal = decimal + (current_binary_int * pow(2, i));
     }
 
@@ -99,7 +97,7 @@ void binary_to_decimal(char *binary_input) {
     // Remove the - character.
     memmove(binary_input, binary_input+1, strlen(binary_input));
 
-    // Separate the binary values before dot.
+    // Separate the binary values before and after dot.
     char *binary_before_dot = malloc(strlen(binary_input) + 1);
     char *binary_after_dot = malloc(strlen(binary_input) + 1);
     int is_after_dot = 0;
@@ -119,11 +117,38 @@ void binary_to_decimal(char *binary_input) {
       }
     }
 
-    // Separate the binary values after dot.
+    // Compute the values before dot.
+    char *reversed_binary_input = binary_reverse_string(binary_before_dot);
+    int reversed_binary_length = strlen(reversed_binary_input);
+    double decimal = 0;
+    for (int i = 0; i < reversed_binary_length; i++) {
+      char current_binary_char = reversed_binary_input[i];
+      int current_binary_int = atoi(&current_binary_char);
+      int exponent = current_binary_int * pow(2, i);
+      decimal = decimal + (current_binary_int * pow(2, i));
+    }
 
-    printf("binary_before_dot: %s", binary_before_dot);
-    add_new_line(1);
-    printf("binary_after_dot: %s", binary_after_dot);
+    // Compute the values after dot.
+    int before_dot_exponent = -1;
+    for (int i = 0; i < strlen(binary_after_dot); i++) {
+      // This converts a character representing a digit into the actual integer value.
+      int current_binary_int = binary_after_dot[i] - '0';
+      decimal += current_binary_int * pow(2, -(i + 1));
+    }
+
+    printf(
+        "%-16s[%s %sDecimal%s %s]%s : %s%lf%s",
+        BLUE,
+        RESET,
+        GREEN,
+        RESET,
+        BLUE,
+        RESET,
+        YELLOW,
+        -decimal,
+        RESET
+    );
+
     free(binary_before_dot);
     free(binary_after_dot);
     return;
