@@ -78,7 +78,7 @@ double get_decimal_with_dot(char* binary_input) {
     }
   }
 
-  // Reset to the null terminator.
+  // Reset to the null terminator to stop reading this variables.
   binary_before_dot[counter_before_dot] = '\0';
   binary_after_dot[counter_after_dot]   = '\0';
 
