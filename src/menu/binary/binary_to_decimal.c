@@ -163,6 +163,7 @@ void binary_to_decimal(char *binary_input) {
     return;
   }
 
+  // E.g. 1111.1 values.
   if (is_normal_dot(binary_input)) {
     // Separate the binary values before and after dot.
     char *binary_before_dot = malloc(strlen(binary_input) + 1);
