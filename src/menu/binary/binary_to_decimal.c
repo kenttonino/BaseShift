@@ -42,7 +42,7 @@ int is_negative_with_dot(char* binary_input) {
 }
 
 
-// Compute the decimal value before without dot.
+// Compute the decimal value without dot.
 double get_decimal(char* binary_input) {
  char *reversed_binary_input = binary_reverse_string(binary_input);
  int reversed_binary_length = strlen(reversed_binary_input);
