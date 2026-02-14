@@ -15,7 +15,7 @@ int is_positive(char* binary_input) {
 }
 
 // If the binary input does have a dot without negative sign.
-int is_positive_dot(char* binary_input) {
+int is_positive_with_dot(char* binary_input) {
   if (strrchr(binary_input, '-') == NULL && strrchr(binary_input, '.') != NULL) {
     return 1;
   } else {
@@ -150,7 +150,7 @@ void binary_to_decimal(char *binary_input) {
   }
 
   // E.g. 1111.1 values.
-  if (is_positive_dot(binary_input)) {
+  if (is_positive_with_dot(binary_input)) {
     // Separate the binary values before and after dot.
     double decimal = get_decimal_with_dot(binary_input);
     display_decimal(decimal, 0);
