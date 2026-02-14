@@ -60,4 +60,14 @@ void test_binary_to_decimal(void) {
   add_new_line(1);
   assert(is_negative_with_dot("1111.1") == 0);
   text_green("is_negative_with_dot -> should not accept positive binary without dot", 10);
+  add_new_line(1);
+
+  // Compute decimal 1111 value.
+  assert(get_decimal("1111") == 15);
+  text_green("get_decimal -> should return the correct value", 10);
+  add_new_line(1);
+
+  // Compute decimal for 1111.1 value.
+  assert(get_decimal_with_dot("1111.1") == 15.5);
+  text_green("get_decimal_with_dot -> should return the correct value", 10);
 }
