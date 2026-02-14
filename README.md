@@ -18,8 +18,17 @@
 | `Features` | `Completed` |
 | ------------------- | ----------- |
 | `Binary to Decimal` | `✅` |
-| `Binary to Octal` | `❌` |
-| `Binary to Hexadecimal` | `❌` |
+| `Binary to Octal` | `TODO` |
+| `Binary to Hexadecimal` | `TODO` |
+| `Decimal to Binary` | `TODO` |
+| `Decimal to Octal` | `TODO` |
+| `Decimal to Hexadecimal` | `TODO` |
+| `Octal to Binary` | `TODO` |
+| `Octal to Decimal` | `TODO` |
+| `Octal to Hexadecimal` | `TODO` |
+| `Hexadecimal to Binary` | `TODO` |
+| `Hexadecimal to Decimal` | `TODO` |
+| `Hexadecimal to Octal` | `TODO` |
 
 
 
@@ -40,7 +49,7 @@
 make build
 
 # Unit tests.
-make tests
+make test
 
 # Run the app with GDB.
 make debug

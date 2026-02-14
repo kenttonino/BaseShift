@@ -3,10 +3,10 @@ build:
 	# -g: Generate a debugging information.
 	gcc -Werror -Wfatal-errors -g -o ./bin/main ./src/main.c -lm
 
-build_tests:
-	gcc -Werror -Wfatal-errors -o ./bin/tests/binary_tests ./src/menu/binary/__tests__/binary_tests.c
+build_test:
+	gcc -Werror -Wfatal-errors -o ./bin/tests/binary_tests ./src/menu/binary/__tests__/binary_tests.c -lm
 
-tests: build_tests
+test: build_test
 	./bin/tests/binary_tests
 
 debug: build
