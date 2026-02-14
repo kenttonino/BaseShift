@@ -20,16 +20,16 @@ void test_binary_to_decimal(void) {
   text_green("is_normal -> should not accept negative binary values with dot", 10);
   add_new_line(1);
 
-  // THe is_negative_only function only accepts -1111 values.
-  assert(is_negative_only("-1111") == 1);
-  text_green("is_negative_only -> should accept negative binary values without dot.", 10);
+  // The is_negative_only function only accepts -1111 values.
+  assert(is_negative("-1111") == 1);
+  text_green("is_negative -> should accept negative binary values without dot.", 10);
   add_new_line(1);
-  assert(is_negative_only("-1111.1") == 0);
-  text_green("is_negative_only -> should not accept negative binary values with dot.", 10);
+  assert(is_negative("-1111.1") == 0);
+  text_green("is_negative -> should not accept negative binary values with dot.", 10);
   add_new_line(1);
-  assert(is_negative_only("1111") == 0);
-  text_green("is_negative_only -> should not accept non-negative binary values.", 10);
+  assert(is_negative("1111") == 0);
+  text_green("is_negative -> should not accept non-negative binary values.", 10);
   add_new_line(1);
-  assert(is_negative_only("1111.1") == 0);
-  text_green("is_negative_only -> should not accept binary values with dot.", 10);
+  assert(is_negative("1111.1") == 0);
+  text_green("is_negative -> should not accept binary values with dot.", 10);
 }

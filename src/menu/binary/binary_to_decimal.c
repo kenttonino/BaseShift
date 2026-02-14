@@ -15,7 +15,7 @@ int is_normal(char* binary_input) {
 }
 
 // If the binary input does include negative without dot.
-int is_negative_only(char* binary_input) {
+int is_negative(char* binary_input) {
   if (strrchr(binary_input, '-') != NULL && strrchr(binary_input, '.') == NULL) {
     return 1;
   } else {
@@ -131,7 +131,7 @@ void binary_to_decimal(char *binary_input) {
   }
 
   // E.g. -0001 value.
-  if (is_negative_only(binary_input)) {
+  if (is_negative(binary_input)) {
     // Remove the - character.
     memmove(binary_input, binary_input+1, strlen(binary_input));
     double decimal = get_decimal(binary_input);
