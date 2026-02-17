@@ -5,17 +5,8 @@ char *format_option(int num) {
   char *formatted_option = malloc(sizeof(char) * 50);
 
   // Write the formatted output in formatted_option variable.
-  sprintf(
-    formatted_option,
-    "%-16s[%s %s%d%s %s]%s",
-    BLUE,
-    RESET,
-    YELLOW,
-    num,
-    RESET,
-    BLUE,
-    RESET
-  );
+  sprintf(formatted_option, "%-16s[%s %s%d%s %s]%s", BLUE, RESET, YELLOW, num,
+          RESET, BLUE, RESET);
 
   return formatted_option;
 }
