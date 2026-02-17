@@ -1,6 +1,6 @@
 #include "../../utils/utils.h"
+#include "binary_helper.c"
 #include "binary_reverse_string.c"
-#include "binary_validate.c"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,14 +80,14 @@ void display_decimal(double decimal, int negative) {
 
 void binary_to_decimal(char *binary_input) {
   // E.g. 0001 value.
-  if (is_positive(binary_input)) {
+  if (is_positive_binary(binary_input)) {
     double decimal = get_decimal(binary_input);
     display_decimal(decimal, 0);
     return;
   }
 
   // E.g. -0001 value.
-  if (is_negative(binary_input)) {
+  if (is_negative_binary(binary_input)) {
     // Remove the - character.
     memmove(binary_input, binary_input + 1, strlen(binary_input));
     double decimal = get_decimal(binary_input);
@@ -96,7 +96,7 @@ void binary_to_decimal(char *binary_input) {
   }
 
   // E.g. -0001.1 value.
-  if (is_negative_with_dot(binary_input)) {
+  if (is_negative_binary_with_dot(binary_input)) {
     // Remove the - character.
     memmove(binary_input, binary_input + 1, strlen(binary_input));
     double decimal = get_decimal_with_dot(binary_input);
@@ -105,7 +105,7 @@ void binary_to_decimal(char *binary_input) {
   }
 
   // E.g. 1111.1 values.
-  if (is_positive_with_dot(binary_input)) {
+  if (is_positive_binary_with_dot(binary_input)) {
     // Separate the binary values before and after dot.
     double decimal = get_decimal_with_dot(binary_input);
     display_decimal(decimal, 0);
