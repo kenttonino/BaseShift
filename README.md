@@ -38,18 +38,15 @@
 
 ## Local Development
 
-> - Make sure you have a [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), and [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/).
+> - Make sure you have a [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/), and [Valgrind](https://valgrind.org/).
 
 ```bash
-# Build the app.
-make build
+# Build and run the test.
+make run-test bin="binary_tests"
 
-# Unit tests.
-make test
+# Build and run the program using GDB.
+make run-debug
 
-# Run the app with GDB.
-make debug
-
-# Run the app.
+# Build and run the program.
 make run
 ```
