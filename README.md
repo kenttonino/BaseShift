@@ -6,10 +6,6 @@
 
 <br />
 
-⚠️ I’ll archive this after implementing the features I needed.
-
-<br />
-
 > - A CLI tool that converts number system.
 > - This will support binary, decimal, octal, and hexadecimal systems.
 
