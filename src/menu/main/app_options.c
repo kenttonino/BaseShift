@@ -1,8 +1,7 @@
 #include "../../utils/utils.h"
-#include <stdlib.h>
 
 char *format_option(int num) {
-  char *formatted_option = malloc(sizeof(char) * 50);
+  static char formatted_option[1000];
 
   // Write the formatted output in formatted_option variable.
   sprintf(

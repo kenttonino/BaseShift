@@ -49,31 +49,11 @@ void binary_system(void) {
     add_new_line(1);
 
     // TODO: Handle the computation for binary to octal.
-    printf(
-      "%-16s[%s %sOctal%s %s]%s : %sTODO%s",
-      BLUE,
-      RESET,
-      GREEN,
-      RESET,
-      BLUE,
-      RESET,
-      YELLOW,
-      RESET
-    );
+    printf("%-16s[%s %sOctal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN, RESET, BLUE, RESET, YELLOW, RESET);
     add_new_line(1);
 
     // TODO: Handle the computation for binary to hexadecimal.
-    printf(
-      "%-16s[%s %sHexadecimal%s %s]%s : %sTODO%s",
-      BLUE,
-      RESET,
-      GREEN,
-      RESET,
-      BLUE,
-      RESET,
-      YELLOW,
-      RESET
-    );
+    printf("%-16s[%s %sHexadecimal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN, RESET, BLUE, RESET, YELLOW, RESET);
     add_new_line(3);
 
     // Ask to try again.
@@ -87,4 +67,7 @@ void binary_system(void) {
       break;
     }
   }
+
+  free(binary_input);
+  free(garbage_buffer);
 }
