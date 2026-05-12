@@ -10,5 +10,6 @@ int main_option(void) {
   scanf("%d", &option);
   fgets(garbage_buffer, 100, stdin);
 
+  free(garbage_buffer);
   return option;
 }
