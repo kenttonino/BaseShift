@@ -6,10 +6,11 @@ build:
 build_test:
 	gcc -Werror -Wfatal-errors -o ./bin/tests/binary_tests ./src/menu/binary/__tests__/binary_tests.c -lm
 
-test: build_test
-	./bin/tests/binary_tests
+run-test: build_test
+	# e.g. make run-test bin="binary_tests"
+	./bin/tests/${bin}
 
-debug: build
+run-debug: build
 	gdb ./bin/main
 
 run: build
