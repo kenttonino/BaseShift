@@ -10,6 +10,9 @@ run-test: build_test
 	# e.g. make run-test bin="binary_tests"
 	./bin/tests/${bin}
 
+run-valgrind: build
+	valgrind --leak-check=full --leak-resolution=high ./bin/main
+
 run-debug: build
 	gdb ./bin/main
 
