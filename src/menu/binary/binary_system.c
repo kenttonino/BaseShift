@@ -3,6 +3,7 @@
 #include "binary_to_decimal.c"
 #include "binary_validate.c"
 #include "get_binary_input.c"
+#include "binary_to_octal.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -49,6 +50,7 @@ void binary_system(void) {
     add_new_line(1);
 
     // TODO: Handle the computation for binary to octal.
+    binary_to_octal(binary_input);
     printf("%-16s[%s %sOctal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN, RESET, BLUE, RESET, YELLOW, RESET);
     add_new_line(1);
 

@@ -1,5 +1,5 @@
 #include "../../utils/utils.h"
-#include "binary_helper.c"
+#include "helper/helper.h"
 #include "binary_reverse_string.c"
 #include <math.h>
 #include <stdio.h>
@@ -74,8 +74,18 @@ double get_decimal_with_dot(char *binary_input) {
 
 // Output the binary to decimal result.
 void display_decimal(double decimal, int negative) {
-  printf("%-16s[%s %sDecimal%s %s]%s : %s%f%s", BLUE, RESET, GREEN, RESET, BLUE,
-         RESET, YELLOW, negative == 1 ? -decimal : decimal, RESET);
+  printf(
+      "%-16s[%s %sDecimal%s %s]%s : %s%f%s",
+      BLUE,
+      RESET,
+      GREEN,
+      RESET,
+      BLUE,
+      RESET,
+      YELLOW,
+      negative == 1 ? -decimal : decimal,
+      RESET
+  );
 }
 
 void binary_to_decimal(char *binary_input) {
