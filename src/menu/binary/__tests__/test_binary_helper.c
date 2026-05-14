@@ -1,5 +1,5 @@
 #include "../../../utils/utils.h"
-#include "../binary_helper.c"
+#include "../helper/helper.h"
 #include <assert.h>
 
 void test_binary_helper(void) {
