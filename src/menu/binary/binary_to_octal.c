@@ -1,4 +1,5 @@
 #include "helper/helper.h"
+#include "../../utils/utils.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -38,6 +39,21 @@ char *octal_value_mapper(int octal) {
   }
 }
 
+void display_octal(double octal, int negative) {
+  printf(
+      "%-16s[%s %sOctal%s %s]%s : %s%f%s",
+      BLUE,
+      RESET,
+      GREEN,
+      RESET,
+      BLUE,
+      RESET,
+      YELLOW,
+      negative == 1 ? -octal : octal,
+      RESET
+  );
+}
+
 void binary_to_octal(char *binary_input) {
   // e.g. 1000 = 10
   if (is_positive_binary(binary_input)) {
@@ -57,18 +73,35 @@ void binary_to_octal(char *binary_input) {
       // e.g. ["001", "000"]
       char *octal_arrays = malloc(1000);
 
-      for (int i = 0; i < new_binary_input_length; i++) {
-        if (i < 3) {
-          binary_group[i] = new_binary_input[i];
-        } else {
-          octal_arrays[0] = (char) *octal_value_mapper(atoi(binary_group));
-          break;
+      for (int i = 0; i <= new_binary_input_length; i++) {
+        int binary_group_length = strlen(binary_group);
+
+        if (binary_group_length == 0) {
+          binary_group[0] = new_binary_input[i];
+          continue;
+        }
+
+        if (binary_group_length == 1) {
+          binary_group[1] = new_binary_input[i];
+          continue;
+        }
+
+        if (binary_group_length == 2) {
+          binary_group[2] = new_binary_input[i];
+          continue;
+        }
+
+        if (binary_group_length == 3) {
+          char *octal_value = octal_value_mapper(atoi(binary_group));
+          char octal_arrays_len = strlen(octal_arrays);
+
+          octal_arrays[octal_arrays_len] = (char) *octal_value;
+          binary_group = malloc(1000);
+          binary_group[0] = new_binary_input[i];
         }
       }
 
-      for (int i = 0; i < strlen(octal_arrays); i++) {
-        printf("%c\n", octal_arrays[i]);
-      }
+      display_octal(atoi(octal_arrays), 0);
     }
 
     return;
