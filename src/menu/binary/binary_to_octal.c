@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include "helper/helper.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void octal_zero_adder(int num_zeroes, int binary_length, char *binary_input, char *new_binary_input) {
   for (int i = 0; i < 3; i++) {
@@ -50,13 +50,25 @@ void binary_to_octal(char *binary_input) {
       char *new_binary_input = malloc(sizeof(char) * (binary_length  + zeroes_to_add));
       octal_zero_adder(zeroes_to_add, binary_length, binary_input, new_binary_input);
 
+      // Process an array of octal values.
+      int new_binary_input_length = strlen(new_binary_input);
       // e.g. "001"
-      char *octal_group = malloc(sizeof(char) * 3);
+      char *binary_group = malloc(sizeof(char) * 3);
       // e.g. ["001", "000"]
       char *octal_arrays = malloc(1000);
 
-      char *octal = octal_value_mapper(atoi("111"));
-      printf("%s", octal);
+      for (int i = 0; i < new_binary_input_length; i++) {
+        if (i < 3) {
+          binary_group[i] = new_binary_input[i];
+        } else {
+          octal_arrays[0] = (char) *octal_value_mapper(atoi(binary_group));
+          break;
+        }
+      }
+
+      for (int i = 0; i < strlen(octal_arrays); i++) {
+        printf("%c\n", octal_arrays[i]);
+      }
     }
 
     return;
