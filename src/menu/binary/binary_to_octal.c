@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void octal_zero_adder(int num_zeroes, int binary_length, char *binary_input, char *new_binary_input) {
+void octal_zero_adder(int binary_length, char *binary_input, char *new_binary_input) {
   for (int i = 0; i < 3; i++) {
     if (i < 2) {
       new_binary_input[i] = '0';
@@ -46,7 +46,7 @@ char *get_octal(char *binary_input) {
   // Prepend the 2 zeroes in binary_input.
   int zeroes_to_add = octal_rem == 1 ? 2 : 1;
   char *new_binary_input = malloc(sizeof(char) * (binary_len  + zeroes_to_add));
-  octal_zero_adder(zeroes_to_add, binary_len, binary_input, new_binary_input);
+  octal_zero_adder(binary_len, binary_input, new_binary_input);
 
   // Process an array of octal values.
   int new_binary_input_len = strlen(new_binary_input);
@@ -75,9 +75,9 @@ char *get_octal(char *binary_input) {
 
     if (binary_group_len == 3) {
       char *octal_value = octal_value_mapper(atoi(binary_group));
-      char octal_arrays_len = strlen(octal_arrays);
+      int octal_arrays_len = strlen(octal_arrays);
 
-      octal_arrays[octal_arrays_len] = (char) *octal_value;
+      octal_arrays[octal_arrays_len] = *octal_value;
       binary_group = malloc(1000);
       binary_group[0] = new_binary_input[i];
     }
@@ -108,4 +108,6 @@ void binary_to_octal(char *binary_input) {
     display_octal(atoi(octal_arrays), 0);
     return;
   }
+
+  // e.g. 1000.1111 = 10.74
 }
