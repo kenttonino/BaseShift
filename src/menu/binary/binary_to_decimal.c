@@ -1,5 +1,5 @@
 #include "../../utils/utils.h"
-#include "binary_helper.c"
+#include "helper/helper.h"
 #include "binary_reverse_string.c"
 #include <math.h>
 #include <stdio.h>
@@ -54,13 +54,11 @@ double get_decimal_with_dot(char *binary_input) {
   for (int i = 0; i < reversed_binary_length; i++) {
     char current_binary_char = reversed_binary_input[i];
     int current_binary_int = atoi(&current_binary_char);
-    int exponent = current_binary_int * pow(2, i);
     decimal = decimal + (current_binary_int * pow(2, i));
   }
 
   // Compute the values after dot.
-  int before_dot_exponent = -1;
-  for (int i = 0; i < strlen(binary_after_dot); i++) {
+  for (size_t i = 0; i < strlen(binary_after_dot); i++) {
     // This converts a character representing a digit into the actual integer
     // value.
     int current_binary_int = binary_after_dot[i] - '0';
@@ -74,8 +72,18 @@ double get_decimal_with_dot(char *binary_input) {
 
 // Output the binary to decimal result.
 void display_decimal(double decimal, int negative) {
-  printf("%-16s[%s %sDecimal%s %s]%s : %s%f%s", BLUE, RESET, GREEN, RESET, BLUE,
-         RESET, YELLOW, negative == 1 ? -decimal : decimal, RESET);
+  printf(
+      "%-16s[%s %sDecimal%s %s]%s : %s%f%s",
+      BLUE,
+      RESET,
+      GREEN,
+      RESET,
+      BLUE,
+      RESET,
+      YELLOW,
+      negative == 1 ? -decimal : decimal,
+      RESET
+  );
 }
 
 void binary_to_decimal(char *binary_input) {
