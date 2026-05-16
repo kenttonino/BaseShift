@@ -45,7 +45,7 @@ int binary_validate(char *binary_input) {
 
     // Default return.
     is_valid = 0;
-    continue;
+    break;;
   }
 
   return is_valid;
