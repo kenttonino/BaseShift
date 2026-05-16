@@ -18,3 +18,6 @@ jobs:
 
     - name: Test Binary Functions
       run: make run-test bin="binary_tests"
+
+    - name: Test Binary Helper Functions
+      run: make run-test bin="binary_helper_tests"
