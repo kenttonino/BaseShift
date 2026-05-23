@@ -58,7 +58,7 @@ double get_decimal_with_dot(char *binary_input) {
   }
 
   // Compute the values after dot.
-  for (size_t i = 0; i < strlen(binary_after_dot); i++) {
+  for (int i = 0; i < (int) strlen(binary_after_dot); i++) {
     // This converts a character representing a digit into the actual integer
     // value.
     int current_binary_int = binary_after_dot[i] - '0';
@@ -94,6 +94,14 @@ void binary_to_decimal(char *binary_input) {
     return;
   }
 
+  // E.g. 1111.1 values.
+  if (is_positive_binary_with_dot(binary_input)) {
+    // Separate the binary values before and after dot.
+    double decimal = get_decimal_with_dot(binary_input);
+    display_decimal(decimal, 0);
+    return;
+  }
+
   // E.g. -0001 value.
   if (is_negative_binary(binary_input)) {
     // Remove the - character.
@@ -112,11 +120,4 @@ void binary_to_decimal(char *binary_input) {
     return;
   }
 
-  // E.g. 1111.1 values.
-  if (is_positive_binary_with_dot(binary_input)) {
-    // Separate the binary values before and after dot.
-    double decimal = get_decimal_with_dot(binary_input);
-    display_decimal(decimal, 0);
-    return;
-  }
 }

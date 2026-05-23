@@ -110,4 +110,9 @@ void binary_to_octal(char *binary_input) {
   }
 
   // e.g. 1000.1111 = 10.74
+  if (is_positive_binary_with_dot(binary_input)) {
+    printf("Hello");
+    add_new_line(2);
+    return;
+  }
 }
