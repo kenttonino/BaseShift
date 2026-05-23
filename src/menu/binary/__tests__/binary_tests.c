@@ -13,7 +13,7 @@ int main(void) {
   add_new_line(2);
 
   test_binary_validate();
-  add_new_line(2);
+  add_new_line(3);
 
   return 0;
 }
