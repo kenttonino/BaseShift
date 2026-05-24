@@ -53,7 +53,7 @@ char *get_octal(char *binary_input) {
   // e.g. "001"
   char *binary_group = malloc(sizeof(char) * 3);
   // e.g. ["001", "000"]
-  static char *octal_arrays;
+  static char octal_arrays[1000];
 
   for (int i = 0; i <= new_binary_input_len; i++) {
     int binary_group_len = strlen(binary_group);
@@ -75,8 +75,8 @@ char *get_octal(char *binary_input) {
 
     if (binary_group_len == 3) {
       char *octal_value = octal_value_mapper(atoi(binary_group));
-      int octal_arrays_len = strlen(octal_arrays);
 
+      int octal_arrays_len = strlen(octal_arrays);
       octal_arrays[octal_arrays_len] = *octal_value;
       free(binary_group);
       binary_group = malloc(1000);
