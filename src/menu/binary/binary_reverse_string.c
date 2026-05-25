@@ -11,5 +11,6 @@ char *binary_reverse_string(char *input) {
     index_increment++;
   }
 
+  reversed_string[strlen(reversed_string)] = '\0';
   return reversed_string;
 }
