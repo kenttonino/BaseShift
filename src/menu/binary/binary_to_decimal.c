@@ -13,8 +13,10 @@ double get_decimal(char *binary_input) {
   double decimal = 0;
 
   for (int i = 0; i < reversed_binary_length; i++) {
-    char current_binary_char = reversed_binary_input[i];
-    int current_binary_int = atoi(&current_binary_char);
+    // Use the ASCII equivalent.
+    // 0 -> 48
+    // 1 -> 49
+    int current_binary_int = reversed_binary_input[i] - '0';
     decimal = decimal + (current_binary_int * pow(2, i));
   }
 

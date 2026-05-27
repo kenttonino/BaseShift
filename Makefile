@@ -14,9 +14,9 @@ run-test: build-test
 	./bin/tests/${bin}
 
 run-valgrind: build
-	valgrind --leak-check=full --leak-resolution=high ./bin/main
+	valgrind --leak-check=full --leak-resolution=high --track-origins=yes -s ./bin/main
 
-run-debug: build
+run-gdb: build
 	gdb ./bin/main
 
 run: build

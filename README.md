@@ -45,7 +45,7 @@
 make run-test bin="binary_tests"
 
 # Build and run the program using GDB.
-make run-debug
+make run-gdb
 
 # Build and run the program.
 make run
