@@ -4,15 +4,30 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void octal_zero_adder(int binary_length, char *binary_input, char *new_binary_input) {
-  for (int i = 0; i < 3; i++) {
-    if (i < 2) {
-      new_binary_input[i] = '0';
-    } else {
-      for (int j = 0; j < binary_length; j++) {
-        new_binary_input[i + j] = (char) binary_input[j];
-      }
+void octal_zero_adder(char *binary_input, char *new_binary_input) {
+  int binary_len = strlen(binary_input);
+  int rem_binary_len = binary_len % 3;
+
+  // If we don't need to add zeroes.
+  if (rem_binary_len == 0) {
+    for (int j = 0; j < binary_len; j++) {
+      new_binary_input[j] = (char) binary_input[j];
     }
+    return;
+  }
+
+  // If we need to add two zeroes.
+  if (rem_binary_len == 1) {
+    // Add the zeroes first.
+    for (int i = 0; i < 2; i++) {
+      new_binary_input[i] = '0';
+    };
+    // Add the binary input next.
+    for (int j = 0; j < binary_len; j++) {
+      new_binary_input[j+2] = (char) binary_input[j];
+    }
+    printf("new_binary_input: %s", new_binary_input);
+    return;
   }
 }
 
@@ -40,13 +55,9 @@ char *octal_value_mapper(int octal) {
 }
 
 char *get_octal(char *binary_input) {
-  int binary_len = strlen(binary_input);
-  int octal_rem = binary_len % 3;
-
   // Prepend the 2 zeroes in binary_input.
-  int zeroes_to_add = octal_rem == 1 ? 2 : 1;
-  char *new_binary_input = malloc(sizeof(char) * (binary_len  + zeroes_to_add));
-  octal_zero_adder(binary_len, binary_input, new_binary_input);
+  char *new_binary_input = malloc(sizeof(char) * 1000);
+  octal_zero_adder(binary_input, new_binary_input);
 
   // Process an array of octal values.
   int new_binary_input_len = strlen(new_binary_input);
