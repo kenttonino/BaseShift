@@ -26,7 +26,6 @@ void octal_zero_adder(char *binary_input, char *new_binary_input) {
     for (int j = 0; j < binary_len; j++) {
       new_binary_input[j+2] = (char) binary_input[j];
     }
-    printf("new_binary_input: %s", new_binary_input);
     return;
   }
 }
@@ -85,12 +84,16 @@ char *get_octal(char *binary_input) {
     }
 
     if (binary_group_len == 3) {
+      // Get the octal value equivalent.
       char *octal_value = octal_value_mapper(atoi(binary_group));
 
+      // Insert the new value in the octal arrays.
       int octal_arrays_len = strlen(octal_arrays);
       octal_arrays[octal_arrays_len] = *octal_value;
-      free(binary_group);
-      binary_group = malloc(1000);
+
+      // Reset the binary group.
+      // Assign an index 0 value.
+      memset(binary_group, 0, sizeof(char) * 3);
       binary_group[0] = new_binary_input[i];
     }
   }
