@@ -3,20 +3,26 @@
 #include <string.h>
 #include <stdio.h>
 
+
 char* zero_adder(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
-  static char binary_prepend_one_zero[1000] = "0";
-  static char binary_prepend_two_zero[1000] = "00";
 
   if (binary_rem == 1) {
-    strcat(binary_prepend_two_zero, binary);
-    return binary_prepend_two_zero;
+    char binary_buffer[1000];
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    binary_buffer[0] = '0';
+    binary_buffer[1] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
   }
 
   if (binary_rem == 2) {
-    strcat(binary_prepend_one_zero, binary);
-    return binary_prepend_one_zero;
+    char binary_buffer[1000];
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    binary_buffer[0] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
   }
 
   return binary;
@@ -34,16 +40,18 @@ char *octal_mapper(char *binary_group) {
 }
 
 char *get_octal(char *binary_input) {
-  char *p_new_binary = zero_adder(binary_input);
-  static char new_binary[1000];
-  strcat(new_binary, p_new_binary);
+  char *binary = zero_adder(binary_input);
+  static char binary_buffer[1000];
+  memmove(binary_buffer, binary_input, strlen(binary));
+  binary_buffer[strlen(binary_buffer)] = '\0';
 
-  char binary_group[3] = "";
+  char binary_group[4] = "";
   static char current_binary[1];
-  static char octal[1000] = "";
+  static char octal[1000];
+  memset(octal, 0, sizeof(char) * 1000);
 
-  for (size_t i = 0; i <= strlen(new_binary); i++) {
-    *current_binary = new_binary[i];
+  for (size_t i = 0; i <= strlen(binary_buffer); i++) {
+    *current_binary = binary_buffer[i];
 
     if (strlen(binary_group) < 3) {
       strcat(binary_group, current_binary);
