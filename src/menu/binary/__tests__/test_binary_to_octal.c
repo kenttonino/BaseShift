@@ -52,5 +52,4 @@ void test_binary_to_octal(void) {
   memmove(binary_input, "1000", sizeof(char) * 4);
   assert(strcmp(get_octal(binary_input), "10") == 0);
   text_green("get_octal -> should return 10 for 1000 value", 10);
-  memset(binary_input, 0, sizeof(char) * 4);
 }
