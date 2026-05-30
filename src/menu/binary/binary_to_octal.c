@@ -3,8 +3,29 @@
 #include <string.h>
 #include <stdio.h>
 
+char* zero_adder(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 3;
+  static char binary_prepend_one_zero[1000] = "0";
+  static char binary_prepend_two_zero[1000] = "00";
+
+  if (binary_rem == 1) {
+    strcat(binary_prepend_two_zero, binary);
+    return binary_prepend_two_zero;
+  }
+
+  if (binary_rem == 2) {
+    strcat(binary_prepend_one_zero, binary);
+    return binary_prepend_one_zero;
+  }
+
+  return binary;
+}
+
 char *get_octal(char *binary_input) {
-  printf("%s", binary_input);
+  char *new_binary = zero_adder(binary_input);
+  printf("%s \n", new_binary);
+
   return "10";
 }
 
