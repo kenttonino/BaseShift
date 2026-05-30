@@ -23,8 +23,9 @@ char* zero_adder(char *binary) {
 }
 
 char *get_octal(char *binary_input) {
-  char *new_binary = zero_adder(binary_input);
-  printf("%s \n", new_binary);
+  char *p_new_binary = zero_adder(binary_input);
+
+  printf("%s", p_new_binary);
 
   return "10";
 }
@@ -50,8 +51,8 @@ void display_octal(char *octal, int negative) {
 void binary_to_octal(char *binary_input) {
   // e.g. 1000 = 10
   if (is_positive_binary(binary_input)) {
-    char *octal_arrays = get_octal(binary_input);
-    display_octal(octal_arrays, 1);
+    char *p_octal = get_octal(binary_input);
+    display_octal(p_octal, 1);
     return;
   }
 
