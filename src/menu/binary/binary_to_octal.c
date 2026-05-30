@@ -42,8 +42,8 @@ char *octal_mapper(char *binary_group) {
 char *get_octal(char *binary_input) {
   char *binary = zero_adder(binary_input);
   static char binary_buffer[1000];
+  memset(binary_buffer, 0, sizeof(char) * 1000);
   memmove(binary_buffer, binary_input, strlen(binary));
-  binary_buffer[strlen(binary_buffer)] = '\0';
 
   char binary_group[4] = "";
   static char current_binary[1];
