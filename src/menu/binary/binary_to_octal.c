@@ -1,97 +1,84 @@
 #include "helper/helper.h"
 #include "../../utils/utils.h"
 #include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
 
-void octal_zero_adder(int binary_length, char *binary_input, char *new_binary_input) {
-  for (int i = 0; i < 3; i++) {
-    if (i < 2) {
-      new_binary_input[i] = '0';
-    } else {
-      for (int j = 0; j < binary_length; j++) {
-        new_binary_input[i + j] = (char) binary_input[j];
-      }
-    }
+
+char* zero_adder(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 3;
+
+  if (binary_rem == 1) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    binary_buffer[0] = '0';
+    binary_buffer[1] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
   }
+
+  if (binary_rem == 2) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    binary_buffer[0] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  return binary;
 }
 
-char *octal_value_mapper(int octal) {
-  switch (octal) {
-  case 000:
-    return "0";
-  case 001:
-    return "1";
-  case 010:
-    return "2";
-  case 011:
-    return "3";
-  case 100:
-    return "4";
-  case 101:
-    return "5";
-  case 110:
-    return "6";
-  case 111:
-    return "7";
-  default:
-    return "0";
-  }
+char *octal_mapper(char *binary_group) {
+  if (strcmp(binary_group, "001") == 0) return "1";
+  if (strcmp(binary_group, "010") == 0) return "2";
+  if (strcmp(binary_group, "011") == 0) return "3";
+  if (strcmp(binary_group, "100") == 0) return "4";
+  if (strcmp(binary_group, "101") == 0) return "5";
+  if (strcmp(binary_group, "110") == 0) return "6";
+  if (strcmp(binary_group, "111") == 0) return "7";
+  return "0";
 }
 
 char *get_octal(char *binary_input) {
-  int binary_len = strlen(binary_input);
-  int octal_rem = binary_len % 3;
+  char *binary = zero_adder(binary_input);
+  static char binary_buffer[1000];
+  memset(binary_buffer, 0, sizeof(char) * 1000);
+  memmove(binary_buffer, binary, strlen(binary));
 
-  // Prepend the 2 zeroes in binary_input.
-  int zeroes_to_add = octal_rem == 1 ? 2 : 1;
-  char *new_binary_input = malloc(sizeof(char) * (binary_len  + zeroes_to_add));
-  octal_zero_adder(binary_len, binary_input, new_binary_input);
+  char binary_group[4] = "";
+  static char current_binary[1];
+  static char octal[1000];
+  memset(octal, 0, sizeof(char) * 1000);
 
-  // Process an array of octal values.
-  int new_binary_input_len = strlen(new_binary_input);
-  // e.g. "001"
-  char *binary_group = malloc(sizeof(char) * 3);
-  // e.g. ["001", "000"]
-  static char octal_arrays[1000];
+  for (size_t i = 0; i <= strlen(binary_buffer); i++) {
+    *current_binary = binary_buffer[i];
 
-  for (int i = 0; i <= new_binary_input_len; i++) {
-    int binary_group_len = strlen(binary_group);
-
-    if (binary_group_len == 0) {
-      binary_group[0] = new_binary_input[i];
+    if (strlen(binary_group) < 3) {
+      strcat(binary_group, current_binary);
+      memset(current_binary, 0, sizeof(char));
       continue;
-    }
+    } else {
+      // Push the octal value of first 3 binary digits.
+      strcat(octal, octal_mapper(binary_group));
 
-    if (binary_group_len == 1) {
-      binary_group[1] = new_binary_input[i];
-      continue;
-    }
+      // Reset binary group and assign value for index 0;
+      memset(binary_group, 0, sizeof(char) *3);
+      strcat(binary_group, current_binary);
 
-    if (binary_group_len == 2) {
-      binary_group[2] = new_binary_input[i];
-      continue;
-    }
-
-    if (binary_group_len == 3) {
-      char *octal_value = octal_value_mapper(atoi(binary_group));
-
-      int octal_arrays_len = strlen(octal_arrays);
-      octal_arrays[octal_arrays_len] = *octal_value;
-      free(binary_group);
-      binary_group = malloc(1000);
-      binary_group[0] = new_binary_input[i];
+      // Reset the current_binary for next iteration.
+      memset(current_binary, 0, sizeof(char));
     }
   }
 
-  free(new_binary_input);
-  free(binary_group);
-  return octal_arrays;
+  return octal;
 }
 
-void display_octal(double octal, int negative) {
+void display_octal(char *octal, int negative) {
+  char neg_octal[1000] = "-";
+  strcat(neg_octal, octal);
+
   printf(
-      "%-16s[%s %sOctal%s %s]%s : %s%f%s",
+      "%-16s[%s %sOctal%s %s]%s : %s%s%s",
       BLUE,
       RESET,
       GREEN,
@@ -99,7 +86,7 @@ void display_octal(double octal, int negative) {
       BLUE,
       RESET,
       YELLOW,
-      negative == 1 ? -octal : octal,
+      negative == 1 ? neg_octal : octal,
       RESET
   );
 }
@@ -107,8 +94,8 @@ void display_octal(double octal, int negative) {
 void binary_to_octal(char *binary_input) {
   // e.g. 1000 = 10
   if (is_positive_binary(binary_input)) {
-    char *octal_arrays = get_octal(binary_input);
-    display_octal(atoi(octal_arrays), 0);
+    char *p_octal = get_octal(binary_input);
+    display_octal(p_octal, 0);
     return;
   }
 

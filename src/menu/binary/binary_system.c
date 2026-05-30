@@ -45,11 +45,11 @@ void binary_system(void) {
       }
     }
 
-    binary_to_decimal(binary_input);
-    add_new_line(3);
+    // binary_to_decimal(binary_input);
+    //  add_new_line(3);
 
-    // binary_to_octal(binary_input);
-    // add_new_line(1);
+    binary_to_octal(binary_input);
+    add_new_line(1);
 
     // TODO: Handle the computation for binary to hexadecimal.
     // printf("%-16s[%s %sHexadecimal%s %s]%s : %sTODO%s", BLUE, RESET, GREEN, RESET, BLUE, RESET, YELLOW, RESET);
