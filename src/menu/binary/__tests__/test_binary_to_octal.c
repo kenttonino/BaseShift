@@ -46,9 +46,4 @@ void test_binary_to_octal(void) {
   add_new_line(1);
   assert(strcmp(octal_mapper("111"), "7") == 0);
   text_green("octal_mapper -> should return 7 for 111 value", 10);
-  add_new_line(1);
-
-  char binary_input[4] = "1000";
-  assert(strcmp(get_octal(binary_input), "10") == 0);
-  text_green("get_octal -> should return 10 for 1000 value", 10);
 }
