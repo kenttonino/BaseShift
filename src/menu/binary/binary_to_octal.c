@@ -24,8 +24,12 @@ char* zero_adder(char *binary) {
 
 char *get_octal(char *binary_input) {
   char *p_new_binary = zero_adder(binary_input);
+  p_new_binary[strlen(p_new_binary)] = '\0';
 
-  printf("%s", p_new_binary);
+  for (size_t i = 0; i < strlen(p_new_binary); i++) {
+      printf("%c", p_new_binary[i]);
+      add_new_line(1);
+  }
 
   return "10";
 }
