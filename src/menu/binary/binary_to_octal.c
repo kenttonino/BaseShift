@@ -99,6 +99,18 @@ void binary_to_octal(char *binary_input) {
     return;
   }
 
+  // e.g. -1000 = -10
+  if (is_negative_binary(binary_input)) {
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+
+    char *p_octal = get_octal(positive_binary);
+    display_octal(p_octal, 1);
+
+    free(positive_binary);
+    return;
+  }
+
   // e.g. 1000.1111 = 10.74
   if (is_positive_binary_with_dot(binary_input)) {
     printf("Hello");

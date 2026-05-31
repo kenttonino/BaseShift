@@ -92,44 +92,51 @@ void display_decimal(char *decimal, int negative) {
 }
 
 void binary_to_decimal(char *binary_input) {
-  // E.g. 0001 value.
+  // E.g. 1000 = 8
   if (is_positive_binary(binary_input)) {
     int decimal = get_decimal(binary_input);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
     display_decimal(decimal_string, 0);
+
     return;
   }
 
-  // E.g. 1111.1 values.
-  if (is_positive_binary_with_dot(binary_input)) {
-    // Separate the binary values before and after dot.
-    double decimal = get_decimal_with_dot(binary_input);
-    char decimal_string[1000];
-    sprintf(decimal_string, "%f", decimal);
-    display_decimal(decimal_string, 0);
-    return;
-  }
-
-  // E.g. -0001 value.
+  // E.g. -1000 = -8
   if (is_negative_binary(binary_input)) {
-    // Remove the - character.
-    memmove(binary_input, binary_input + 1, strlen(binary_input));
-    int decimal = get_decimal(binary_input);
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+
+    int decimal = get_decimal(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
     display_decimal(decimal_string, 1);
+
+    free(positive_binary);
     return;
   }
 
-  // E.g. -0001.1 value.
-  if (is_negative_binary_with_dot(binary_input)) {
-    // Remove the - character.
-    memmove(binary_input, binary_input + 1, strlen(binary_input));
+  // E.g. 1000.1 = 8.500
+  if (is_positive_binary_with_dot(binary_input)) {
     double decimal = get_decimal_with_dot(binary_input);
     char decimal_string[1000];
-    sprintf(decimal_string, "%f", decimal);
+    sprintf(decimal_string, "%.3f", decimal);
+    display_decimal(decimal_string, 0);
+
+    return;
+  }
+
+  // E.g. -1000.1 = -8.500
+  if (is_negative_binary_with_dot(binary_input)) {
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+
+    double decimal = get_decimal_with_dot(positive_binary);
+    char decimal_string[1000];
+    sprintf(decimal_string, "%.3f", decimal);
     display_decimal(decimal_string, 1);
+
+    free(positive_binary);
     return;
   }
 
