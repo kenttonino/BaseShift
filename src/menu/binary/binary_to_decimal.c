@@ -114,11 +114,19 @@ void binary_to_decimal(char *binary_input) {
   // E.g. -0001 value.
   if (is_negative_binary(binary_input)) {
     // Remove the - character.
-    memmove(binary_input, binary_input + 1, strlen(binary_input));
-    int decimal = get_decimal(binary_input);
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+
+    // Get the decimal.
+    // Convert to string.
+    int decimal = get_decimal(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
+
+    // Display decimal.
+    // Release allocated memory.
     display_decimal(decimal_string, 1);
+    free(positive_binary);
     return;
   }
 
