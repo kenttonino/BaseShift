@@ -7,10 +7,10 @@
 #include <string.h>
 
 // Compute the decimal value without dot.
-double get_decimal(char *binary_input) {
+int get_decimal(char *binary_input) {
   char *reversed_binary_input = binary_reverse_string(binary_input);
   int reversed_binary_length = strlen(reversed_binary_input);
-  double decimal = 0;
+  int decimal = 0;
 
   for (int i = 0; i < reversed_binary_length; i++) {
     // Use the ASCII equivalent.
@@ -91,7 +91,7 @@ void display_decimal(double decimal, int negative) {
 void binary_to_decimal(char *binary_input) {
   // E.g. 0001 value.
   if (is_positive_binary(binary_input)) {
-    double decimal = get_decimal(binary_input);
+    int decimal = get_decimal(binary_input);
     display_decimal(decimal, 0);
     return;
   }
