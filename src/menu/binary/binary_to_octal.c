@@ -101,13 +101,12 @@ void binary_to_octal(char *binary_input) {
 
   // e.g. -1000 = -10
   if (is_negative_binary(binary_input)) {
-    // Remove the - character.
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary_input + 1, strlen(binary_input));
 
-    // Display octal.
     char *p_octal = get_octal(positive_binary);
     display_octal(p_octal, 1);
+
     free(positive_binary);
     return;
   }
