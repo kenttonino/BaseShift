@@ -73,9 +73,12 @@ double get_decimal_with_dot(char *binary_input) {
 }
 
 // Output the binary to decimal result.
-void display_decimal(double decimal, int negative) {
+void display_decimal(char *decimal, int negative) {
+  char neg_decimal[1000] = "-";
+  strcat(neg_decimal, decimal);
+
   printf(
-      "%-16s[%s %sDecimal%s %s]%s : %s%f%s",
+      "%-16s[%s %sDecimal%s %s]%s : %s%s%s",
       BLUE,
       RESET,
       GREEN,
@@ -83,7 +86,7 @@ void display_decimal(double decimal, int negative) {
       BLUE,
       RESET,
       YELLOW,
-      negative == 1 ? -decimal : decimal,
+      negative == 1 ? neg_decimal : decimal,
       RESET
   );
 }
@@ -92,7 +95,9 @@ void binary_to_decimal(char *binary_input) {
   // E.g. 0001 value.
   if (is_positive_binary(binary_input)) {
     int decimal = get_decimal(binary_input);
-    display_decimal(decimal, 0);
+    char decimal_string[1000];
+    sprintf(decimal_string, "%d", decimal);
+    display_decimal(decimal_string, 0);
     return;
   }
 
@@ -100,7 +105,9 @@ void binary_to_decimal(char *binary_input) {
   if (is_positive_binary_with_dot(binary_input)) {
     // Separate the binary values before and after dot.
     double decimal = get_decimal_with_dot(binary_input);
-    display_decimal(decimal, 0);
+    char decimal_string[1000];
+    sprintf(decimal_string, "%f", decimal);
+    display_decimal(decimal_string, 0);
     return;
   }
 
@@ -108,8 +115,10 @@ void binary_to_decimal(char *binary_input) {
   if (is_negative_binary(binary_input)) {
     // Remove the - character.
     memmove(binary_input, binary_input + 1, strlen(binary_input));
-    double decimal = get_decimal(binary_input);
-    display_decimal(decimal, 1);
+    int decimal = get_decimal(binary_input);
+    char decimal_string[1000];
+    sprintf(decimal_string, "%d", decimal);
+    display_decimal(decimal_string, 1);
     return;
   }
 
@@ -118,7 +127,9 @@ void binary_to_decimal(char *binary_input) {
     // Remove the - character.
     memmove(binary_input, binary_input + 1, strlen(binary_input));
     double decimal = get_decimal_with_dot(binary_input);
-    display_decimal(decimal, 1);
+    char decimal_string[1000];
+    sprintf(decimal_string, "%f", decimal);
+    display_decimal(decimal_string, 1);
     return;
   }
 
