@@ -73,6 +73,41 @@ char *get_octal(char *binary_input) {
   return octal;
 }
 
+char *get_octal_with_decimal(char *binary_input) {
+  // Separate the binary values before and after dot.
+  char *binary_before_dot = malloc(strlen(binary_input) + 1);
+  char *binary_after_dot = malloc(strlen(binary_input) + 1);
+  int is_after_dot = 0;
+  int counter_before_dot = 0;
+  int counter_after_dot = 0;
+  for (int i = 0; binary_input[i] != '\0'; i++) {
+    if (binary_input[i] == '.') {
+      is_after_dot = 1;
+      continue;
+    }
+
+    if (is_after_dot) {
+      binary_after_dot[counter_after_dot++] = binary_input[i];
+      continue;
+    } else {
+      binary_before_dot[counter_before_dot++] = binary_input[i];
+    }
+  }
+
+  // Reset to the null terminator to stop reading this variables.
+  binary_before_dot[counter_before_dot] = '\0';
+  binary_after_dot[counter_after_dot] = '\0';
+
+  char *octal_before_dot = get_octal(binary_before_dot);
+
+  printf("%s", octal_before_dot);
+  add_new_line(1);
+  printf("%s", binary_after_dot);
+  add_new_line(1);
+
+  return "10.44";
+}
+
 void display_octal(char *octal, int negative) {
   char neg_octal[1000] = "-";
   strcat(neg_octal, octal);
@@ -113,8 +148,8 @@ void binary_to_octal(char *binary_input) {
 
   // e.g. 1000.1111 = 10.74
   if (is_positive_binary_with_dot(binary_input)) {
-    printf("Hello");
-    add_new_line(2);
+    char *octal = get_octal_with_decimal(binary_input);
+    display_octal(octal, 0);
     return;
   }
 }
