@@ -3,7 +3,39 @@
 #include <string.h>
 #include <stdio.h>
 
+// Sanitized binary attributes length should be divisible by 3.
+typedef struct {
+  char *before_dot;
+  char *after_dot;
+} SanitizedBinary;
 
+// .1001 = 100100
+char *zero_adder_with_dot(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 3;
+
+  if (binary_rem == 1) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "00");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  if (binary_rem == 2) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "0");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  return binary;
+}
+
+// 1001 = 001001
 char* zero_adder(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
@@ -26,6 +58,43 @@ char* zero_adder(char *binary) {
   }
 
   return binary;
+}
+
+SanitizedBinary get_sanitized_binary(char *binary_input) {
+  // Store the binary in new variable.
+  static char binary_buffer[1000];
+  memset(binary_buffer, 0, sizeof(char) * 1000);
+  memmove(binary_buffer, binary_input, strlen(binary_input));
+
+  // Separate the binary values before and after dot.
+  char *binary_before_dot = malloc(strlen(binary_buffer) + 3);
+  char *binary_after_dot = malloc(strlen(binary_buffer) + 3);
+  int is_after_dot = 0;
+  int counter_before_dot = 0;
+  int counter_after_dot = 0;
+  for (int i = 0; binary_input[i] != '\0'; i++) {
+    if (binary_input[i] == '.') {
+      is_after_dot = 1;
+      continue;
+    }
+
+    if (is_after_dot) {
+      binary_after_dot[counter_after_dot++] = binary_input[i];
+      continue;
+    } else {
+      binary_before_dot[counter_before_dot++] = binary_input[i];
+    }
+  }
+
+  // Reset to the null terminator to stop reading this variables.
+  binary_before_dot[counter_before_dot] = '\0';
+  binary_after_dot[counter_after_dot] = '\0';
+
+  SanitizedBinary sanitized_binary;
+  sanitized_binary.before_dot = zero_adder(binary_before_dot);
+  sanitized_binary.after_dot = zero_adder_with_dot(binary_after_dot);
+
+  return sanitized_binary;
 }
 
 char *octal_mapper(char *binary_group) {
@@ -73,40 +142,6 @@ char *get_octal(char *binary_input) {
   return octal;
 }
 
-char *get_octal_with_decimal(char *binary_input) {
-  // Separate the binary values before and after dot.
-  char *binary_before_dot = malloc(strlen(binary_input) + 1);
-  char *binary_after_dot = malloc(strlen(binary_input) + 1);
-  int is_after_dot = 0;
-  int counter_before_dot = 0;
-  int counter_after_dot = 0;
-  for (int i = 0; binary_input[i] != '\0'; i++) {
-    if (binary_input[i] == '.') {
-      is_after_dot = 1;
-      continue;
-    }
-
-    if (is_after_dot) {
-      binary_after_dot[counter_after_dot++] = binary_input[i];
-      continue;
-    } else {
-      binary_before_dot[counter_before_dot++] = binary_input[i];
-    }
-  }
-
-  // Reset to the null terminator to stop reading this variables.
-  binary_before_dot[counter_before_dot] = '\0';
-  binary_after_dot[counter_after_dot] = '\0';
-
-  char *octal_before_dot = get_octal(binary_before_dot);
-
-  printf("%s", octal_before_dot);
-  add_new_line(1);
-  printf("%s", binary_after_dot);
-  add_new_line(1);
-
-  return "10.44";
-}
 
 void display_octal(char *octal, int negative) {
   char neg_octal[1000] = "-";
@@ -148,8 +183,13 @@ void binary_to_octal(char *binary_input) {
 
   // e.g. 1000.1111 = 10.74
   if (is_positive_binary_with_dot(binary_input)) {
-    char *octal = get_octal_with_decimal(binary_input);
-    display_octal(octal, 0);
+    SanitizedBinary sanitized_binary = get_sanitized_binary(binary_input);
+    printf("%s", sanitized_binary.before_dot);
+    add_new_line(1);
+    printf("%s", sanitized_binary.after_dot);
+    add_new_line(1);
+
+    display_octal("11.44", 0);
     return;
   }
 }
