@@ -42,6 +42,7 @@ char* zero_adder(char *binary) {
 
   if (binary_rem == 1) {
     char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
     memmove(binary_buffer + 2, binary, strlen(binary) + 2);
     binary_buffer[0] = '0';
     binary_buffer[1] = '0';
@@ -51,6 +52,7 @@ char* zero_adder(char *binary) {
 
   if (binary_rem == 2) {
     char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
     memmove(binary_buffer + 1, binary, strlen(binary) + 1);
     binary_buffer[0] = '0';
     strcpy(binary, binary_buffer);
@@ -118,6 +120,7 @@ char *get_octal(char *binary_input) {
   static char current_binary[1];
   static char octal[1000];
   memset(octal, 0, sizeof(char) * 1000);
+  memmove(octal, "", 0);
 
   for (size_t i = 0; i <= strlen(binary_buffer); i++) {
     *current_binary = binary_buffer[i];
@@ -184,12 +187,23 @@ void binary_to_octal(char *binary_input) {
   // e.g. 1000.1111 = 10.74
   if (is_positive_binary_with_dot(binary_input)) {
     SanitizedBinary sanitized_binary = get_sanitized_binary(binary_input);
-    printf("%s", sanitized_binary.before_dot);
-    add_new_line(1);
-    printf("%s", sanitized_binary.after_dot);
-    add_new_line(1);
 
-    display_octal("11.44", 0);
+    char *binary_before_dot = malloc(sizeof(char) * 1000);
+    char *binary_after_dot = malloc(sizeof(char) * 1000);
+    memmove(binary_before_dot, sanitized_binary.before_dot, strlen(sanitized_binary.before_dot));
+    memmove(binary_after_dot, sanitized_binary.after_dot, strlen(sanitized_binary.after_dot));
+
+    char *octal = malloc(sizeof(char) * 1000);
+    char *octal_before_dot = get_octal(binary_before_dot);
+    strcat(octal, octal_before_dot);
+    strcat(octal, ".");
+    strcat(octal, get_octal(binary_after_dot));
+
+    display_octal(octal, 0);
+
+    free(octal);
+    free(binary_before_dot);
+    free(binary_after_dot);
     return;
   }
 }
