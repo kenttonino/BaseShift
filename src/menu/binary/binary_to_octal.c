@@ -3,13 +3,46 @@
 #include <string.h>
 #include <stdio.h>
 
+// Sanitized binary attributes length should be divisible by 3.
+typedef struct {
+  char *before_dot;
+  char *after_dot;
+} SanitizedBinary;
 
+// .1001 = 100100
+char *zero_adder_with_dot(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 3;
+
+  if (binary_rem == 1) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "00");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  if (binary_rem == 2) {
+    char binary_buffer[1000];
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "0");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  return binary;
+}
+
+// 1001 = 001001
 char* zero_adder(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
 
   if (binary_rem == 1) {
     char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
     memmove(binary_buffer + 2, binary, strlen(binary) + 2);
     binary_buffer[0] = '0';
     binary_buffer[1] = '0';
@@ -19,6 +52,7 @@ char* zero_adder(char *binary) {
 
   if (binary_rem == 2) {
     char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
     memmove(binary_buffer + 1, binary, strlen(binary) + 1);
     binary_buffer[0] = '0';
     strcpy(binary, binary_buffer);
@@ -26,6 +60,43 @@ char* zero_adder(char *binary) {
   }
 
   return binary;
+}
+
+SanitizedBinary get_sanitized_binary(char *binary_input) {
+  // Store the binary in new variable.
+  static char binary_buffer[1000];
+  memset(binary_buffer, 0, sizeof(char) * 1000);
+  memmove(binary_buffer, binary_input, strlen(binary_input));
+
+  // Separate the binary values before and after dot.
+  char *binary_before_dot = malloc(strlen(binary_buffer) + 3);
+  char *binary_after_dot = malloc(strlen(binary_buffer) + 3);
+  int is_after_dot = 0;
+  int counter_before_dot = 0;
+  int counter_after_dot = 0;
+  for (int i = 0; binary_input[i] != '\0'; i++) {
+    if (binary_input[i] == '.') {
+      is_after_dot = 1;
+      continue;
+    }
+
+    if (is_after_dot) {
+      binary_after_dot[counter_after_dot++] = binary_input[i];
+      continue;
+    } else {
+      binary_before_dot[counter_before_dot++] = binary_input[i];
+    }
+  }
+
+  // Reset to the null terminator to stop reading this variables.
+  binary_before_dot[counter_before_dot] = '\0';
+  binary_after_dot[counter_after_dot] = '\0';
+
+  SanitizedBinary sanitized_binary;
+  sanitized_binary.before_dot = zero_adder(binary_before_dot);
+  sanitized_binary.after_dot = zero_adder_with_dot(binary_after_dot);
+
+  return sanitized_binary;
 }
 
 char *octal_mapper(char *binary_group) {
@@ -49,6 +120,7 @@ char *get_octal(char *binary_input) {
   static char current_binary[1];
   static char octal[1000];
   memset(octal, 0, sizeof(char) * 1000);
+  memmove(octal, "", 0);
 
   for (size_t i = 0; i <= strlen(binary_buffer); i++) {
     *current_binary = binary_buffer[i];
@@ -72,6 +144,7 @@ char *get_octal(char *binary_input) {
 
   return octal;
 }
+
 
 void display_octal(char *octal, int negative) {
   char neg_octal[1000] = "-";
@@ -113,8 +186,24 @@ void binary_to_octal(char *binary_input) {
 
   // e.g. 1000.1111 = 10.74
   if (is_positive_binary_with_dot(binary_input)) {
-    printf("Hello");
-    add_new_line(2);
+    SanitizedBinary sanitized_binary = get_sanitized_binary(binary_input);
+
+    char *binary_before_dot = malloc(sizeof(char) * 1000);
+    char *binary_after_dot = malloc(sizeof(char) * 1000);
+    memmove(binary_before_dot, sanitized_binary.before_dot, strlen(sanitized_binary.before_dot));
+    memmove(binary_after_dot, sanitized_binary.after_dot, strlen(sanitized_binary.after_dot));
+
+    char *octal = malloc(sizeof(char) * 1000);
+    char *octal_before_dot = get_octal(binary_before_dot);
+    strcat(octal, octal_before_dot);
+    strcat(octal, ".");
+    strcat(octal, get_octal(binary_after_dot));
+
+    display_octal(octal, 0);
+
+    free(octal);
+    free(binary_before_dot);
+    free(binary_after_dot);
     return;
   }
 }
