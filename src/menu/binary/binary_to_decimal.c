@@ -61,8 +61,9 @@ double get_decimal_with_dot(char *binary_input) {
 
   // Compute the values after dot.
   for (int i = 0; i < (int) strlen(binary_after_dot); i++) {
-    // This converts a character representing a digit into the actual integer
-    // value.
+    // Use the ASCII equivalent.
+    // 0 -> 48
+    // 1 -> 49
     int current_binary_int = binary_after_dot[i] - '0';
     decimal += current_binary_int * pow(2, -(i + 1));
   }
