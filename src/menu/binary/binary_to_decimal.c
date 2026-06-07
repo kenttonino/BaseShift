@@ -53,9 +53,9 @@ double get_decimal_with_dot(char *binary_input) {
   char *reversed_binary_input = binary_reverse_string(binary_before_dot);
   int reversed_binary_length = strlen(reversed_binary_input);
   double decimal = 0;
+
   for (int i = 0; i < reversed_binary_length; i++) {
-    char current_binary_char = reversed_binary_input[i];
-    int current_binary_int = atoi(&current_binary_char);
+    int current_binary_int = reversed_binary_input[i] - '0';
     decimal = decimal + (current_binary_int * pow(2, i));
   }
 
