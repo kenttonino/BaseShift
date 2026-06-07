@@ -94,48 +94,64 @@ void display_decimal(char *decimal, int negative) {
 void binary_to_decimal(char *binary_input) {
   // E.g. 1000 = 8
   if (is_positive_binary(binary_input)) {
-    int decimal = get_decimal(binary_input);
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
+    int decimal = get_decimal(binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
     display_decimal(decimal_string, 0);
 
+    free(binary);
     return;
   }
 
   // E.g. -1000 = -8
   if (is_negative_binary(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
     char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+    memmove(positive_binary, binary + 1, strlen(binary));
 
     int decimal = get_decimal(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
     display_decimal(decimal_string, 1);
 
+    free(binary);
     free(positive_binary);
     return;
   }
 
   // E.g. 1000.1 = 8.500
   if (is_positive_binary_with_dot(binary_input)) {
-    double decimal = get_decimal_with_dot(binary_input);
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
+    double decimal = get_decimal_with_dot(binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%.3f", decimal);
     display_decimal(decimal_string, 0);
 
+    free(binary);
     return;
   }
 
   // E.g. -1000.1 = -8.500
   if (is_negative_binary_with_dot(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
     char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary_input + 1, strlen(binary_input));
+    memmove(positive_binary, binary + 1, strlen(binary));
 
     double decimal = get_decimal_with_dot(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%.3f", decimal);
     display_decimal(decimal_string, 1);
 
+    free(binary);
     free(positive_binary);
     return;
   }
