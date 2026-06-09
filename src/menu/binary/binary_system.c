@@ -45,8 +45,8 @@ void binary_system(void) {
       }
     }
 
-    // binary_to_decimal(binary_input);
-    // add_new_line(2);
+    binary_to_decimal(binary_input);
+    add_new_line(1);
 
     binary_to_octal(binary_input);
     add_new_line(2);
