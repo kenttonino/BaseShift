@@ -72,8 +72,8 @@ SanitizedBinary get_sanitized_binary(char *binary_input) {
   memmove(binary_buffer, binary_input, strlen(binary_input));
 
   // Separate the binary values before and after dot.
-  char *binary_before_dot = malloc(strlen(binary_buffer) + 3);
-  char *binary_after_dot = malloc(strlen(binary_buffer) + 3);
+  char *binary_before_dot = malloc(sizeof(char) * 1000);
+  char *binary_after_dot = malloc(sizeof(char) * 1000);
   int is_after_dot = 0;
   int counter_before_dot = 0;
   int counter_after_dot = 0;
