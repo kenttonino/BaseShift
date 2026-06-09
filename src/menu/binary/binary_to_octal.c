@@ -204,7 +204,6 @@ void binary_to_octal(char *binary_input) {
     strcpy(binary_before_dot, sanitized_binary.before_dot);
     strcpy(binary_after_dot, sanitized_binary.after_dot);
 
-    // char *octal = malloc(sizeof(char) * 1000);
     char *octal = malloc(sizeof(char) * 1000);
     strcpy(octal, get_octal(binary_before_dot));
     strcat(octal, ".");
@@ -216,5 +215,31 @@ void binary_to_octal(char *binary_input) {
     free(binary_before_dot);
     free(binary_after_dot);
     return;
+  }
+
+  if (is_negative_binary_with_dot(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary + 1, strlen(binary));
+    SanitizedBinary sanitized_binary = get_sanitized_binary(positive_binary);
+
+    char *binary_before_dot = malloc(sizeof(char) * 1000);
+    char *binary_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(binary_before_dot, sanitized_binary.before_dot);
+    strcpy(binary_after_dot, sanitized_binary.after_dot);
+
+    char *octal = malloc(sizeof(char) * 1000);
+    strcpy(octal, get_octal(binary_before_dot));
+    strcat(octal, ".");
+    strcat(octal, get_octal(binary_after_dot));
+    display_octal(octal, 1);
+
+    free(binary);
+    free(positive_binary);
+    free(octal);
+    free(binary_before_dot);
+    free(binary_after_dot);
   }
 }
