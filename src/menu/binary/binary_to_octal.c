@@ -217,6 +217,7 @@ void binary_to_octal(char *binary_input) {
     return;
   }
 
+  // e.g. -1000.1000 = -10.4
   if (is_negative_binary_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
@@ -241,5 +242,6 @@ void binary_to_octal(char *binary_input) {
     free(octal);
     free(binary_before_dot);
     free(binary_after_dot);
+    return;
   }
 }
