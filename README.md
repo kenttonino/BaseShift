@@ -14,7 +14,7 @@
 | `Features` | `Completed` |
 | ------------------- | ----------- |
 | `Binary to Decimal` | `✅` |
-| `Binary to Octal` | `TODO` |
+| `Binary to Octal` | `✅` |
 | `Binary to Hexadecimal` | `TODO` |
 | `Decimal to Binary` | `TODO` |
 | `Decimal to Octal` | `TODO` |
@@ -43,6 +43,9 @@
 ```bash
 # Build and run the test.
 make run-test bin="binary_tests"
+
+# Build and run the program using Valgrind.
+make run-valgrind
 
 # Build and run the program using GDB.
 make run-gdb
