@@ -40,11 +40,52 @@ char *_hex_zero_adder(char* binary_input) {
   return binary_input;
 }
 
+char *hexadecimal_mapper(char *binary_group) {
+  if (strcmp(binary_group, "0000") == 0) return "0";
+  if (strcmp(binary_group, "0001") == 0) return "1";
+  if (strcmp(binary_group, "0010") == 0) return "2";
+  if (strcmp(binary_group, "0011") == 0) return "3";
+  if (strcmp(binary_group, "0100") == 0) return "4";
+  if (strcmp(binary_group, "0101") == 0) return "5";
+  if (strcmp(binary_group, "0110") == 0) return "6";
+  if (strcmp(binary_group, "0111") == 0) return "7";
+  if (strcmp(binary_group, "1000") == 0) return "8";
+  if (strcmp(binary_group, "1001") == 0) return "9";
+  if (strcmp(binary_group, "1010") == 0) return "A";
+  if (strcmp(binary_group, "1011") == 0) return "B";
+  if (strcmp(binary_group, "1100") == 0) return "C";
+  if (strcmp(binary_group, "1101") == 0) return "D";
+  if (strcmp(binary_group, "1110") == 0) return "E";
+  if (strcmp(binary_group, "1111") == 0) return "F";
+  return "0";
+}
+
 char *_get_hexadecimal(char *binary_input) {
   char *binary = _hex_zero_adder(binary_input);
-  printf("binary: %s", binary);
-  add_new_line(1);
-  return "8";
+
+  char binary_group[5] = "";
+  static char current_binary[1];
+  static char hexadecimal[1000];
+  memset(current_binary, 0, sizeof(char));
+  memset(hexadecimal, 0, sizeof(char) * 1000);
+
+  for (size_t i = 0; i <= strlen(binary); i++) {
+    *current_binary = binary[i];
+
+    if (strlen(binary_group) < 4) {
+      strcat(binary_group, current_binary);
+      memset(current_binary, 0, sizeof(char));
+      continue;
+    } else {
+      strcat(hexadecimal, hexadecimal_mapper(binary_group));
+
+      memset(binary_group, 0, sizeof(char) * 5);
+      strcat(binary_group, current_binary);
+      memset(current_binary, 0, sizeof(char));
+    }
+  }
+
+  return hexadecimal;
 }
 
 void _display_hexadecimal(char *decimal, int negative) {
@@ -71,8 +112,8 @@ void binary_to_hexadecimal(char *binary_input) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
-    char *p_octal = _get_hexadecimal(binary);
-    _display_hexadecimal(p_octal, 0);
+    char *hexadecimal = _get_hexadecimal(binary);
+    _display_hexadecimal(hexadecimal, 0);
 
     free(binary);
     return;
