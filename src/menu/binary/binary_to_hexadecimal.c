@@ -3,7 +3,7 @@
 #include "../../utils/utils.h"
 #include "helper/helper.h"
 
-char *_zero_adder(char* binary_input) {
+char *_hex_zero_adder(char* binary_input) {
   int binary_len = strlen(binary_input);
   int binary_rem = binary_len % 4;
 
@@ -41,7 +41,7 @@ char *_zero_adder(char* binary_input) {
 }
 
 char *_get_hexadecimal(char *binary_input) {
-  char *binary = _zero_adder(binary_input);
+  char *binary = _hex_zero_adder(binary_input);
   printf("binary: %s", binary);
   add_new_line(1);
   return "8";
