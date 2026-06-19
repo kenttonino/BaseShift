@@ -15,7 +15,7 @@
 | ------------------- | ----------- |
 | `Binary to Decimal` | `✅` |
 | `Binary to Octal` | `✅` |
-| `Binary to Hexadecimal` | `TODO` |
+| `Binary to Hexadecimal` | `✅` |
 | `Decimal to Binary` | `TODO` |
 | `Decimal to Octal` | `TODO` |
 | `Decimal to Hexadecimal` | `TODO` |
