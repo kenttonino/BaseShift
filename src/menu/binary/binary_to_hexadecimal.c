@@ -258,6 +258,7 @@ void binary_to_hexadecimal(char *binary_input) {
     _display_hexadecimal(hex, 1);
 
     free(binary);
+    free(positive_binary);
     free(binary_before_dot);
     free(binary_after_dot);
     free(hex);
