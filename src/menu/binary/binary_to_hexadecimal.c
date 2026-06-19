@@ -119,6 +119,7 @@ void binary_to_hexadecimal(char *binary_input) {
     return;
   }
 
+  // e.g. -1000 = -8
   if (is_negative_binary(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
