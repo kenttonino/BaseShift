@@ -46,14 +46,14 @@ void binary_system(void) {
       }
     }
 
-   // binary_to_decimal(binary_input);
-   // add_new_line(1);
+   binary_to_decimal(binary_input);
+   add_new_line(1);
 
-   // binary_to_octal(binary_input);
-   // add_new_line(2);
+   binary_to_octal(binary_input);
+   add_new_line(1);
 
-    binary_to_hexadecimal(binary_input);
-    add_new_line(2);
+   binary_to_hexadecimal(binary_input);
+   add_new_line(2);
 
     // Ask to try again.
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
