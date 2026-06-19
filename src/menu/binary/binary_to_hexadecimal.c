@@ -118,4 +118,19 @@ void binary_to_hexadecimal(char *binary_input) {
     free(binary);
     return;
   }
+
+  if (is_negative_binary(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary + 1, strlen(binary));
+
+    char *hexadecimal = _get_hexadecimal(positive_binary);
+    _display_hexadecimal(hexadecimal, 1);
+
+    free(binary);
+    free(positive_binary);
+    return;
+  }
 }
