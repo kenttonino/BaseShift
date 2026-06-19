@@ -208,10 +208,6 @@ void binary_to_hexadecimal(char *binary_input) {
     char *binary_after_dot = malloc(sizeof(char) * 1000);
     strcpy(binary_before_dot, sanitized_binary.before_dot);
     strcpy(binary_after_dot, sanitized_binary.after_dot);
-    printf("before_dot: %s", binary_before_dot);
-    add_new_line(1);
-    printf("after_dot: %s", binary_after_dot);
-    add_new_line(1);
 
     char *hex = malloc(sizeof(char) * 1000);
     strcpy(hex, _get_hexadecimal(binary_before_dot));
@@ -239,6 +235,32 @@ void binary_to_hexadecimal(char *binary_input) {
 
     free(binary);
     free(positive_binary);
+    return;
+  }
+
+  // e.g. -1000.1 = -8.8
+  if (is_negative_binary_with_dot(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+    char *positive_binary = malloc(sizeof(char) * 1000);
+    memmove(positive_binary, binary + 1, strlen(binary));
+    SanitizedBinary sanitized_binary = _get_sanitized_binary(positive_binary);
+
+    char *binary_before_dot = malloc(sizeof(char) * 1000);
+    char *binary_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(binary_before_dot, sanitized_binary.before_dot);
+    strcpy(binary_after_dot, sanitized_binary.after_dot);
+
+    char *hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_hexadecimal(binary_before_dot));
+    strcat(hex, ".");
+    strcat(hex, _get_hexadecimal(binary_after_dot));
+    _display_hexadecimal(hex, 1);
+
+    free(binary);
+    free(binary_before_dot);
+    free(binary_after_dot);
+    free(hex);
     return;
   }
 }
