@@ -1,14 +1,9 @@
 #include "helper/helper.h"
 #include "../../utils/utils.h"
+#include "./binary_types.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
-// Sanitized binary attributes length should be divisible by 3.
-typedef struct {
-  char *before_dot;
-  char *after_dot;
-} SanitizedBinary;
 
 // .1001 = 100100
 char *zero_adder_with_dot(char *binary) {

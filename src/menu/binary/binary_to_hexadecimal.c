@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../utils/utils.h"
+#include "./binary_types.h"
 #include "helper/helper.h"
 
 char *_hex_zero_adder(char* binary_input) {
@@ -40,6 +41,44 @@ char *_hex_zero_adder(char* binary_input) {
   return binary_input;
 }
 
+// .1001 = 100100
+char *_hex_zero_adder_with_dot(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 4;
+
+  if (binary_rem == 1) {
+    char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
+    memmove(binary_buffer + 3, binary, strlen(binary) + 3);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "000");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  if (binary_rem == 2) {
+    char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "00");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  if (binary_rem == 3) {
+    char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    strcpy(binary_buffer, binary);
+    strcat(binary_buffer, "0");
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  return binary;
+}
+
 char *hexadecimal_mapper(char *binary_group) {
   if (strcmp(binary_group, "0000") == 0) return "0";
   if (strcmp(binary_group, "0001") == 0) return "1";
@@ -58,6 +97,46 @@ char *hexadecimal_mapper(char *binary_group) {
   if (strcmp(binary_group, "1110") == 0) return "E";
   if (strcmp(binary_group, "1111") == 0) return "F";
   return "0";
+}
+
+SanitizedBinary _get_sanitized_binary(char *binary_input) {
+  // Store the binary in new variable.
+  static char binary_buffer[1000];
+  memset(binary_buffer, 0, sizeof(char) * 1000);
+  memmove(binary_buffer, binary_input, strlen(binary_input));
+
+  // Separate the binary values before and after dot.
+  static char binary_before_dot[1000];
+  static char binary_after_dot[1000];
+  memset(binary_before_dot, 0, sizeof(char) * 1000);
+  memset(binary_after_dot, 0, sizeof(char) * 1000);
+
+  int is_after_dot = 0;
+  int counter_before_dot = 0;
+  int counter_after_dot = 0;
+  for (int i = 0; binary_input[i] != '\0'; i++) {
+    if (binary_input[i] == '.') {
+      is_after_dot = 1;
+      continue;
+    }
+
+    if (is_after_dot) {
+      binary_after_dot[counter_after_dot++] = binary_input[i];
+      continue;
+    } else {
+      binary_before_dot[counter_before_dot++] = binary_input[i];
+    }
+  }
+
+  // Reset to the null terminator to stop reading this variables.
+  binary_before_dot[counter_before_dot] = '\0';
+  binary_after_dot[counter_after_dot] = '\0';
+
+  SanitizedBinary sanitized_binary;
+  sanitized_binary.before_dot = _hex_zero_adder(binary_before_dot);
+  sanitized_binary.after_dot = _hex_zero_adder_with_dot(binary_after_dot);
+
+  return sanitized_binary;
 }
 
 char *_get_hexadecimal(char *binary_input) {
@@ -116,6 +195,34 @@ void binary_to_hexadecimal(char *binary_input) {
     _display_hexadecimal(hexadecimal, 0);
 
     free(binary);
+    return;
+  }
+
+  // e.g. 1000.1 = 8.8
+  if (is_positive_binary_with_dot(binary_input)) {
+    char *binary = malloc(sizeof(char) * 1000);
+    strcpy(binary, binary_input);
+    SanitizedBinary sanitized_binary = _get_sanitized_binary(binary);
+
+    char *binary_before_dot = malloc(sizeof(char) * 1000);
+    char *binary_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(binary_before_dot, sanitized_binary.before_dot);
+    strcpy(binary_after_dot, sanitized_binary.after_dot);
+    printf("before_dot: %s", binary_before_dot);
+    add_new_line(1);
+    printf("after_dot: %s", binary_after_dot);
+    add_new_line(1);
+
+    char *hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_hexadecimal(binary_before_dot));
+    strcat(hex, ".");
+    strcat(hex, _get_hexadecimal(binary_after_dot));
+    _display_hexadecimal(hex, 0);
+
+    free(binary);
+    free(binary_before_dot);
+    free(binary_after_dot);
+    free(hex);
     return;
   }
 
