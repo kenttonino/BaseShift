@@ -1,6 +1,7 @@
-#include "menu/compute_binary/compute_binary.h"
-#include "menu/main/menu_main.h"
-#include "utils/utils.h"
+#include "./menu/compute_binary/compute_binary.h"
+#include "./menu/compute_decimal/compute_decimal.h"
+#include "./menu/main/menu_main.h"
+#include "./utils/utils.h"
 
 int main(void) {
   int option;
@@ -41,6 +42,7 @@ int main(void) {
     }
 
     if (option == 2) {
+      compute_decimal();
       invalid_option = 0;
       continue;
     }
