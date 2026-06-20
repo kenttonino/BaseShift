@@ -1,6 +1,6 @@
 #include <string.h>
 
-char *binary_reverse_string(char *input) {
+char *reverse_string(char *input) {
   int input_length = strlen(input);
   int current_index = input_length - 1;
   int index_increment = 0;

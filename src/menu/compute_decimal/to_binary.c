@@ -1,6 +1,33 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
+
+char *_get_bin(char *dec_input) {
+  char *end_ptr;
+  int int_dec = strtol(dec_input, &end_ptr, 10);
+
+  static char bin_digits[1000];
+  int current_dividend = int_dec;
+  memset(bin_digits, 0, sizeof(char) * 1000);
+  for (;;) {
+    if (current_dividend != 0) {
+      int current_rem = current_dividend % 2;
+      char bin_digit[1000];
+      sprintf(bin_digit, "%d", current_rem);
+
+      if (strcmp(bin_digit, "0") == 0 || strcmp(bin_digit, "1") == 0) {
+        strcat(bin_digits, bin_digit);
+        current_dividend = current_dividend / 2;
+        continue;
+      }
+    }
+
+    break;
+  }
+
+  return reverse_string(bin_digits);
+}
 
 void _display_bin(char *bin, int negative) {
   char neg_bin[1000] = "-";
@@ -22,9 +49,13 @@ void _display_bin(char *bin, int negative) {
 
 void to_binary(char *dec_input) {
   if (is_positive(dec_input)) {
-    printf("dec_input: %s", dec_input);
-    add_new_line(1);
-    _display_bin("1111101000", 0);
+    char *dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    char *bin_digits = _get_bin(dec);
+    _display_bin(bin_digits, 0);
+
+    free(dec);
     return;
   }
 }
