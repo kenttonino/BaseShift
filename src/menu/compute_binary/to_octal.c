@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "./helper/helper.h"
+#include "../helper/helper.h"
 #include "../../utils/utils.h"
 #include "./binary_types.h"
 
@@ -163,7 +163,7 @@ void _display_oct(char *octal, int negative) {
 
 void to_octal(char *binary_input) {
   // e.g. 1000 = 10
-  if (is_positive_binary(binary_input)) {
+  if (is_positive(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -175,7 +175,7 @@ void to_octal(char *binary_input) {
   }
 
   // e.g. -1000 = -10
-  if (is_negative_binary(binary_input)) {
+  if (is_negative(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -191,7 +191,7 @@ void to_octal(char *binary_input) {
   }
 
   // e.g. 1000.1000 = 10.4
-  if (is_positive_binary_with_dot(binary_input)) {
+  if (is_positive_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
     SanitizedBinary sanitized_binary = _get_oct_sanitized_binary(binary);
@@ -215,7 +215,7 @@ void to_octal(char *binary_input) {
   }
 
   // e.g. -1000.1000 = -10.4
-  if (is_negative_binary_with_dot(binary_input)) {
+  if (is_negative_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
