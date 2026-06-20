@@ -1,7 +1,9 @@
 #ifndef HELPER_H
 #define HELPER_H
+#include "./reverse_string.c"
 #include "./validate_digit.c"
 
+extern char *reverse_string(char *input);
 extern int is_negative(char *input);
 extern int is_negative_with_dot(char *input);
 extern int is_positive(char *input);
