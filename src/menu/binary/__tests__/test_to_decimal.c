@@ -2,7 +2,7 @@
 #include "../to_decimal.c"
 #include "../../../utils/utils.h"
 
-void test_binary_to_decimal(void) {
+void test_to_decimal(void) {
   text_white("[ Testing to_decimal Functions ]", 10);
   add_new_line(1);
 
