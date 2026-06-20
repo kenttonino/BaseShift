@@ -1,4 +1,4 @@
-#include "menu/binary/menu_binary.h"
+#include "menu/compute_binary/compute_binary.h"
 #include "menu/main/menu_main.h"
 #include "utils/utils.h"
 
@@ -35,7 +35,7 @@ int main(void) {
     }
 
     if (option == 1) {
-      binary_system();
+      compute_binary();
       invalid_option = 0;
       continue;
     }
