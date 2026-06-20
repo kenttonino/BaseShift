@@ -5,8 +5,35 @@
 #include "../../utils/utils.h"
 #include "./binary_types.h"
 
+// 1001 = 001001
+char* _octal_zero_adder(char *binary) {
+  int binary_len = strlen(binary);
+  int binary_rem = binary_len % 3;
+
+  if (binary_rem == 1) {
+    char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
+    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
+    binary_buffer[0] = '0';
+    binary_buffer[1] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  if (binary_rem == 2) {
+    char binary_buffer[1000];
+    memset(binary_buffer, 0, sizeof(char) * 1000);
+    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
+    binary_buffer[0] = '0';
+    strcpy(binary, binary_buffer);
+    return binary;
+  }
+
+  return binary;
+}
+
 // .1001 = 100100
-char *zero_adder_with_dot(char *binary) {
+char *_octal_zero_adder_with_dot(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
 
@@ -33,34 +60,8 @@ char *zero_adder_with_dot(char *binary) {
   return binary;
 }
 
-// 1001 = 001001
-char* zero_adder(char *binary) {
-  int binary_len = strlen(binary);
-  int binary_rem = binary_len % 3;
 
-  if (binary_rem == 1) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
-    binary_buffer[0] = '0';
-    binary_buffer[1] = '0';
-    strcpy(binary, binary_buffer);
-    return binary;
-  }
-
-  if (binary_rem == 2) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
-    binary_buffer[0] = '0';
-    strcpy(binary, binary_buffer);
-    return binary;
-  }
-
-  return binary;
-}
-
-SanitizedBinary get_sanitized_binary(char *binary_input) {
+SanitizedBinary _get_sanitized_binary(char *binary_input) {
   // Store the binary in new variable.
   static char binary_buffer[1000];
   memset(binary_buffer, 0, sizeof(char) * 1000);
@@ -94,13 +95,13 @@ SanitizedBinary get_sanitized_binary(char *binary_input) {
   binary_after_dot[counter_after_dot] = '\0';
 
   SanitizedBinary sanitized_binary;
-  sanitized_binary.before_dot = zero_adder(binary_before_dot);
-  sanitized_binary.after_dot = zero_adder_with_dot(binary_after_dot);
+  sanitized_binary.before_dot = _octal_zero_adder(binary_before_dot);
+  sanitized_binary.after_dot = _octal_zero_adder_with_dot(binary_after_dot);
 
   return sanitized_binary;
 }
 
-char *octal_mapper(char *binary_group) {
+char *_octal_mapper(char *binary_group) {
   if (strcmp(binary_group, "001") == 0) return "1";
   if (strcmp(binary_group, "010") == 0) return "2";
   if (strcmp(binary_group, "011") == 0) return "3";
@@ -112,7 +113,7 @@ char *octal_mapper(char *binary_group) {
 }
 
 char *get_octal(char *binary_input) {
-  char *binary = zero_adder(binary_input);
+  char *binary = _octal_zero_adder(binary_input);
 
   char binary_group[4] = "";
   static char current_binary[1];
@@ -129,7 +130,7 @@ char *get_octal(char *binary_input) {
       continue;
     } else {
       // Push the octal value of first 3 binary digits.
-      strcat(octal, octal_mapper(binary_group));
+      strcat(octal, _octal_mapper(binary_group));
 
       // Reset binary group and assign value for index 0;
       memset(binary_group, 0, sizeof(char) *3);
@@ -195,7 +196,7 @@ void to_octal(char *binary_input) {
   if (is_positive_binary_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
-    SanitizedBinary sanitized_binary = get_sanitized_binary(binary);
+    SanitizedBinary sanitized_binary = _get_sanitized_binary(binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
@@ -222,7 +223,7 @@ void to_octal(char *binary_input) {
 
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
-    SanitizedBinary sanitized_binary = get_sanitized_binary(positive_binary);
+    SanitizedBinary sanitized_binary = _get_sanitized_binary(positive_binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
