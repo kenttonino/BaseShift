@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "../../utils/utils.h"
+#include "./to_binary.c"
 
 void _dec_description(void) {
   text_blue("--------------------------------------------------------", 15);
@@ -108,6 +109,9 @@ void compute_decimal(void) {
         break;
       }
     }
+
+    to_binary(dec_input);
+    add_new_line(2);
 
     // Ask to try again.
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
