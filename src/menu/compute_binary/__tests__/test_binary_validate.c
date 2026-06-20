@@ -1,6 +1,6 @@
+#include <assert.h>
 #include "../../../utils/utils.h"
 #include "../binary_validate.c"
-#include <assert.h>
 
 void test_binary_validate(void) {
   text_white("[ Testing binary_validate Functions ]", 10);
