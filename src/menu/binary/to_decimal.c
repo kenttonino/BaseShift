@@ -132,7 +132,7 @@ void to_decimal(char *binary_input) {
 
     double decimal = _get_decimal_with_dot(binary);
     char decimal_string[1000];
-    sprintf(decimal_string, "%.5f", decimal);
+    sprintf(decimal_string, "%.2f", decimal);
     _display_decimal(decimal_string, 0);
 
     free(binary);
@@ -149,7 +149,7 @@ void to_decimal(char *binary_input) {
 
     double decimal = _get_decimal_with_dot(positive_binary);
     char decimal_string[1000];
-    sprintf(decimal_string, "%.5f", decimal);
+    sprintf(decimal_string, "%.2f", decimal);
     _display_decimal(decimal_string, 1);
 
     free(binary);
