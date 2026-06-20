@@ -1,6 +1,6 @@
 #include <assert.h>
 #include "../../../utils/utils.h"
-#include "../binary_to_hexadecimal.c"
+#include "../to_hexadecimal.c"
 
 void test_binary_to_hexadecimal(void) {
   text_white("[ Testing binary_to_hexadecimal Functionss]", 10);
