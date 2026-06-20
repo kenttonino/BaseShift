@@ -2,9 +2,18 @@
 #include <ctype.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./decimal_description.c"
 
-void _get_dec_input(char *binary_input) {
+void _dec_description(void) {
+  text_blue("--------------------------------------------------------", 15);
+  add_new_line(2);
+  text_green("Decimal Conversion", 34);
+  add_new_line(2);
+  text_white("Convert decimal values to other system.", 24);
+  add_new_line(2);
+  text_blue("--------------------------------------------------------", 15);
+}
+
+void _get_dec_input(char *dec_input) {
   printf(
     "%-16s[%s %sDecimal%s %s]%s : ",
     BLUE,
@@ -14,17 +23,17 @@ void _get_dec_input(char *binary_input) {
     BLUE,
     RESET
   );
-  scanf("%s", binary_input);
+  scanf("%s", dec_input);
 }
 
-int _dec_validate(char *decimal_input) {
+int _dec_validate(char *dec_input) {
   int is_valid = 0;
-  int input_length = strlen(decimal_input);
+  int input_length = strlen(dec_input);
   int num_of_dots = 0;
 
   for (int i = 0; i < input_length; i++) {
     // Check if there is a minus sign.
-    if (decimal_input[i] == '-') {
+    if (dec_input[i] == '-') {
       if (i == 0) {
         is_valid = 1;
         continue;
@@ -35,7 +44,7 @@ int _dec_validate(char *decimal_input) {
     }
 
     // Check if its a dot.
-    if (decimal_input[i] == '.') {
+    if (dec_input[i] == '.') {
       if (num_of_dots == 0) {
         is_valid = 1;
         num_of_dots++;
@@ -48,7 +57,7 @@ int _dec_validate(char *decimal_input) {
 
     // Check if value is alphabet.
     // Return 0 right away.
-    if (isalpha(decimal_input[i])) {
+    if (isalpha(dec_input[i])) {
       is_valid = 0;
       break;
     }
@@ -73,7 +82,7 @@ void compute_decimal(void) {
     add_new_line(2);
 
     // Show the description.
-    decimal_description();
+    _dec_description();
     add_new_line(2);
 
     // Ask the input.
