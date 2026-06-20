@@ -5,8 +5,7 @@
 #include "../../utils/utils.h"
 #include "./binary_types.h"
 
-// 1001 = 001001
-char* _octal_zero_adder(char *binary) {
+char* _oct_zero_adder(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
 
@@ -32,8 +31,7 @@ char* _octal_zero_adder(char *binary) {
   return binary;
 }
 
-// .1001 = 100100
-char *_octal_zero_adder_with_dot(char *binary) {
+char *_oct_zero_adder_with_dot(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 3;
 
@@ -61,7 +59,7 @@ char *_octal_zero_adder_with_dot(char *binary) {
 }
 
 
-SanitizedBinary _get_octal_sanitized_binary(char *binary_input) {
+SanitizedBinary _get_oct_sanitized_binary(char *binary_input) {
   // Store the binary in new variable.
   static char binary_buffer[1000];
   memset(binary_buffer, 0, sizeof(char) * 1000);
@@ -95,8 +93,8 @@ SanitizedBinary _get_octal_sanitized_binary(char *binary_input) {
   binary_after_dot[counter_after_dot] = '\0';
 
   SanitizedBinary sanitized_binary;
-  sanitized_binary.before_dot = _octal_zero_adder(binary_before_dot);
-  sanitized_binary.after_dot = _octal_zero_adder_with_dot(binary_after_dot);
+  sanitized_binary.before_dot = _oct_zero_adder(binary_before_dot);
+  sanitized_binary.after_dot = _oct_zero_adder_with_dot(binary_after_dot);
 
   return sanitized_binary;
 }
@@ -113,7 +111,7 @@ char *_octal_mapper(char *binary_group) {
 }
 
 char *_get_octal(char *binary_input) {
-  char *binary = _octal_zero_adder(binary_input);
+  char *binary = _oct_zero_adder(binary_input);
 
   char binary_group[4] = "";
   static char current_binary[1];
@@ -145,7 +143,7 @@ char *_get_octal(char *binary_input) {
 }
 
 
-void _display_octal(char *octal, int negative) {
+void _display_oct(char *octal, int negative) {
   char neg_octal[1000] = "-";
   strcat(neg_octal, octal);
 
@@ -170,7 +168,7 @@ void to_octal(char *binary_input) {
     strcpy(binary, binary_input);
 
     char *p_octal = _get_octal(binary);
-    _display_octal(p_octal, 0);
+    _display_oct(p_octal, 0);
 
     free(binary);
     return;
@@ -185,7 +183,7 @@ void to_octal(char *binary_input) {
     memmove(positive_binary, binary + 1, strlen(binary));
 
     char *p_octal = _get_octal(positive_binary);
-    _display_octal(p_octal, 1);
+    _display_oct(p_octal, 1);
 
     free(binary);
     free(positive_binary);
@@ -196,7 +194,7 @@ void to_octal(char *binary_input) {
   if (is_positive_binary_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
-    SanitizedBinary sanitized_binary = _get_octal_sanitized_binary(binary);
+    SanitizedBinary sanitized_binary = _get_oct_sanitized_binary(binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
@@ -207,7 +205,7 @@ void to_octal(char *binary_input) {
     strcpy(octal, _get_octal(binary_before_dot));
     strcat(octal, ".");
     strcat(octal, _get_octal(binary_after_dot));
-    _display_octal(octal, 0);
+    _display_oct(octal, 0);
 
     free(binary);
     free(octal);
@@ -223,7 +221,7 @@ void to_octal(char *binary_input) {
 
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
-    SanitizedBinary sanitized_binary = _get_octal_sanitized_binary(positive_binary);
+    SanitizedBinary sanitized_binary = _get_oct_sanitized_binary(positive_binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
@@ -234,7 +232,7 @@ void to_octal(char *binary_input) {
     strcpy(octal, _get_octal(binary_before_dot));
     strcat(octal, ".");
     strcat(octal, _get_octal(binary_after_dot));
-    _display_octal(octal, 1);
+    _display_oct(octal, 1);
 
     free(binary);
     free(positive_binary);
