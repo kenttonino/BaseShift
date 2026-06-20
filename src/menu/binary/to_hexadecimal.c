@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./binary_types.h"
-#include "helper/helper.h"
+#include "./helper/helper.h"
 
 char *_hex_zero_adder(char* binary_input) {
   int binary_len = strlen(binary_input);
@@ -185,7 +185,7 @@ void _display_hexadecimal(char *decimal, int negative) {
   );
 }
 
-void binary_to_hexadecimal(char *binary_input) {
+void to_hexadecimal(char *binary_input) {
   // e.g. 1000 = 8
   if (is_positive_binary(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);

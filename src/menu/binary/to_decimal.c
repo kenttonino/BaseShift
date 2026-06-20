@@ -1,10 +1,10 @@
-#include "../../utils/utils.h"
-#include "helper/helper.h"
-#include "binary_reverse_string.c"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "binary_reverse_string.c"
+#include "./helper/helper.h"
+#include "../../utils/utils.h"
 
 // Compute the decimal value without dot.
 int get_decimal(char *binary_input) {
@@ -92,7 +92,7 @@ void display_decimal(char *decimal, int negative) {
   );
 }
 
-void binary_to_decimal(char *binary_input) {
+void to_decimal(char *binary_input) {
   // E.g. 1000 = 8
   if (is_positive_binary(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);

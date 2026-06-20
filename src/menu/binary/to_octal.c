@@ -1,9 +1,9 @@
-#include "helper/helper.h"
-#include "../../utils/utils.h"
-#include "./binary_types.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "./helper/helper.h"
+#include "../../utils/utils.h"
+#include "./binary_types.h"
 
 // .1001 = 100100
 char *zero_adder_with_dot(char *binary) {
@@ -162,7 +162,7 @@ void display_octal(char *octal, int negative) {
   );
 }
 
-void binary_to_octal(char *binary_input) {
+void to_octal(char *binary_input) {
   // e.g. 1000 = 10
   if (is_positive_binary(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);

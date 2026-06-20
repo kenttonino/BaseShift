@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../utils/utils.h"
-#include "binary_description.c"
-#include "binary_to_decimal.c"
-#include "binary_validate.c"
-#include "get_binary_input.c"
-#include "binary_to_octal.c"
-#include "binary_to_hexadecimal.c"
+#include "./binary_description.c"
+#include "./binary_validate.c"
+#include "./get_binary_input.c"
+#include "./to_decimal.c"
+#include "./to_octal.c"
+#include "./to_hexadecimal.c"
 
 void binary_system(void) {
   char *binary_input = malloc(100);
@@ -46,13 +46,13 @@ void binary_system(void) {
       }
     }
 
-   binary_to_decimal(binary_input);
+   to_decimal(binary_input);
    add_new_line(1);
 
-   binary_to_octal(binary_input);
+   to_octal(binary_input);
    add_new_line(1);
 
-   binary_to_hexadecimal(binary_input);
+   to_hexadecimal(binary_input);
    add_new_line(2);
 
     // Ask to try again.
