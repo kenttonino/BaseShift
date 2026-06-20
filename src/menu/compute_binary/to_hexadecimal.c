@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./binary_types.h"
-#include "./helper/helper.h"
+#include "../helper/helper.h"
 
 char *_hex_zero_adder(char* binary_input) {
   int binary_len = strlen(binary_input);
@@ -186,7 +186,7 @@ void _display_hex(char *decimal, int negative) {
 
 void to_hexadecimal(char *binary_input) {
   // e.g. 1000 = 8
-  if (is_positive_binary(binary_input)) {
+  if (is_positive(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -198,7 +198,7 @@ void to_hexadecimal(char *binary_input) {
   }
 
   // e.g. 1000.1 = 8.8
-  if (is_positive_binary_with_dot(binary_input)) {
+  if (is_positive_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
     SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(binary);
@@ -222,7 +222,7 @@ void to_hexadecimal(char *binary_input) {
   }
 
   // e.g. -1000 = -8
-  if (is_negative_binary(binary_input)) {
+  if (is_negative(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -238,7 +238,7 @@ void to_hexadecimal(char *binary_input) {
   }
 
   // e.g. -1000.1 = -8.8
-  if (is_negative_binary_with_dot(binary_input)) {
+  if (is_negative_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
     char *positive_binary = malloc(sizeof(char) * 1000);

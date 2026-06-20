@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "binary_reverse_string.c"
-#include "./helper/helper.h"
 #include "../../utils/utils.h"
+#include "../helper/helper.h"
 
 // Compute the decimal value without dot.
 int _get_decimal(char *binary_input) {
@@ -94,7 +94,7 @@ void _display_decimal(char *decimal, int negative) {
 
 void to_decimal(char *binary_input) {
   // E.g. 1000 = 8
-  if (is_positive_binary(binary_input)) {
+  if (is_positive(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -108,7 +108,7 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. -1000 = -8
-  if (is_negative_binary(binary_input)) {
+  if (is_negative(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -126,7 +126,7 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. 1000.1 = 8.500
-  if (is_positive_binary_with_dot(binary_input)) {
+  if (is_positive_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
@@ -140,7 +140,7 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. -1000.1 = -8.500
-  if (is_negative_binary_with_dot(binary_input)) {
+  if (is_negative_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 

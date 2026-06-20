@@ -28,5 +28,5 @@ jobs:
         TERM: xterm
       run: make run-test bin="binary_tests"
 
-    - name: Test Binary Helper Functions
-      run: make run-test bin="binary_helper_tests"
+    - name: Test Helper Functions
+      run: make run-test bin="helper_tests"
