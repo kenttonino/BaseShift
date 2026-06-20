@@ -8,7 +8,7 @@
 #include "./to_octal.c"
 #include "./to_hexadecimal.c"
 
-void binary_system(void) {
+void compute_binary(void) {
   char *binary_input = malloc(100);
   char *garbage_buffer = malloc(100);
   int try_again = 0;
