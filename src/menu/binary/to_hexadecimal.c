@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./binary_types.h"
-#include "helper/helper.h"
+#include "./helper/helper.h"
 
 char *_hex_zero_adder(char* binary_input) {
   int binary_len = strlen(binary_input);
@@ -41,7 +41,6 @@ char *_hex_zero_adder(char* binary_input) {
   return binary_input;
 }
 
-// .1001 = 100100
 char *_hex_zero_adder_with_dot(char *binary) {
   int binary_len = strlen(binary);
   int binary_rem = binary_len % 4;
@@ -79,7 +78,7 @@ char *_hex_zero_adder_with_dot(char *binary) {
   return binary;
 }
 
-char *hexadecimal_mapper(char *binary_group) {
+char *_hex_mapper(char *binary_group) {
   if (strcmp(binary_group, "0000") == 0) return "0";
   if (strcmp(binary_group, "0001") == 0) return "1";
   if (strcmp(binary_group, "0010") == 0) return "2";
@@ -99,7 +98,7 @@ char *hexadecimal_mapper(char *binary_group) {
   return "0";
 }
 
-SanitizedBinary _get_sanitized_binary(char *binary_input) {
+SanitizedBinary _get_hex_sanitized_binary(char *binary_input) {
   // Store the binary in new variable.
   static char binary_buffer[1000];
   memset(binary_buffer, 0, sizeof(char) * 1000);
@@ -139,7 +138,7 @@ SanitizedBinary _get_sanitized_binary(char *binary_input) {
   return sanitized_binary;
 }
 
-char *_get_hexadecimal(char *binary_input) {
+char *_get_hex(char *binary_input) {
   char *binary = _hex_zero_adder(binary_input);
 
   char binary_group[5] = "";
@@ -156,7 +155,7 @@ char *_get_hexadecimal(char *binary_input) {
       memset(current_binary, 0, sizeof(char));
       continue;
     } else {
-      strcat(hexadecimal, hexadecimal_mapper(binary_group));
+      strcat(hexadecimal, _hex_mapper(binary_group));
 
       memset(binary_group, 0, sizeof(char) * 5);
       strcat(binary_group, current_binary);
@@ -167,7 +166,7 @@ char *_get_hexadecimal(char *binary_input) {
   return hexadecimal;
 }
 
-void _display_hexadecimal(char *decimal, int negative) {
+void _display_hex(char *decimal, int negative) {
   char neg_decimal[1000] = "-";
   strcat(neg_decimal, decimal);
 
@@ -185,14 +184,14 @@ void _display_hexadecimal(char *decimal, int negative) {
   );
 }
 
-void binary_to_hexadecimal(char *binary_input) {
+void to_hexadecimal(char *binary_input) {
   // e.g. 1000 = 8
   if (is_positive_binary(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
-    char *hexadecimal = _get_hexadecimal(binary);
-    _display_hexadecimal(hexadecimal, 0);
+    char *hexadecimal = _get_hex(binary);
+    _display_hex(hexadecimal, 0);
 
     free(binary);
     return;
@@ -202,7 +201,7 @@ void binary_to_hexadecimal(char *binary_input) {
   if (is_positive_binary_with_dot(binary_input)) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
-    SanitizedBinary sanitized_binary = _get_sanitized_binary(binary);
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
@@ -210,10 +209,10 @@ void binary_to_hexadecimal(char *binary_input) {
     strcpy(binary_after_dot, sanitized_binary.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hexadecimal(binary_before_dot));
+    strcpy(hex, _get_hex(binary_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hexadecimal(binary_after_dot));
-    _display_hexadecimal(hex, 0);
+    strcat(hex, _get_hex(binary_after_dot));
+    _display_hex(hex, 0);
 
     free(binary);
     free(binary_before_dot);
@@ -230,8 +229,8 @@ void binary_to_hexadecimal(char *binary_input) {
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
 
-    char *hexadecimal = _get_hexadecimal(positive_binary);
-    _display_hexadecimal(hexadecimal, 1);
+    char *hexadecimal = _get_hex(positive_binary);
+    _display_hex(hexadecimal, 1);
 
     free(binary);
     free(positive_binary);
@@ -244,7 +243,7 @@ void binary_to_hexadecimal(char *binary_input) {
     strcpy(binary, binary_input);
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
-    SanitizedBinary sanitized_binary = _get_sanitized_binary(positive_binary);
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(positive_binary);
 
     char *binary_before_dot = malloc(sizeof(char) * 1000);
     char *binary_after_dot = malloc(sizeof(char) * 1000);
@@ -252,10 +251,10 @@ void binary_to_hexadecimal(char *binary_input) {
     strcpy(binary_after_dot, sanitized_binary.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hexadecimal(binary_before_dot));
+    strcpy(hex, _get_hex(binary_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hexadecimal(binary_after_dot));
-    _display_hexadecimal(hex, 1);
+    strcat(hex, _get_hex(binary_after_dot));
+    _display_hex(hex, 1);
 
     free(binary);
     free(positive_binary);
