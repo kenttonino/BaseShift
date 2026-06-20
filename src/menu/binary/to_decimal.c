@@ -7,7 +7,7 @@
 #include "../../utils/utils.h"
 
 // Compute the decimal value without dot.
-int get_decimal(char *binary_input) {
+int _get_decimal(char *binary_input) {
   char *reversed_binary_input = binary_reverse_string(binary_input);
   int reversed_binary_length = strlen(reversed_binary_input);
   int decimal = 0;
@@ -24,7 +24,7 @@ int get_decimal(char *binary_input) {
 }
 
 // Compute the decimal value with dot.
-double get_decimal_with_dot(char *binary_input) {
+double _get_decimal_with_dot(char *binary_input) {
   // Separate the binary values before and after dot.
   char *binary_before_dot = malloc(strlen(binary_input) + 1);
   char *binary_after_dot = malloc(strlen(binary_input) + 1);
@@ -74,7 +74,7 @@ double get_decimal_with_dot(char *binary_input) {
 }
 
 // Output the binary to decimal result.
-void display_decimal(char *decimal, int negative) {
+void _display_decimal(char *decimal, int negative) {
   char neg_decimal[1000] = "-";
   strcat(neg_decimal, decimal);
 
@@ -98,10 +98,10 @@ void to_decimal(char *binary_input) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
-    int decimal = get_decimal(binary);
+    int decimal = _get_decimal(binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
-    display_decimal(decimal_string, 0);
+    _display_decimal(decimal_string, 0);
 
     free(binary);
     return;
@@ -115,10 +115,10 @@ void to_decimal(char *binary_input) {
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
 
-    int decimal = get_decimal(positive_binary);
+    int decimal = _get_decimal(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%d", decimal);
-    display_decimal(decimal_string, 1);
+    _display_decimal(decimal_string, 1);
 
     free(binary);
     free(positive_binary);
@@ -130,10 +130,10 @@ void to_decimal(char *binary_input) {
     char *binary = malloc(sizeof(char) * 1000);
     strcpy(binary, binary_input);
 
-    double decimal = get_decimal_with_dot(binary);
+    double decimal = _get_decimal_with_dot(binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%.5f", decimal);
-    display_decimal(decimal_string, 0);
+    _display_decimal(decimal_string, 0);
 
     free(binary);
     return;
@@ -147,10 +147,10 @@ void to_decimal(char *binary_input) {
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
 
-    double decimal = get_decimal_with_dot(positive_binary);
+    double decimal = _get_decimal_with_dot(positive_binary);
     char decimal_string[1000];
     sprintf(decimal_string, "%.5f", decimal);
-    display_decimal(decimal_string, 1);
+    _display_decimal(decimal_string, 1);
 
     free(binary);
     free(positive_binary);
