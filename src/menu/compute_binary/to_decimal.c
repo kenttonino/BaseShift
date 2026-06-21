@@ -46,24 +46,24 @@ double _get_dec_with_dot(char *bin_input) {
 
   char *reversed_bin_input = reverse_string(bin_before_dot);
   int reversed_bin_length = strlen(reversed_bin_input);
-  double decimal = 0;
+  double dec = 0;
 
   for (int i = 0; i < reversed_bin_length; i++) {
-    int current_binary_int = reversed_bin_input[i] - '0';
-    decimal = decimal + (current_binary_int * pow(2, i));
+    int current_bin_int = reversed_bin_input[i] - '0';
+    dec = dec + (current_bin_int * pow(2, i));
   }
 
   for (int i = 0; i < (int) strlen(bin_after_dot); i++) {
     // Use the ASCII equivalent.
     // 0 -> 48
     // 1 -> 49
-    int current_binary_int = bin_after_dot[i] - '0';
-    decimal += current_binary_int * pow(2, -(i + 1));
+    int current_bin_int = bin_after_dot[i] - '0';
+    dec += current_bin_int * pow(2, -(i + 1));
   }
 
   free(bin_before_dot);
   free(bin_after_dot);
-  return decimal;
+  return dec;
 }
 
 void _display_dec(char *dec, int negative) {
@@ -87,65 +87,65 @@ void _display_dec(char *dec, int negative) {
 void to_decimal(char *bin_input) {
   // E.g. 1000 = 8
   if (is_positive(bin_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, bin_input);
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    int decimal = _get_dec(binary);
-    char decimal_string[1000];
-    sprintf(decimal_string, "%d", decimal);
-    _display_dec(decimal_string, 0);
+    int dec = _get_dec(bin);
+    char dec_string[1000];
+    sprintf(dec_string, "%d", dec);
+    _display_dec(dec_string, 0);
 
-    free(binary);
+    free(bin);
     return;
   }
 
   // E.g. -1000 = -8
   if (is_negative(bin_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, bin_input);
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary + 1, strlen(binary));
+    char *positive_bin = malloc(sizeof(char) * 1000);
+    memmove(positive_bin, bin + 1, strlen(bin));
 
-    int decimal = _get_dec(positive_binary);
-    char decimal_string[1000];
-    sprintf(decimal_string, "%d", decimal);
-    _display_dec(decimal_string, 1);
+    int dec = _get_dec(positive_bin);
+    char dec_string[1000];
+    sprintf(dec_string, "%d", dec);
+    _display_dec(dec_string, 1);
 
-    free(binary);
-    free(positive_binary);
+    free(bin);
+    free(positive_bin);
     return;
   }
 
   // E.g. 1000.1 = 8.500
   if (is_positive_with_dot(bin_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, bin_input);
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    double decimal = _get_dec_with_dot(binary);
-    char decimal_string[1000];
-    sprintf(decimal_string, "%.2f", decimal);
-    _display_dec(decimal_string, 0);
+    double dec = _get_dec_with_dot(bin);
+    char dec_string[1000];
+    sprintf(dec_string, "%.2f", dec);
+    _display_dec(dec_string, 0);
 
-    free(binary);
+    free(bin);
     return;
   }
 
   // E.g. -1000.1 = -8.500
   if (is_negative_with_dot(bin_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, bin_input);
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary + 1, strlen(binary));
+    char *positive_bin = malloc(sizeof(char) * 1000);
+    memmove(positive_bin, bin + 1, strlen(bin));
 
-    double decimal = _get_dec_with_dot(positive_binary);
-    char decimal_string[1000];
-    sprintf(decimal_string, "%.2f", decimal);
-    _display_dec(decimal_string, 1);
+    double dec = _get_dec_with_dot(positive_bin);
+    char dec_string[1000];
+    sprintf(dec_string, "%.2f", dec);
+    _display_dec(dec_string, 1);
 
-    free(binary);
-    free(positive_binary);
+    free(bin);
+    free(positive_bin);
     return;
   }
 
