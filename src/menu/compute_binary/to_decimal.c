@@ -84,11 +84,11 @@ void _display_dec(char *dec, int negative) {
   );
 }
 
-void to_decimal(char *binary_input) {
+void to_decimal(char *bin_input) {
   // E.g. 1000 = 8
-  if (is_positive(binary_input)) {
+  if (is_positive(bin_input)) {
     char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+    strcpy(binary, bin_input);
 
     int decimal = _get_dec(binary);
     char decimal_string[1000];
@@ -100,9 +100,9 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. -1000 = -8
-  if (is_negative(binary_input)) {
+  if (is_negative(bin_input)) {
     char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+    strcpy(binary, bin_input);
 
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
@@ -118,9 +118,9 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. 1000.1 = 8.500
-  if (is_positive_with_dot(binary_input)) {
+  if (is_positive_with_dot(bin_input)) {
     char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+    strcpy(binary, bin_input);
 
     double decimal = _get_dec_with_dot(binary);
     char decimal_string[1000];
@@ -132,9 +132,9 @@ void to_decimal(char *binary_input) {
   }
 
   // E.g. -1000.1 = -8.500
-  if (is_negative_with_dot(binary_input)) {
+  if (is_negative_with_dot(bin_input)) {
     char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+    strcpy(binary, bin_input);
 
     char *positive_binary = malloc(sizeof(char) * 1000);
     memmove(positive_binary, binary + 1, strlen(binary));
