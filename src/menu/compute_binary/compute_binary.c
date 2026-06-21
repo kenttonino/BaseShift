@@ -1,8 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../utils/utils.h"
-#include "./binary_description.c"
-#include "./binary_validate.c"
 #include "./get_binary_input.c"
 #include "./to_decimal.c"
 #include "./to_octal.c"
@@ -16,6 +15,56 @@ void _bin_description(void) {
   text_white("Convert binary values to other system.", 24);
   add_new_line(2);
   text_blue("--------------------------------------------------------", 15);
+}
+
+int _bin_validate(char *binary_input) {
+  int is_valid = 0;
+  int input_length = strlen(binary_input);
+  int num_of_dots = 0;
+
+  for (int i = 0; i < input_length; i++) {
+    // Check if there is a minus sign.
+    if (binary_input[i] == '-') {
+      if (i == 0) {
+        is_valid = 1;
+        continue;
+      } else {
+        is_valid = 0;
+        break;
+      }
+    }
+
+    // Check if its a dot.
+    if (binary_input[i] == '.') {
+      if (num_of_dots == 0) {
+        is_valid = 1;
+        num_of_dots++;
+        continue;
+      } else {
+        is_valid = 0;
+        break;
+      }
+    }
+
+    // Check if value is alphabet.
+    // Return 0 right away.
+    if (isalpha(binary_input[i])) {
+      is_valid = 0;
+      break;
+    }
+
+    // Check if either 0 or 1.
+    if (binary_input[i] == '1' || binary_input[i] == '0') {
+      is_valid = 1;
+      continue;
+    }
+
+    // Default return.
+    is_valid = 0;
+    break;;
+  }
+
+  return is_valid;
 }
 
 void compute_binary(void) {
@@ -37,7 +86,7 @@ void compute_binary(void) {
     fgets(garbage_buffer, 100, stdin);
 
     // Check the validity of binary input.
-    int valid_binary = binary_validate(binary_input);
+    int valid_binary = _bin_validate(binary_input);
     if (valid_binary == 0) {
       // Display error message.
       add_new_line(1);
