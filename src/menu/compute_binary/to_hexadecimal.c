@@ -166,9 +166,9 @@ char *_get_hex(char *binary_input) {
   return hexadecimal;
 }
 
-void _display_hex(char *decimal, int negative) {
-  char neg_decimal[1000] = "-";
-  strcat(neg_decimal, decimal);
+void _display_hex(char *hex, int negative) {
+  char neg_hex[1000] = "-";
+  strcat(neg_hex, hex);
 
   printf(
       "%-16s[%s %sHexadecimal%s %s]%s : %s%s%s",
@@ -179,87 +179,87 @@ void _display_hex(char *decimal, int negative) {
       BLUE,
       RESET,
       YELLOW,
-      negative == 1 ? neg_decimal : decimal,
+      negative == 1 ? neg_hex : hex,
       RESET
   );
 }
 
-void to_hexadecimal(char *binary_input) {
+void to_hexadecimal(char *bin_input) {
   // e.g. 1000 = 8
-  if (is_positive(binary_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+  if (is_positive(bin_input)) {
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    char *hexadecimal = _get_hex(binary);
-    _display_hex(hexadecimal, 0);
+    char *hex = _get_hex(bin);
+    _display_hex(hex, 0);
 
-    free(binary);
+    free(bin);
     return;
   }
 
   // e.g. 1000.1 = 8.8
-  if (is_positive_with_dot(binary_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
-    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(binary);
+  if (is_positive_with_dot(bin_input)) {
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(bin);
 
-    char *binary_before_dot = malloc(sizeof(char) * 1000);
-    char *binary_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(binary_before_dot, sanitized_binary.before_dot);
-    strcpy(binary_after_dot, sanitized_binary.after_dot);
+    char *bin_before_dot = malloc(sizeof(char) * 1000);
+    char *bin_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_dot, sanitized_binary.before_dot);
+    strcpy(bin_after_dot, sanitized_binary.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hex(binary_before_dot));
+    strcpy(hex, _get_hex(bin_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hex(binary_after_dot));
+    strcat(hex, _get_hex(bin_after_dot));
     _display_hex(hex, 0);
 
-    free(binary);
-    free(binary_before_dot);
-    free(binary_after_dot);
+    free(bin);
+    free(bin_before_dot);
+    free(bin_after_dot);
     free(hex);
     return;
   }
 
   // e.g. -1000 = -8
-  if (is_negative(binary_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
+  if (is_negative(bin_input)) {
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
 
-    char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary + 1, strlen(binary));
+    char *positive_bin = malloc(sizeof(char) * 1000);
+    memmove(positive_bin, bin + 1, strlen(bin));
 
-    char *hexadecimal = _get_hex(positive_binary);
-    _display_hex(hexadecimal, 1);
+    char *hex = _get_hex(positive_bin);
+    _display_hex(hex, 1);
 
-    free(binary);
-    free(positive_binary);
+    free(bin);
+    free(positive_bin);
     return;
   }
 
   // e.g. -1000.1 = -8.8
-  if (is_negative_with_dot(binary_input)) {
-    char *binary = malloc(sizeof(char) * 1000);
-    strcpy(binary, binary_input);
-    char *positive_binary = malloc(sizeof(char) * 1000);
-    memmove(positive_binary, binary + 1, strlen(binary));
-    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(positive_binary);
+  if (is_negative_with_dot(bin_input)) {
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
+    char *positive_bin = malloc(sizeof(char) * 1000);
+    memmove(positive_bin, bin + 1, strlen(bin));
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(positive_bin);
 
-    char *binary_before_dot = malloc(sizeof(char) * 1000);
-    char *binary_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(binary_before_dot, sanitized_binary.before_dot);
-    strcpy(binary_after_dot, sanitized_binary.after_dot);
+    char *bin_before_dot = malloc(sizeof(char) * 1000);
+    char *bin_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_dot, sanitized_binary.before_dot);
+    strcpy(bin_after_dot, sanitized_binary.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hex(binary_before_dot));
+    strcpy(hex, _get_hex(bin_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hex(binary_after_dot));
+    strcat(hex, _get_hex(bin_after_dot));
     _display_hex(hex, 1);
 
-    free(binary);
-    free(positive_binary);
-    free(binary_before_dot);
-    free(binary_after_dot);
+    free(bin);
+    free(positive_bin);
+    free(bin_before_dot);
+    free(bin_after_dot);
     free(hex);
     return;
   }
