@@ -16,14 +16,14 @@ void _bin_description(void) {
   text_blue("--------------------------------------------------------", 15);
 }
 
-int _bin_validate(char *binary_input) {
+int _bin_validate(char *bin_input) {
   int is_valid = 0;
-  int input_length = strlen(binary_input);
+  int input_length = strlen(bin_input);
   int num_of_dots = 0;
 
   for (int i = 0; i < input_length; i++) {
     // Check if there is a minus sign.
-    if (binary_input[i] == '-') {
+    if (bin_input[i] == '-') {
       if (i == 0) {
         is_valid = 1;
         continue;
@@ -34,7 +34,7 @@ int _bin_validate(char *binary_input) {
     }
 
     // Check if its a dot.
-    if (binary_input[i] == '.') {
+    if (bin_input[i] == '.') {
       if (num_of_dots == 0) {
         is_valid = 1;
         num_of_dots++;
@@ -47,13 +47,13 @@ int _bin_validate(char *binary_input) {
 
     // Check if value is alphabet.
     // Return 0 right away.
-    if (isalpha(binary_input[i])) {
+    if (isalpha(bin_input[i])) {
       is_valid = 0;
       break;
     }
 
     // Check if either 0 or 1.
-    if (binary_input[i] == '1' || binary_input[i] == '0') {
+    if (bin_input[i] == '1' || bin_input[i] == '0') {
       is_valid = 1;
       continue;
     }
@@ -66,7 +66,7 @@ int _bin_validate(char *binary_input) {
   return is_valid;
 }
 
-void _get_bin_input(char *binary_input) {
+void _get_bin_input(char *bin_input) {
   printf(
     "%-16s[%s %sBinary%s %s]%s : ",
     BLUE,
@@ -76,11 +76,11 @@ void _get_bin_input(char *binary_input) {
     BLUE,
     RESET
   );
-  scanf("%s", binary_input);
+  scanf("%s", bin_input);
 }
 
 void compute_binary(void) {
-  char *binary_input = malloc(100);
+  char *bin_input = malloc(100);
   char *garbage_buffer = malloc(100);
   int try_again = 0;
 
@@ -94,11 +94,11 @@ void compute_binary(void) {
     add_new_line(2);
 
     // Ask the input.
-    _get_bin_input(binary_input);
+    _get_bin_input(bin_input);
     fgets(garbage_buffer, 100, stdin);
 
     // Check the validity of binary input.
-    int valid_binary = _bin_validate(binary_input);
+    int valid_binary = _bin_validate(bin_input);
     if (valid_binary == 0) {
       // Display error message.
       add_new_line(1);
@@ -117,13 +117,13 @@ void compute_binary(void) {
       }
     }
 
-   to_decimal(binary_input);
+   to_decimal(bin_input);
    add_new_line(1);
 
-   to_octal(binary_input);
+   to_octal(bin_input);
    add_new_line(1);
 
-   to_hexadecimal(binary_input);
+   to_hexadecimal(bin_input);
    add_new_line(2);
 
     // Ask to try again.
@@ -138,6 +138,6 @@ void compute_binary(void) {
     }
   }
 
-  free(binary_input);
+  free(bin_input);
   free(garbage_buffer);
 }
