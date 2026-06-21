@@ -98,42 +98,42 @@ char *_hex_mapper(char *bin_group) {
   return "0";
 }
 
-SanitizedBinary _get_hex_sanitized_binary(char *binary_input) {
+SanitizedBinary _get_hex_sanitized_bin(char *bin_input) {
   // Store the binary in new variable.
-  static char binary_buffer[1000];
-  memset(binary_buffer, 0, sizeof(char) * 1000);
-  memmove(binary_buffer, binary_input, strlen(binary_input));
+  static char bin_buffer[1000];
+  memset(bin_buffer, 0, sizeof(char) * 1000);
+  memmove(bin_buffer, bin_input, strlen(bin_input));
 
   // Separate the binary values before and after dot.
-  static char binary_before_dot[1000];
-  static char binary_after_dot[1000];
-  memset(binary_before_dot, 0, sizeof(char) * 1000);
-  memset(binary_after_dot, 0, sizeof(char) * 1000);
+  static char bin_before_dot[1000];
+  static char bin_after_dot[1000];
+  memset(bin_before_dot, 0, sizeof(char) * 1000);
+  memset(bin_after_dot, 0, sizeof(char) * 1000);
 
   int is_after_dot = 0;
   int counter_before_dot = 0;
   int counter_after_dot = 0;
-  for (int i = 0; binary_input[i] != '\0'; i++) {
-    if (binary_input[i] == '.') {
+  for (int i = 0; bin_input[i] != '\0'; i++) {
+    if (bin_input[i] == '.') {
       is_after_dot = 1;
       continue;
     }
 
     if (is_after_dot) {
-      binary_after_dot[counter_after_dot++] = binary_input[i];
+      bin_after_dot[counter_after_dot++] = bin_input[i];
       continue;
     } else {
-      binary_before_dot[counter_before_dot++] = binary_input[i];
+      bin_before_dot[counter_before_dot++] = bin_input[i];
     }
   }
 
   // Reset to the null terminator to stop reading this variables.
-  binary_before_dot[counter_before_dot] = '\0';
-  binary_after_dot[counter_after_dot] = '\0';
+  bin_before_dot[counter_before_dot] = '\0';
+  bin_after_dot[counter_after_dot] = '\0';
 
   SanitizedBinary sanitized_binary;
-  sanitized_binary.before_dot = _hex_zero_adder(binary_before_dot);
-  sanitized_binary.after_dot = _hex_zero_adder_with_dot(binary_after_dot);
+  sanitized_binary.before_dot = _hex_zero_adder(bin_before_dot);
+  sanitized_binary.after_dot = _hex_zero_adder_with_dot(bin_after_dot);
 
   return sanitized_binary;
 }
@@ -201,7 +201,7 @@ void to_hexadecimal(char *bin_input) {
   if (is_positive_with_dot(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
-    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(bin);
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_bin(bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
@@ -243,7 +243,7 @@ void to_hexadecimal(char *bin_input) {
     strcpy(bin, bin_input);
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
-    SanitizedBinary sanitized_binary = _get_hex_sanitized_binary(positive_bin);
+    SanitizedBinary sanitized_binary = _get_hex_sanitized_bin(positive_bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
