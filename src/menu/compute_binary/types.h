@@ -1,5 +1,5 @@
-#ifndef BINARY_TYPES_H
-#define BINARY_TYPES_H
+#ifndef COMPUTE_BINARY_TYPES_H
+#define COMPUTE_BINARY_TYPES_H
 
 // Sanitized binary attributes length should be divisible by 3.
 typedef struct {
