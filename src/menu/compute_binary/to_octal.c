@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-#include "./binary_types.h"
+#include "./types.h"
 
 char* _oct_zero_adder(char *binary) {
   int binary_len = strlen(binary);

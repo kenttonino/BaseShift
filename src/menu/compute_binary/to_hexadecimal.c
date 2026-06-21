@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./binary_types.h"
+#include "./types.h"
 #include "../helper/helper.h"
 
 char *_hex_zero_adder(char* binary_input) {

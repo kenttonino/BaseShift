@@ -8,6 +8,16 @@
 #include "./to_octal.c"
 #include "./to_hexadecimal.c"
 
+void _bin_description(void) {
+  text_blue("--------------------------------------------------------", 15);
+  add_new_line(2);
+  text_green("Binary Conversion", 34);
+  add_new_line(2);
+  text_white("Convert binary values to other system.", 24);
+  add_new_line(2);
+  text_blue("--------------------------------------------------------", 15);
+}
+
 void compute_binary(void) {
   char *binary_input = malloc(100);
   char *garbage_buffer = malloc(100);
@@ -19,7 +29,7 @@ void compute_binary(void) {
     add_new_line(2);
 
     // Show the description.
-    binary_description();
+    _bin_description();
     add_new_line(2);
 
     // Ask the input.
