@@ -138,32 +138,32 @@ SanitizedBinary _get_hex_sanitized_bin(char *bin_input) {
   return sanitized_binary;
 }
 
-char *_get_hex(char *binary_input) {
-  char *binary = _hex_zero_adder(binary_input);
+char *_get_hex(char *bin_input) {
+  char *bin = _hex_zero_adder(bin_input);
 
-  char binary_group[5] = "";
-  static char current_binary[1];
-  static char hexadecimal[1000];
-  memset(current_binary, 0, sizeof(char));
-  memset(hexadecimal, 0, sizeof(char) * 1000);
+  char bin_group[5] = "";
+  static char current_bin[1];
+  static char hex[1000];
+  memset(current_bin, 0, sizeof(char));
+  memset(hex, 0, sizeof(char) * 1000);
 
-  for (size_t i = 0; i <= strlen(binary); i++) {
-    *current_binary = binary[i];
+  for (size_t i = 0; i <= strlen(bin); i++) {
+    *current_bin = bin[i];
 
-    if (strlen(binary_group) < 4) {
-      strcat(binary_group, current_binary);
-      memset(current_binary, 0, sizeof(char));
+    if (strlen(bin_group) < 4) {
+      strcat(bin_group, current_bin);
+      memset(current_bin, 0, sizeof(char));
       continue;
     } else {
-      strcat(hexadecimal, _hex_mapper(binary_group));
+      strcat(hex, _hex_mapper(bin_group));
 
-      memset(binary_group, 0, sizeof(char) * 5);
-      strcat(binary_group, current_binary);
-      memset(current_binary, 0, sizeof(char));
+      memset(bin_group, 0, sizeof(char) * 5);
+      strcat(bin_group, current_bin);
+      memset(current_bin, 0, sizeof(char));
     }
   }
 
-  return hexadecimal;
+  return hex;
 }
 
 void _display_hex(char *hex, int negative) {
