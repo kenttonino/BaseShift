@@ -4,41 +4,41 @@
 #include "./types.h"
 #include "../helper/helper.h"
 
-char *_hex_zero_adder(char* binary_input) {
-  int binary_len = strlen(binary_input);
-  int binary_rem = binary_len % 4;
+char *_hex_zero_adder(char* bin_input) {
+  int bin_len = strlen(bin_input);
+  int bin_rem = bin_len % 4;
 
-  if (binary_rem == 1) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 3, binary_input, strlen(binary_input) + 3);
-    binary_buffer[0] = '0';
-    binary_buffer[1] = '0';
-    binary_buffer[2] = '0';
-    strcpy(binary_input, binary_buffer);
-    return binary_input;
+  if (bin_rem == 1) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 3, bin_input, strlen(bin_input) + 3);
+    bin_buffer[0] = '0';
+    bin_buffer[1] = '0';
+    bin_buffer[2] = '0';
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  if (binary_rem == 2) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 2, binary_input, strlen(binary_input) + 2);
-    binary_buffer[0] = '0';
-    binary_buffer[1] = '0';
-    strcpy(binary_input, binary_buffer);
-    return binary_input;
+  if (bin_rem == 2) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 2, bin_input, strlen(bin_input) + 2);
+    bin_buffer[0] = '0';
+    bin_buffer[1] = '0';
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  if (binary_rem == 3) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 1, binary_input, strlen(binary_input) + 1);
-    binary_buffer[0] = '0';
-    strcpy(binary_input, binary_buffer);
-    return binary_input;
+  if (bin_rem == 3) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 1, bin_input, strlen(bin_input) + 1);
+    bin_buffer[0] = '0';
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  return binary_input;
+  return bin_input;
 }
 
 char *_hex_zero_adder_with_dot(char *binary) {
