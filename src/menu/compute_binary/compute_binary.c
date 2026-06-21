@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../utils/utils.h"
-#include "./get_binary_input.c"
 #include "./to_decimal.c"
 #include "./to_octal.c"
 #include "./to_hexadecimal.c"
@@ -67,6 +66,19 @@ int _bin_validate(char *binary_input) {
   return is_valid;
 }
 
+void _get_bin_input(char *binary_input) {
+  printf(
+    "%-16s[%s %sBinary%s %s]%s : ",
+    BLUE,
+    RESET,
+    YELLOW,
+    RESET,
+    BLUE,
+    RESET
+  );
+  scanf("%s", binary_input);
+}
+
 void compute_binary(void) {
   char *binary_input = malloc(100);
   char *garbage_buffer = malloc(100);
@@ -82,7 +94,7 @@ void compute_binary(void) {
     add_new_line(2);
 
     // Ask the input.
-    get_binary_input(binary_input);
+    _get_bin_input(binary_input);
     fgets(garbage_buffer, 100, stdin);
 
     // Check the validity of binary input.
