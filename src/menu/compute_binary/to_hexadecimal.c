@@ -41,41 +41,41 @@ char *_hex_zero_adder(char* bin_input) {
   return bin_input;
 }
 
-char *_hex_zero_adder_with_dot(char *binary) {
-  int binary_len = strlen(binary);
-  int binary_rem = binary_len % 4;
+char *_hex_zero_adder_with_dot(char *bin_input) {
+  int bin_len = strlen(bin_input);
+  int bin_rem = bin_len % 4;
 
-  if (binary_rem == 1) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 3, binary, strlen(binary) + 3);
-    strcpy(binary_buffer, binary);
-    strcat(binary_buffer, "000");
-    strcpy(binary, binary_buffer);
-    return binary;
+  if (bin_rem == 1) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 3, bin_input, strlen(bin_input) + 3);
+    strcpy(bin_buffer, bin_input);
+    strcat(bin_buffer, "000");
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  if (binary_rem == 2) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 2, binary, strlen(binary) + 2);
-    strcpy(binary_buffer, binary);
-    strcat(binary_buffer, "00");
-    strcpy(binary, binary_buffer);
-    return binary;
+  if (bin_rem == 2) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 2, bin_input, strlen(bin_input) + 2);
+    strcpy(bin_buffer, bin_input);
+    strcat(bin_buffer, "00");
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  if (binary_rem == 3) {
-    char binary_buffer[1000];
-    memset(binary_buffer, 0, sizeof(char) * 1000);
-    memmove(binary_buffer + 1, binary, strlen(binary) + 1);
-    strcpy(binary_buffer, binary);
-    strcat(binary_buffer, "0");
-    strcpy(binary, binary_buffer);
-    return binary;
+  if (bin_rem == 3) {
+    char bin_buffer[1000];
+    memset(bin_buffer, 0, sizeof(char) * 1000);
+    memmove(bin_buffer + 1, bin_input, strlen(bin_input) + 1);
+    strcpy(bin_buffer, bin_input);
+    strcat(bin_buffer, "0");
+    strcpy(bin_input, bin_buffer);
+    return bin_input;
   }
 
-  return binary;
+  return bin_input;
 }
 
 char *_hex_mapper(char *binary_group) {
