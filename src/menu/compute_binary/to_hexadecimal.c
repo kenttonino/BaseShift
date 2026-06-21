@@ -78,23 +78,23 @@ char *_hex_zero_adder_with_dot(char *bin_input) {
   return bin_input;
 }
 
-char *_hex_mapper(char *binary_group) {
-  if (strcmp(binary_group, "0000") == 0) return "0";
-  if (strcmp(binary_group, "0001") == 0) return "1";
-  if (strcmp(binary_group, "0010") == 0) return "2";
-  if (strcmp(binary_group, "0011") == 0) return "3";
-  if (strcmp(binary_group, "0100") == 0) return "4";
-  if (strcmp(binary_group, "0101") == 0) return "5";
-  if (strcmp(binary_group, "0110") == 0) return "6";
-  if (strcmp(binary_group, "0111") == 0) return "7";
-  if (strcmp(binary_group, "1000") == 0) return "8";
-  if (strcmp(binary_group, "1001") == 0) return "9";
-  if (strcmp(binary_group, "1010") == 0) return "A";
-  if (strcmp(binary_group, "1011") == 0) return "B";
-  if (strcmp(binary_group, "1100") == 0) return "C";
-  if (strcmp(binary_group, "1101") == 0) return "D";
-  if (strcmp(binary_group, "1110") == 0) return "E";
-  if (strcmp(binary_group, "1111") == 0) return "F";
+char *_hex_mapper(char *bin_group) {
+  if (strcmp(bin_group, "0000") == 0) return "0";
+  if (strcmp(bin_group, "0001") == 0) return "1";
+  if (strcmp(bin_group, "0010") == 0) return "2";
+  if (strcmp(bin_group, "0011") == 0) return "3";
+  if (strcmp(bin_group, "0100") == 0) return "4";
+  if (strcmp(bin_group, "0101") == 0) return "5";
+  if (strcmp(bin_group, "0110") == 0) return "6";
+  if (strcmp(bin_group, "0111") == 0) return "7";
+  if (strcmp(bin_group, "1000") == 0) return "8";
+  if (strcmp(bin_group, "1001") == 0) return "9";
+  if (strcmp(bin_group, "1010") == 0) return "A";
+  if (strcmp(bin_group, "1011") == 0) return "B";
+  if (strcmp(bin_group, "1100") == 0) return "C";
+  if (strcmp(bin_group, "1101") == 0) return "D";
+  if (strcmp(bin_group, "1110") == 0) return "E";
+  if (strcmp(bin_group, "1111") == 0) return "F";
   return "0";
 }
 
