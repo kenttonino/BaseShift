@@ -42,7 +42,7 @@
 
 ```bash
 # Build and run the test.
-make run-test bin="binary_tests"
+make run-test bin=compute_binary_tests
 
 # Build and run the program using Valgrind.
 make run-valgrind
