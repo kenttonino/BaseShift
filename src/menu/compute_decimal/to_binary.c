@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
 
@@ -48,6 +49,7 @@ void _display_bin(char *bin, int negative) {
 }
 
 void to_binary(char *dec_input) {
+  // e.g. 1000 = 1111101000
   if (is_positive(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
@@ -56,6 +58,22 @@ void to_binary(char *dec_input) {
     _display_bin(bin_digits, 0);
 
     free(dec);
+    return;
+  }
+
+  // e.g. -1000 = -1111101000
+  if (is_negative(dec_input)) {
+    char *dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    char *positive_dec = malloc(sizeof(char) * 1000);
+    memmove(positive_dec, dec + 1, strlen(dec));
+
+    char *bin_digits = _get_bin(positive_dec);
+    _display_bin(bin_digits, 1);
+
+    free(dec);
+    free(positive_dec);
     return;
   }
 }

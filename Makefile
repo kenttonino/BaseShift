@@ -6,7 +6,8 @@ build:
 	gcc -g ${WARNING_FLAGS} -o ./bin/main ./src/main.c -lm
 
 build-test:
-	gcc -g ${WARNING_FLAGS} -o ./bin/tests/binary_tests ./src/menu/compute_binary/__tests__/binary_tests.c -lm
+	gcc -g ${WARNING_FLAGS} -o ./bin/tests/compute_binary_tests ./src/menu/compute_binary/__tests__/compute_binary_tests.c -lm
+	gcc -g ${WARNING_FLAGS} -o ./bin/tests/compute_decimal_tests ./src/menu/compute_decimal/__tests__/compute_decimal_tests.c -lm
 	gcc -g ${WARNING_FLAGS} -o ./bin/tests/helper_tests ./src/menu/helper/__tests__/helper_tests.c
 
 run-test: build-test
