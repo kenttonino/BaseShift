@@ -49,7 +49,7 @@ void _display_bin(char *bin, int negative) {
 }
 
 void to_binary(char *dec_input) {
-  // e.g. 1000 = 1111101000
+  // e.g. 123 = 1111011
   if (is_positive(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
@@ -61,7 +61,7 @@ void to_binary(char *dec_input) {
     return;
   }
 
-  // e.g. -1000 = -1111101000
+  // e.g. -123 = -1111011
   if (is_negative(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
