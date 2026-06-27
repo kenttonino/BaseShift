@@ -6,7 +6,7 @@ int main(void) {
   add_new_line(2);
 
   test_to_binary();
-  add_new_line(2);
+  add_new_line(3);
 
   return 0;
 }
