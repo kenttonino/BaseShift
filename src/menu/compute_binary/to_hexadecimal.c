@@ -98,7 +98,7 @@ char *_hex_mapper(char *bin_group) {
   return "0";
 }
 
-SanitizedBinary _get_hex_sanitized_bin(char *bin_input) {
+DottedBinary _get_hex_dotted_bin(char *bin_input) {
   // Store the binary in new variable.
   static char bin_buffer[1000];
   memset(bin_buffer, 0, sizeof(char) * 1000);
@@ -131,11 +131,11 @@ SanitizedBinary _get_hex_sanitized_bin(char *bin_input) {
   bin_before_dot[counter_before_dot] = '\0';
   bin_after_dot[counter_after_dot] = '\0';
 
-  SanitizedBinary sanitized_bin;
-  sanitized_bin.before_dot = _hex_zero_adder(bin_before_dot);
-  sanitized_bin.after_dot = _hex_zero_adder_with_dot(bin_after_dot);
+  DottedBinary dotted_bin;
+  dotted_bin.before_dot = _hex_zero_adder(bin_before_dot);
+  dotted_bin.after_dot = _hex_zero_adder_with_dot(bin_after_dot);
 
-  return sanitized_bin;
+  return dotted_bin;
 }
 
 char *_get_hex(char *bin_input) {
@@ -201,12 +201,12 @@ void to_hexadecimal(char *bin_input) {
   if (is_positive_with_dot(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
-    SanitizedBinary sanitized_bin = _get_hex_sanitized_bin(bin);
+    DottedBinary dotted_bin = _get_hex_dotted_bin(bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(bin_before_dot, sanitized_bin.before_dot);
-    strcpy(bin_after_dot, sanitized_bin.after_dot);
+    strcpy(bin_before_dot, dotted_bin.before_dot);
+    strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
     strcpy(hex, _get_hex(bin_before_dot));
@@ -243,12 +243,12 @@ void to_hexadecimal(char *bin_input) {
     strcpy(bin, bin_input);
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
-    SanitizedBinary sanitized_bin = _get_hex_sanitized_bin(positive_bin);
+    DottedBinary dotted_bin = _get_hex_dotted_bin(positive_bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(bin_before_dot, sanitized_bin.before_dot);
-    strcpy(bin_after_dot, sanitized_bin.after_dot);
+    strcpy(bin_before_dot, dotted_bin.before_dot);
+    strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
     strcpy(hex, _get_hex(bin_before_dot));
