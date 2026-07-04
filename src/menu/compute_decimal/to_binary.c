@@ -66,6 +66,16 @@ void to_binary(char *dec_input) {
     return;
   }
 
+  // e.g. 123.1 = 1111011.00011001
+  if (is_positive_with_dot(dec_input)) {
+    char *dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    _display_bin("1111011.00011001", 0);
+    free(dec);
+    return;
+  }
+
   // e.g. -123 = -1111011
   if (is_negative(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
