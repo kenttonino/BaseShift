@@ -5,7 +5,18 @@
 #include "../../utils/utils.h"
 #include "./types.h"
 
-char *_get_bin(char *dec_input) {
+char *_dot_adder(char* dec_dot_input) {
+  char dec_buffer[1000];
+  memset(dec_buffer, 0, sizeof(char) * 1000);
+  memmove(dec_buffer + 2, dec_buffer, strlen(dec_dot_input) + 2);
+  dec_buffer[0] = '0';
+  dec_buffer[1] = '.';
+  strcat(dec_buffer, dec_dot_input);
+  strcpy(dec_dot_input, dec_buffer);
+  return dec_dot_input;
+}
+
+char* _get_bin(char *dec_input) {
   char *end_ptr;
   int int_dec = strtol(dec_input, &end_ptr, 10);
 
@@ -29,6 +40,35 @@ char *_get_bin(char *dec_input) {
   }
 
   return reverse_string(bin_digits);
+}
+
+// We will limit only the binary dot values to 8 fractional bits.
+char* _get_bin_with_dot(char *dec_dot_input) {
+  // Mutate the dec_dot_input parameter with prepended 0. on it.
+  _dot_adder(dec_dot_input);
+
+  static char bin[9];
+  memset(bin, 0, sizeof(char) * 9);
+  double float_dec = atof(dec_dot_input);
+
+  for (int i = 0; i < 8; i++) {
+    double product = float_dec * 2;
+
+    if (product < 1) {
+      bin[i] = '0';
+      float_dec = product;
+      continue;
+    } else {
+      bin[i] = '1';
+      float_dec = product - 1;
+      continue;
+    }
+  }
+
+  // Remind CPU that static char ends.
+  bin[strlen(bin)] = '\0';
+
+  return bin;
 }
 
 DottedDecimal _get_sanitized_dotted_dec(char* dec_input) {
@@ -113,15 +153,16 @@ void to_binary(char *dec_input) {
     strcpy(dec_before_dot, dotted_dec.before_dot);
     strcpy(dec_after_dot, dotted_dec.after_dot);
 
-    printf("before_dot: %s", dec_before_dot);
-    add_new_line(1);
-    printf("after_dot: %s", dec_after_dot);
-    add_new_line(1);
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, _get_bin(dec_before_dot));
+    strcat(bin, ".");
+    strcat(bin, _get_bin_with_dot(dec_after_dot));
 
-    _display_bin("1111011.00011001", 0);
+    _display_bin(bin, 0);
     free(dec);
     free(dec_before_dot);
     free(dec_after_dot);
+    free(bin);
     return;
   }
 
