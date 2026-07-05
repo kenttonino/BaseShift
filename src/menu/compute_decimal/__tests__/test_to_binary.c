@@ -7,7 +7,7 @@ void test_to_binary(void) {
   add_new_line(1);
 
   char dec_input[5];
-  memmove(dec_input, "1000", sizeof(char) * 5);
-  assert(strcmp(_get_bin(dec_input), "1111101000") == 0);
-  text_green("_get_bin -> should return 1111101000 binary digits for 1000 decimal digits", 10);
+  memmove(dec_input, "123", sizeof(char) * 4);
+  assert(strcmp(_get_bin(dec_input), "1111011") == 0);
+  text_green("_get_bin -> should return 1111011 binary digits for 123 decimal digits", 10);
 }
