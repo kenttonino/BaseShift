@@ -34,4 +34,6 @@ jobs:
       run: make run-test bin=compute_decimal_tests
 
     - name: Test Helper Functions
+      env:
+        TERM: xterm
       run: make run-test bin="helper_tests"
