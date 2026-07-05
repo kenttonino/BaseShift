@@ -5,6 +5,17 @@
 #include "../../utils/utils.h"
 #include "./types.h"
 
+char *_dot_adder(char* dec_input) {
+  char dec_buffer[1000];
+  memset(dec_buffer, 0, sizeof(char) * 1000);
+  memmove(dec_buffer + 2, dec_buffer, strlen(dec_input) + 2);
+  dec_buffer[0] = '0';
+  dec_buffer[1] = '.';
+  strcat(dec_buffer, dec_input);
+  strcpy(dec_input, dec_buffer);
+  return dec_input;
+}
+
 char* _get_bin(char *dec_input) {
   char *end_ptr;
   int int_dec = strtol(dec_input, &end_ptr, 10);
@@ -32,14 +43,8 @@ char* _get_bin(char *dec_input) {
 }
 
 char* _get_bin_with_dot(char *dec_input) {
-  char dec_buffer[1000];
-  memset(dec_buffer, 0, sizeof(char) * 1000);
-  memmove(dec_buffer + 2, dec_buffer, strlen(dec_input) + 2);
-  dec_buffer[0] = '0';
-  dec_buffer[1] = '.';
-  strcat(dec_buffer, dec_input);
-  strcpy(dec_input, dec_buffer);
-  return dec_input;
+  char* dec_with_dot = _dot_adder(dec_input);
+  return dec_with_dot;
 }
 
 DottedDecimal _get_sanitized_dotted_dec(char* dec_input) {
