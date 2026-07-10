@@ -1,9 +1,9 @@
 #include <assert.h>
-#include "../to_decimal.c"
+#include "../to_bin_dec.c"
 #include "../../../utils/utils.h"
 
-void test_to_decimal(void) {
-  text_white("[ Testing to_decimal Functions ]", 10);
+void test_to_bin_dec(void) {
+  text_white("[ Testing to_bin_dec Functions ]", 10);
   add_new_line(1);
 
   assert(_get_dec("1111") == 15);

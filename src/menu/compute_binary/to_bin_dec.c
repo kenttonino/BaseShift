@@ -66,7 +66,7 @@ double _get_dec_with_dot(char *bin_input) {
   return dec;
 }
 
-void _display_dec(char *dec, int negative) {
+void _display_bin_dec(char *dec, int negative) {
   char neg_dec[1000] = "-";
   strcat(neg_dec, dec);
 
@@ -84,7 +84,7 @@ void _display_dec(char *dec, int negative) {
   );
 }
 
-void to_decimal(char *bin_input) {
+void to_bin_dec(char *bin_input) {
   // E.g. 1000 = 8
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
@@ -93,7 +93,7 @@ void to_decimal(char *bin_input) {
     int dec = _get_dec(bin);
     char dec_string[1000];
     sprintf(dec_string, "%d", dec);
-    _display_dec(dec_string, 0);
+    _display_bin_dec(dec_string, 0);
 
     free(bin);
     return;
@@ -110,7 +110,7 @@ void to_decimal(char *bin_input) {
     int dec = _get_dec(positive_bin);
     char dec_string[1000];
     sprintf(dec_string, "%d", dec);
-    _display_dec(dec_string, 1);
+    _display_bin_dec(dec_string, 1);
 
     free(bin);
     free(positive_bin);
@@ -125,7 +125,7 @@ void to_decimal(char *bin_input) {
     double dec = _get_dec_with_dot(bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
-    _display_dec(dec_string, 0);
+    _display_bin_dec(dec_string, 0);
 
     free(bin);
     return;
@@ -142,11 +142,10 @@ void to_decimal(char *bin_input) {
     double dec = _get_dec_with_dot(positive_bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
-    _display_dec(dec_string, 1);
+    _display_bin_dec(dec_string, 1);
 
     free(bin);
     free(positive_bin);
     return;
   }
-
 }
