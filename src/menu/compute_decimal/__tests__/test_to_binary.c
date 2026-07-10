@@ -1,9 +1,9 @@
 #include <assert.h>
 #include "../../../utils/utils.h"
-#include "../to_binary.c"
+#include "../to_decimal_binary.c"
 
 void test_to_binary(void) {
-  text_white("[ Testing to_binary Functions ]", 10);
+  text_white("[ Testing to_decimal_binary Functions ]", 10);
   add_new_line(1);
 
   char dot_adder_input[5];
