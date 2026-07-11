@@ -71,7 +71,7 @@ char* _get_dec_bin_with_dot(char *dec_dot_input) {
   return bin;
 }
 
-DottedDecimal _get_sanitized_dotted_dec(char* dec_input) {
+DottedDecimal _get_dec_bin_dotted(char* dec_input) {
   // Store the decimal input in new variable.
   static char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
@@ -146,7 +146,7 @@ void to_dec_bin(char *dec_input) {
   if (is_positive_with_dot(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    DottedDecimal dotted_dec = _get_sanitized_dotted_dec(dec);
+    DottedDecimal dotted_dec = _get_dec_bin_dotted(dec);
 
     char *dec_before_dot = malloc(sizeof(char) * 1000);
     char *dec_after_dot = malloc(sizeof(char) * 1000);
@@ -189,7 +189,7 @@ void to_dec_bin(char *dec_input) {
 
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
-    DottedDecimal dotted_dec = _get_sanitized_dotted_dec(positive_dec);
+    DottedDecimal dotted_dec = _get_dec_bin_dotted(positive_dec);
 
     char *dec_before_dot = malloc(sizeof(char) * 1000);
     char *dec_after_dot = malloc(sizeof(char) * 1000);
