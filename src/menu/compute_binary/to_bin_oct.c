@@ -5,7 +5,7 @@
 #include "../../utils/utils.h"
 #include "./types.h"
 
-char* _oct_zero_adder(char *bin_input) {
+char* _bin_oct_zero_adder(char *bin_input) {
   int bin_len = strlen(bin_input);
   int bin_rem = bin_len % 3;
 
@@ -31,7 +31,7 @@ char* _oct_zero_adder(char *bin_input) {
   return bin_input;
 }
 
-char *_oct_zero_adder_with_dot(char *bin_input) {
+char *_bin_oct_zero_adder_with_dot(char *bin_input) {
   int bin_len = strlen(bin_input);
   int bin_rem = bin_len % 3;
 
@@ -59,7 +59,7 @@ char *_oct_zero_adder_with_dot(char *bin_input) {
 }
 
 
-DottedBinary _get_oct_dotted_bin(char *bin_input) {
+DottedBinary _get_bin_oct_dotted(char *bin_input) {
   // Store the bin in new variable.
   static char bin_buffer[1000];
   memset(bin_buffer, 0, sizeof(char) * 1000);
@@ -93,13 +93,13 @@ DottedBinary _get_oct_dotted_bin(char *bin_input) {
   bin_after_dot[counter_after_dot] = '\0';
 
   DottedBinary dotted_bin;
-  dotted_bin.before_dot = _oct_zero_adder(bin_before_dot);
-  dotted_bin.after_dot = _oct_zero_adder_with_dot(bin_after_dot);
+  dotted_bin.before_dot = _bin_oct_zero_adder(bin_before_dot);
+  dotted_bin.after_dot = _bin_oct_zero_adder_with_dot(bin_after_dot);
 
   return dotted_bin;
 }
 
-char *_oct_mapper(char *bin_group) {
+char *_bin_oct_mapper(char *bin_group) {
   if (strcmp(bin_group, "001") == 0) return "1";
   if (strcmp(bin_group, "010") == 0) return "2";
   if (strcmp(bin_group, "011") == 0) return "3";
@@ -111,7 +111,7 @@ char *_oct_mapper(char *bin_group) {
 }
 
 char *_get_oct(char *bin_input) {
-  char *bin = _oct_zero_adder(bin_input);
+  char *bin = _bin_oct_zero_adder(bin_input);
 
   char bin_group[4] = "";
   static char current_bin[1];
@@ -128,7 +128,7 @@ char *_get_oct(char *bin_input) {
       continue;
     } else {
       // Push the oct value of first 3 bin digits.
-      strcat(oct, _oct_mapper(bin_group));
+      strcat(oct, _bin_oct_mapper(bin_group));
 
       // Reset bin group and assign value for index 0;
       memset(bin_group, 0, sizeof(char) *3);
@@ -194,7 +194,7 @@ void to_bin_oct(char *bin_input) {
   if (is_positive_with_dot(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
-    DottedBinary dotted_bin = _get_oct_dotted_bin(bin);
+    DottedBinary dotted_bin = _get_bin_oct_dotted(bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
@@ -221,7 +221,7 @@ void to_bin_oct(char *bin_input) {
 
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
-    DottedBinary dotted_bin = _get_oct_dotted_bin(positive_bin);
+    DottedBinary dotted_bin = _get_bin_oct_dotted(positive_bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
