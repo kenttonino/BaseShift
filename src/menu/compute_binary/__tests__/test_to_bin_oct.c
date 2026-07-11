@@ -1,9 +1,9 @@
 #include <assert.h>
 #include "../../../utils/utils.h"
-#include "../to_octal.c"
+#include "../to_bin_oct.c"
 
-void test_to_octal(void) {
-  text_white("[ Testing to_oct Functions ]", 10);
+void test_to_bin_oct(void) {
+  text_white("[ Testing to_bin_oct Functions ]", 10);
   add_new_line(1);
 
   char binary_group[4];

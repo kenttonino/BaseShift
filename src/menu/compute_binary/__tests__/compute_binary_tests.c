@@ -1,6 +1,6 @@
 #include "./test_to_bin_dec.c"
 #include "./test_to_bin_hex.c"
-#include "./test_to_octal.c"
+#include "./test_to_bin_oct.c"
 
 int main(void) {
   clear_terminal();
@@ -9,7 +9,7 @@ int main(void) {
   test_to_bin_dec();
   add_new_line(2);
 
-  test_to_octal();
+  test_to_bin_oct();
   add_new_line(2);
 
   test_to_bin_hex();

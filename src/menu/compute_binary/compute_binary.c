@@ -4,7 +4,7 @@
 #include "../../utils/utils.h"
 #include "./to_bin_dec.c"
 #include "./to_bin_hex.c"
-#include "./to_octal.c"
+#include "./to_bin_oct.c"
 
 void _bin_description(void) {
   text_blue("--------------------------------------------------------", 15);
@@ -120,7 +120,7 @@ void compute_binary(void) {
    to_bin_dec(bin_input);
    add_new_line(1);
 
-   to_octal(bin_input);
+   to_bin_oct(bin_input);
    add_new_line(1);
 
    to_bin_hex(bin_input);
