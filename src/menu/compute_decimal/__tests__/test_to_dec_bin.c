@@ -6,12 +6,6 @@ void test_to_dec_bin(void) {
   text_white("[ Testing to_dec_bin Functions ]", 10);
   add_new_line(1);
 
-  char dot_adder_input[5];
-  memmove(dot_adder_input, "123", sizeof(char) * 4);
-  assert(strcmp(_dec_bin_dot_adder(dot_adder_input), "0.123") == 0);
-  text_green("_dec_bin_dot_adder -> should return 0.123 for 123 inputs", 10);
-  add_new_line(1);
-
   char dec_input[5];
   memmove(dec_input, "123", sizeof(char) * 4);
   assert(strcmp(_get_dec_bin(dec_input), "1111011") == 0);

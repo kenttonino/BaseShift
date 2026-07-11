@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../utils/utils.h"
+#include "./to_utils.h"
 #include "../helper/helper.h"
 
 char* _get_dec_oct(char* dec_input) {
@@ -55,6 +56,31 @@ void to_dec_oct(char* dec_input) {
     _display_dec_oct(oct, 0);
 
     free(dec);
+    return;
+  }
+
+  if (is_positive_with_dot(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+    DottedDecimal dotted_dec = _get_dec_dotted(dec_input);
+
+    char *dec_before_dot = malloc(sizeof(char) * 1000);
+    char *dec_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(dec_before_dot, dotted_dec.before_dot);
+    strcpy(dec_after_dot, dotted_dec.after_dot);
+    printf("dec_after_dot: %s", dec_after_dot);
+    add_new_line(1);
+
+    char *oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, _get_dec_oct(dec_before_dot));
+    strcat(oct, ".");
+    strcat(oct, _get_dec_oct(dec_after_dot));
+    _display_dec_oct(oct, 1);
+
+    free(dec);
+    free(dec_before_dot);
+    free(dec_after_dot);
+    free(oct);
     return;
   }
 

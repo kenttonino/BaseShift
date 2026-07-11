@@ -5,6 +5,17 @@ typedef struct {
   char* after_dot;
 } DottedDecimal;
 
+// e.g. 1 -> 0.1
+char *_dec_dot_adder(char* dec_after_dot_input) {
+  char dec_buffer[1000];
+  memset(dec_buffer, 0, sizeof(char) * 1000);
+  memmove(dec_buffer + 2, dec_buffer, strlen(dec_after_dot_input) + 2);
+  dec_buffer[0] = '0';
+  dec_buffer[1] = '.';
+  strcat(dec_buffer, dec_after_dot_input);
+  strcpy(dec_after_dot_input, dec_buffer);
+  return dec_after_dot_input;
+}
 
 DottedDecimal _get_dec_dotted(char* dec_input) {
   // Store the decimal input in new variable.

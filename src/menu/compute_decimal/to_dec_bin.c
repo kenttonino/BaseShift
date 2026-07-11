@@ -5,17 +5,6 @@
 #include "../../utils/utils.h"
 #include "./to_utils.h"
 
-char *_dec_bin_dot_adder(char* dec_dot_input) {
-  char dec_buffer[1000];
-  memset(dec_buffer, 0, sizeof(char) * 1000);
-  memmove(dec_buffer + 2, dec_buffer, strlen(dec_dot_input) + 2);
-  dec_buffer[0] = '0';
-  dec_buffer[1] = '.';
-  strcat(dec_buffer, dec_dot_input);
-  strcpy(dec_dot_input, dec_buffer);
-  return dec_dot_input;
-}
-
 char* _get_dec_bin(char *dec_input) {
   char *end_ptr;
   int int_dec = strtol(dec_input, &end_ptr, 10);
@@ -45,7 +34,7 @@ char* _get_dec_bin(char *dec_input) {
 // We will limit only the binary dot values to 8 fractional bits.
 char* _get_dec_bin_with_dot(char *dec_dot_input) {
   // Mutate the dec_dot_input parameter with prepended 0. on it.
-  _dec_bin_dot_adder(dec_dot_input);
+  _dec_dot_adder(dec_dot_input);
 
   static char bin[9];
   memset(bin, 0, sizeof(char) * 9);
