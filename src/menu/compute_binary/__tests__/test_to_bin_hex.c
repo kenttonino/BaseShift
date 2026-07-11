@@ -1,9 +1,9 @@
 #include <assert.h>
 #include "../../../utils/utils.h"
-#include "../to_hexadecimal.c"
+#include "../to_bin_hex.c"
 
-void test_to_hexadecimal(void) {
-  text_white("[ Testing to_hexadecimal Functions]", 10);
+void test_to_bin_hex(void) {
+  text_white("[ Testing to_bin_hex Functions]", 10);
   add_new_line(1);
 
   char bin_input[5];
