@@ -1,6 +1,7 @@
 #include "../../../utils/utils.h"
 #include "./test_to_dec_bin.c"
 #include "./test_to_dec_oct.c"
+#include "./test_to_utils.c"
 
 int main(void) {
   clear_terminal();
@@ -10,6 +11,9 @@ int main(void) {
   add_new_line(3);
 
   test_to_dec_oct();
+  add_new_line(3);
+
+  test_to_utils();
   add_new_line(3);
 
   return 0;

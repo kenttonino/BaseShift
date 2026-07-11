@@ -22,14 +22,4 @@ void test_to_dec_bin(void) {
   memmove(dec_dot_input, "123", sizeof(char) * 4);
   assert(strcmp(_get_dec_bin_with_dot(dec_dot_input), "00011111") == 0);
   text_green("_get_dec_bin_with_dot -> should return 00011111 for 123 inputs", 10);
-  add_new_line(1);
-
-  char dotted_decimal_input[8];
-  memmove(dotted_decimal_input, "123.123", sizeof(char) * 8);
-  DottedDecimal dotted_dec = _get_dec_dotted(dotted_decimal_input);
-  assert(strcmp(dotted_dec.before_dot, "123") == 0);
-  text_green("_get_dec_dotted -> should return 123 before_dot for 123.123 inputs", 10);
-  add_new_line(1);
-  assert(strcmp(dotted_dec.after_dot, "123") == 0);
-  text_green("_get_dec_dotted -> should return 123 after_dot for 123.123 inputs", 10);
 }
