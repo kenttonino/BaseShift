@@ -4,7 +4,7 @@
 #include "./types.h"
 #include "../helper/helper.h"
 
-char *_hex_zero_adder(char* bin_input) {
+char *_bin_hex_zero_adder(char* bin_input) {
   int bin_len = strlen(bin_input);
   int bin_rem = bin_len % 4;
 
@@ -41,7 +41,7 @@ char *_hex_zero_adder(char* bin_input) {
   return bin_input;
 }
 
-char *_hex_zero_adder_with_dot(char *bin_input) {
+char *_bin_hex_zero_adder_with_dot(char *bin_input) {
   int bin_len = strlen(bin_input);
   int bin_rem = bin_len % 4;
 
@@ -78,7 +78,7 @@ char *_hex_zero_adder_with_dot(char *bin_input) {
   return bin_input;
 }
 
-char *_hex_mapper(char *bin_group) {
+char *_bin_hex_mapper(char *bin_group) {
   if (strcmp(bin_group, "0000") == 0) return "0";
   if (strcmp(bin_group, "0001") == 0) return "1";
   if (strcmp(bin_group, "0010") == 0) return "2";
@@ -98,7 +98,7 @@ char *_hex_mapper(char *bin_group) {
   return "0";
 }
 
-DottedBinary _get_hex_dotted_bin(char *bin_input) {
+DottedBinary _get_bin_hex_dotted_bin(char *bin_input) {
   // Store the binary in new variable.
   static char bin_buffer[1000];
   memset(bin_buffer, 0, sizeof(char) * 1000);
@@ -132,14 +132,14 @@ DottedBinary _get_hex_dotted_bin(char *bin_input) {
   bin_after_dot[counter_after_dot] = '\0';
 
   DottedBinary dotted_bin;
-  dotted_bin.before_dot = _hex_zero_adder(bin_before_dot);
-  dotted_bin.after_dot = _hex_zero_adder_with_dot(bin_after_dot);
+  dotted_bin.before_dot = _bin_hex_zero_adder(bin_before_dot);
+  dotted_bin.after_dot = _bin_hex_zero_adder_with_dot(bin_after_dot);
 
   return dotted_bin;
 }
 
-char *_get_hex(char *bin_input) {
-  char *bin = _hex_zero_adder(bin_input);
+char *_get_bin_hex(char *bin_input) {
+  char *bin = _bin_hex_zero_adder(bin_input);
 
   char bin_group[5] = "";
   static char current_bin[1];
@@ -155,7 +155,7 @@ char *_get_hex(char *bin_input) {
       memset(current_bin, 0, sizeof(char));
       continue;
     } else {
-      strcat(hex, _hex_mapper(bin_group));
+      strcat(hex, _bin_hex_mapper(bin_group));
 
       memset(bin_group, 0, sizeof(char) * 5);
       strcat(bin_group, current_bin);
@@ -190,7 +190,7 @@ void to_bin_hex(char *bin_input) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    char *hex = _get_hex(bin);
+    char *hex = _get_bin_hex(bin);
     _display_bin_hex(hex, 0);
 
     free(bin);
@@ -201,7 +201,7 @@ void to_bin_hex(char *bin_input) {
   if (is_positive_with_dot(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
-    DottedBinary dotted_bin = _get_hex_dotted_bin(bin);
+    DottedBinary dotted_bin = _get_bin_hex_dotted_bin(bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
@@ -209,9 +209,9 @@ void to_bin_hex(char *bin_input) {
     strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hex(bin_before_dot));
+    strcpy(hex, _get_bin_hex(bin_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hex(bin_after_dot));
+    strcat(hex, _get_bin_hex(bin_after_dot));
     _display_bin_hex(hex, 0);
 
     free(bin);
@@ -229,7 +229,7 @@ void to_bin_hex(char *bin_input) {
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
 
-    char *hex = _get_hex(positive_bin);
+    char *hex = _get_bin_hex(positive_bin);
     _display_bin_hex(hex, 1);
 
     free(bin);
@@ -243,7 +243,7 @@ void to_bin_hex(char *bin_input) {
     strcpy(bin, bin_input);
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
-    DottedBinary dotted_bin = _get_hex_dotted_bin(positive_bin);
+    DottedBinary dotted_bin = _get_bin_hex_dotted_bin(positive_bin);
 
     char *bin_before_dot = malloc(sizeof(char) * 1000);
     char *bin_after_dot = malloc(sizeof(char) * 1000);
@@ -251,9 +251,9 @@ void to_bin_hex(char *bin_input) {
     strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_hex(bin_before_dot));
+    strcpy(hex, _get_bin_hex(bin_before_dot));
     strcat(hex, ".");
-    strcat(hex, _get_hex(bin_after_dot));
+    strcat(hex, _get_bin_hex(bin_after_dot));
     _display_bin_hex(hex, 1);
 
     free(bin);

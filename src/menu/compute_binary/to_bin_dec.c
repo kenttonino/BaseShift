@@ -5,7 +5,7 @@
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
 
-int _get_dec(char *bin_input) {
+int _get_bin_dec(char *bin_input) {
   char *reversed_bin_input = reverse_string(bin_input);
   int reversed_bin_length = strlen(reversed_bin_input);
   int dec = 0;
@@ -21,7 +21,7 @@ int _get_dec(char *bin_input) {
   return dec;
 }
 
-double _get_dec_with_dot(char *bin_input) {
+double _get_bin_dec_with_dot(char *bin_input) {
   char *bin_before_dot = malloc(strlen(bin_input) + 1);
   char *bin_after_dot = malloc(strlen(bin_input) + 1);
   int is_after_dot = 0;
@@ -90,7 +90,7 @@ void to_bin_dec(char *bin_input) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    int dec = _get_dec(bin);
+    int dec = _get_bin_dec(bin);
     char dec_string[1000];
     sprintf(dec_string, "%d", dec);
     _display_bin_dec(dec_string, 0);
@@ -107,7 +107,7 @@ void to_bin_dec(char *bin_input) {
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
 
-    int dec = _get_dec(positive_bin);
+    int dec = _get_bin_dec(positive_bin);
     char dec_string[1000];
     sprintf(dec_string, "%d", dec);
     _display_bin_dec(dec_string, 1);
@@ -122,7 +122,7 @@ void to_bin_dec(char *bin_input) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    double dec = _get_dec_with_dot(bin);
+    double dec = _get_bin_dec_with_dot(bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 0);
@@ -139,7 +139,7 @@ void to_bin_dec(char *bin_input) {
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
 
-    double dec = _get_dec_with_dot(positive_bin);
+    double dec = _get_bin_dec_with_dot(positive_bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 1);

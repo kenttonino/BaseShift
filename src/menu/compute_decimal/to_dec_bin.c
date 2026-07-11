@@ -5,7 +5,7 @@
 #include "../../utils/utils.h"
 #include "./types.h"
 
-char *_dot_adder(char* dec_dot_input) {
+char *_dec_bin_dot_adder(char* dec_dot_input) {
   char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
   memmove(dec_buffer + 2, dec_buffer, strlen(dec_dot_input) + 2);
@@ -16,7 +16,7 @@ char *_dot_adder(char* dec_dot_input) {
   return dec_dot_input;
 }
 
-char* _get_bin(char *dec_input) {
+char* _get_dec_bin(char *dec_input) {
   char *end_ptr;
   int int_dec = strtol(dec_input, &end_ptr, 10);
 
@@ -43,9 +43,9 @@ char* _get_bin(char *dec_input) {
 }
 
 // We will limit only the binary dot values to 8 fractional bits.
-char* _get_bin_with_dot(char *dec_dot_input) {
+char* _get_dec_bin_with_dot(char *dec_dot_input) {
   // Mutate the dec_dot_input parameter with prepended 0. on it.
-  _dot_adder(dec_dot_input);
+  _dec_bin_dot_adder(dec_dot_input);
 
   static char bin[9];
   memset(bin, 0, sizeof(char) * 9);
@@ -71,7 +71,7 @@ char* _get_bin_with_dot(char *dec_dot_input) {
   return bin;
 }
 
-DottedDecimal _get_sanitized_dotted_dec(char* dec_input) {
+DottedDecimal _get_dec_bin_dotted(char* dec_input) {
   // Store the decimal input in new variable.
   static char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
@@ -135,7 +135,7 @@ void to_dec_bin(char *dec_input) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
 
-    char *bin_digits = _get_bin(dec);
+    char *bin_digits = _get_dec_bin(dec);
     _display_dec_bin(bin_digits, 0);
 
     free(dec);
@@ -146,7 +146,7 @@ void to_dec_bin(char *dec_input) {
   if (is_positive_with_dot(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    DottedDecimal dotted_dec = _get_sanitized_dotted_dec(dec);
+    DottedDecimal dotted_dec = _get_dec_bin_dotted(dec);
 
     char *dec_before_dot = malloc(sizeof(char) * 1000);
     char *dec_after_dot = malloc(sizeof(char) * 1000);
@@ -154,9 +154,9 @@ void to_dec_bin(char *dec_input) {
     strcpy(dec_after_dot, dotted_dec.after_dot);
 
     char *bin = malloc(sizeof(char) * 1000);
-    strcpy(bin, _get_bin(dec_before_dot));
+    strcpy(bin, _get_dec_bin(dec_before_dot));
     strcat(bin, ".");
-    strcat(bin, _get_bin_with_dot(dec_after_dot));
+    strcat(bin, _get_dec_bin_with_dot(dec_after_dot));
 
     _display_dec_bin(bin, 0);
     free(dec);
@@ -174,7 +174,7 @@ void to_dec_bin(char *dec_input) {
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
 
-    char* bin_digits = _get_bin(positive_dec);
+    char* bin_digits = _get_dec_bin(positive_dec);
     _display_dec_bin(bin_digits, 1);
 
     free(dec);
@@ -189,7 +189,7 @@ void to_dec_bin(char *dec_input) {
 
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
-    DottedDecimal dotted_dec = _get_sanitized_dotted_dec(positive_dec);
+    DottedDecimal dotted_dec = _get_dec_bin_dotted(positive_dec);
 
     char *dec_before_dot = malloc(sizeof(char) * 1000);
     char *dec_after_dot = malloc(sizeof(char) * 1000);
@@ -197,9 +197,9 @@ void to_dec_bin(char *dec_input) {
     strcpy(dec_after_dot, dotted_dec.after_dot);
 
     char *bin = malloc(sizeof(char) * 1000);
-    strcpy(bin, _get_bin(dec_before_dot));
+    strcpy(bin, _get_dec_bin(dec_before_dot));
     strcat(bin, ".");
-    strcat(bin, _get_bin_with_dot(dec_after_dot));
+    strcat(bin, _get_dec_bin_with_dot(dec_after_dot));
     _display_dec_bin(bin, 1);
 
     free(dec);
