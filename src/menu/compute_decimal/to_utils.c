@@ -6,7 +6,7 @@ typedef struct {
 } DottedDecimal;
 
 
-DottedDecimal _get_dec_bin_dotted(char* dec_input) {
+DottedDecimal _get_dec_dotted(char* dec_input) {
   // Store the decimal input in new variable.
   static char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
