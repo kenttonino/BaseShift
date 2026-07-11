@@ -143,7 +143,7 @@ char *_get_oct(char *bin_input) {
 }
 
 
-void _display_oct(char *oct, int negative) {
+void _display_bin_oct(char *oct, int negative) {
   char neg_oct[1000] = "-";
   strcat(neg_oct, oct);
 
@@ -161,14 +161,14 @@ void _display_oct(char *oct, int negative) {
   );
 }
 
-void to_octal(char *bin_input) {
+void to_bin_oct(char *bin_input) {
   // e.g. 1000 = 10
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
     char *p_oct = _get_oct(bin);
-    _display_oct(p_oct, 0);
+    _display_bin_oct(p_oct, 0);
 
     free(bin);
     return;
@@ -183,7 +183,7 @@ void to_octal(char *bin_input) {
     memmove(positive_bin, bin + 1, strlen(bin));
 
     char *p_oct = _get_oct(positive_bin);
-    _display_oct(p_oct, 1);
+    _display_bin_oct(p_oct, 1);
 
     free(bin);
     free(positive_bin);
@@ -205,7 +205,7 @@ void to_octal(char *bin_input) {
     strcpy(oct, _get_oct(bin_before_dot));
     strcat(oct, ".");
     strcat(oct, _get_oct(bin_after_dot));
-    _display_oct(oct, 0);
+    _display_bin_oct(oct, 0);
 
     free(bin);
     free(oct);
@@ -232,7 +232,7 @@ void to_octal(char *bin_input) {
     strcpy(oct, _get_oct(bin_before_dot));
     strcat(oct, ".");
     strcat(oct, _get_oct(bin_after_dot));
-    _display_oct(oct, 1);
+    _display_bin_oct(oct, 1);
 
     free(bin);
     free(positive_bin);
