@@ -110,7 +110,7 @@ char *_bin_oct_mapper(char *bin_group) {
   return "0";
 }
 
-char *_get_oct(char *bin_input) {
+char *_get_bin_oct(char *bin_input) {
   char *bin = _bin_oct_zero_adder(bin_input);
 
   char bin_group[4] = "";
@@ -167,7 +167,7 @@ void to_bin_oct(char *bin_input) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    char *p_oct = _get_oct(bin);
+    char *p_oct = _get_bin_oct(bin);
     _display_bin_oct(p_oct, 0);
 
     free(bin);
@@ -182,7 +182,7 @@ void to_bin_oct(char *bin_input) {
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
 
-    char *p_oct = _get_oct(positive_bin);
+    char *p_oct = _get_bin_oct(positive_bin);
     _display_bin_oct(p_oct, 1);
 
     free(bin);
@@ -202,9 +202,9 @@ void to_bin_oct(char *bin_input) {
     strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *oct = malloc(sizeof(char) * 1000);
-    strcpy(oct, _get_oct(bin_before_dot));
+    strcpy(oct, _get_bin_oct(bin_before_dot));
     strcat(oct, ".");
-    strcat(oct, _get_oct(bin_after_dot));
+    strcat(oct, _get_bin_oct(bin_after_dot));
     _display_bin_oct(oct, 0);
 
     free(bin);
@@ -229,9 +229,9 @@ void to_bin_oct(char *bin_input) {
     strcpy(bin_after_dot, dotted_bin.after_dot);
 
     char *oct = malloc(sizeof(char) * 1000);
-    strcpy(oct, _get_oct(bin_before_dot));
+    strcpy(oct, _get_bin_oct(bin_before_dot));
     strcat(oct, ".");
-    strcat(oct, _get_oct(bin_after_dot));
+    strcat(oct, _get_bin_oct(bin_after_dot));
     _display_bin_oct(oct, 1);
 
     free(bin);
