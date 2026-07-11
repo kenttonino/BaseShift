@@ -5,7 +5,7 @@
 #include "../../utils/utils.h"
 #include "./types.h"
 
-char *_dot_adder(char* dec_dot_input) {
+char *_dec_bin_dot_adder(char* dec_dot_input) {
   char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
   memmove(dec_buffer + 2, dec_buffer, strlen(dec_dot_input) + 2);
@@ -45,7 +45,7 @@ char* _get_bin(char *dec_input) {
 // We will limit only the binary dot values to 8 fractional bits.
 char* _get_bin_with_dot(char *dec_dot_input) {
   // Mutate the dec_dot_input parameter with prepended 0. on it.
-  _dot_adder(dec_dot_input);
+  _dec_bin_dot_adder(dec_dot_input);
 
   static char bin[9];
   memset(bin, 0, sizeof(char) * 9);
