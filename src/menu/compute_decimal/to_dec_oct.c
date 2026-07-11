@@ -3,7 +3,6 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
-
 char* _get_dec_oct(char* dec_input) {
   char* end_ptr;
   int int_dec_input = strtol(dec_input, &end_ptr, 10);
