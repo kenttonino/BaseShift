@@ -166,7 +166,7 @@ char *_get_hex(char *bin_input) {
   return hex;
 }
 
-void _display_hex(char *hex, int negative) {
+void _display_bin_hex(char *hex, int negative) {
   char neg_hex[1000] = "-";
   strcat(neg_hex, hex);
 
@@ -184,14 +184,14 @@ void _display_hex(char *hex, int negative) {
   );
 }
 
-void to_hexadecimal(char *bin_input) {
+void to_bin_hex(char *bin_input) {
   // e.g. 1000 = 8
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
     char *hex = _get_hex(bin);
-    _display_hex(hex, 0);
+    _display_bin_hex(hex, 0);
 
     free(bin);
     return;
@@ -212,7 +212,7 @@ void to_hexadecimal(char *bin_input) {
     strcpy(hex, _get_hex(bin_before_dot));
     strcat(hex, ".");
     strcat(hex, _get_hex(bin_after_dot));
-    _display_hex(hex, 0);
+    _display_bin_hex(hex, 0);
 
     free(bin);
     free(bin_before_dot);
@@ -230,7 +230,7 @@ void to_hexadecimal(char *bin_input) {
     memmove(positive_bin, bin + 1, strlen(bin));
 
     char *hex = _get_hex(positive_bin);
-    _display_hex(hex, 1);
+    _display_bin_hex(hex, 1);
 
     free(bin);
     free(positive_bin);
@@ -254,7 +254,7 @@ void to_hexadecimal(char *bin_input) {
     strcpy(hex, _get_hex(bin_before_dot));
     strcat(hex, ".");
     strcat(hex, _get_hex(bin_after_dot));
-    _display_hex(hex, 1);
+    _display_bin_hex(hex, 1);
 
     free(bin);
     free(positive_bin);
