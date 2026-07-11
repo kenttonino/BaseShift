@@ -21,7 +21,7 @@ void _display_dec_oct(char *oct, int negative) {
   );
 }
 
-void to_decimal_octal(char* dec_input) {
+void to_dec_oct(char* dec_input) {
   if (is_positive(dec_input)) {
     printf("dec_input: %s", dec_input);
     add_new_line(1);
