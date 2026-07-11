@@ -23,7 +23,9 @@ void _display_dec_oct(char *oct, int negative) {
 
 void to_dec_oct(char* dec_input) {
   if (is_positive(dec_input)) {
-    printf("dec_input: %s", dec_input);
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+    printf("dec: %s", dec_input);
     add_new_line(1);
     _display_dec_oct("173", 0);
     return;
