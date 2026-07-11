@@ -57,4 +57,19 @@ void to_dec_oct(char* dec_input) {
     free(dec);
     return;
   }
+
+  if (is_negative(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    char* positive_dec = malloc(sizeof(char) * 1000);
+    memmove(positive_dec, dec_input + 1, strlen(dec_input));
+
+    char* oct = _get_dec_oct(positive_dec);
+    _display_dec_oct(oct, 1);
+
+    free(dec);
+    free(positive_dec);
+    return;
+  }
 }
