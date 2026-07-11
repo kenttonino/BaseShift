@@ -16,7 +16,7 @@ char *_dec_bin_dot_adder(char* dec_dot_input) {
   return dec_dot_input;
 }
 
-char* _get_bin(char *dec_input) {
+char* _get_dec_bin(char *dec_input) {
   char *end_ptr;
   int int_dec = strtol(dec_input, &end_ptr, 10);
 
@@ -43,7 +43,7 @@ char* _get_bin(char *dec_input) {
 }
 
 // We will limit only the binary dot values to 8 fractional bits.
-char* _get_bin_with_dot(char *dec_dot_input) {
+char* _get_dec_bin_with_dot(char *dec_dot_input) {
   // Mutate the dec_dot_input parameter with prepended 0. on it.
   _dec_bin_dot_adder(dec_dot_input);
 
@@ -135,7 +135,7 @@ void to_dec_bin(char *dec_input) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
 
-    char *bin_digits = _get_bin(dec);
+    char *bin_digits = _get_dec_bin(dec);
     _display_dec_bin(bin_digits, 0);
 
     free(dec);
@@ -154,9 +154,9 @@ void to_dec_bin(char *dec_input) {
     strcpy(dec_after_dot, dotted_dec.after_dot);
 
     char *bin = malloc(sizeof(char) * 1000);
-    strcpy(bin, _get_bin(dec_before_dot));
+    strcpy(bin, _get_dec_bin(dec_before_dot));
     strcat(bin, ".");
-    strcat(bin, _get_bin_with_dot(dec_after_dot));
+    strcat(bin, _get_dec_bin_with_dot(dec_after_dot));
 
     _display_dec_bin(bin, 0);
     free(dec);
@@ -174,7 +174,7 @@ void to_dec_bin(char *dec_input) {
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
 
-    char* bin_digits = _get_bin(positive_dec);
+    char* bin_digits = _get_dec_bin(positive_dec);
     _display_dec_bin(bin_digits, 1);
 
     free(dec);
@@ -197,9 +197,9 @@ void to_dec_bin(char *dec_input) {
     strcpy(dec_after_dot, dotted_dec.after_dot);
 
     char *bin = malloc(sizeof(char) * 1000);
-    strcpy(bin, _get_bin(dec_before_dot));
+    strcpy(bin, _get_dec_bin(dec_before_dot));
     strcat(bin, ".");
-    strcat(bin, _get_bin_with_dot(dec_after_dot));
+    strcat(bin, _get_dec_bin_with_dot(dec_after_dot));
     _display_dec_bin(bin, 1);
 
     free(dec);
