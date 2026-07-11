@@ -2,7 +2,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./to_binary.c"
+#include "./to_dec_bin.c"
+#include "./to_dec_oct.c"
 
 void _dec_description(void) {
   text_blue("--------------------------------------------------------", 15);
@@ -33,7 +34,6 @@ int _dec_validate(char *dec_input) {
   int num_of_dots = 0;
 
   for (int i = 0; i < input_length; i++) {
-    // Check if there is a minus sign.
     if (dec_input[i] == '-') {
       if (i == 0) {
         is_valid = 1;
@@ -44,7 +44,6 @@ int _dec_validate(char *dec_input) {
       }
     }
 
-    // Check if its a dot.
     if (dec_input[i] == '.') {
       if (num_of_dots == 0) {
         is_valid = 1;
@@ -56,15 +55,12 @@ int _dec_validate(char *dec_input) {
       }
     }
 
-    // Check if value is alphabet.
-    // Return 0 right away.
     if (isalpha(dec_input[i])) {
       is_valid = 0;
       break;
     }
 
 
-    // Default return.
     is_valid = 1;
   }
 
@@ -78,27 +74,21 @@ void compute_decimal(void) {
   int try_again = 0;
 
   while (1) {
-    // Clean up the terminal.
     clear_terminal();
     add_new_line(2);
 
-    // Show the description.
     _dec_description();
     add_new_line(2);
 
-    // Ask the input.
     _get_dec_input(dec_input);
     fgets(garbage_buffer, 100, stdin);
 
-    // Check the validity of decimal input.
     int valid_dec = _dec_validate(dec_input);
     if (valid_dec == 0) {
-      // Display error message.
       add_new_line(1);
       printf("%-16sError: Invalid input.%s", RED, RESET);
       add_new_line(2);
 
-      // Ask to try again.
       printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
       scanf("%d", &try_again);
       fgets(garbage_buffer, 100, stdin);
@@ -110,10 +100,11 @@ void compute_decimal(void) {
       }
     }
 
-    to_binary(dec_input);
+    to_dec_bin(dec_input);
+    add_new_line(1);
+    to_dec_oct(dec_input);
     add_new_line(2);
 
-    // Ask to try again.
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
     scanf("%d", &try_again);
     fgets(garbage_buffer, 100, stdin);

@@ -111,7 +111,7 @@ DottedDecimal _get_sanitized_dotted_dec(char* dec_input) {
   return sanitized_dec;
 }
 
-void _display_bin(char *bin, int negative) {
+void _display_dec_bin(char *bin, int negative) {
   char neg_bin[1000] = "-";
   strcat(neg_bin, bin);
 
@@ -129,14 +129,14 @@ void _display_bin(char *bin, int negative) {
   );
 }
 
-void to_binary(char *dec_input) {
+void to_dec_bin(char *dec_input) {
   // e.g. 123 = 1111011
   if (is_positive(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
 
     char *bin_digits = _get_bin(dec);
-    _display_bin(bin_digits, 0);
+    _display_dec_bin(bin_digits, 0);
 
     free(dec);
     return;
@@ -158,7 +158,7 @@ void to_binary(char *dec_input) {
     strcat(bin, ".");
     strcat(bin, _get_bin_with_dot(dec_after_dot));
 
-    _display_bin(bin, 0);
+    _display_dec_bin(bin, 0);
     free(dec);
     free(dec_before_dot);
     free(dec_after_dot);
@@ -175,7 +175,7 @@ void to_binary(char *dec_input) {
     memmove(positive_dec, dec + 1, strlen(dec));
 
     char* bin_digits = _get_bin(positive_dec);
-    _display_bin(bin_digits, 1);
+    _display_dec_bin(bin_digits, 1);
 
     free(dec);
     free(positive_dec);
@@ -200,7 +200,7 @@ void to_binary(char *dec_input) {
     strcpy(bin, _get_bin(dec_before_dot));
     strcat(bin, ".");
     strcat(bin, _get_bin_with_dot(dec_after_dot));
-    _display_bin(bin, 1);
+    _display_dec_bin(bin, 1);
 
     free(dec);
     free(positive_dec);
@@ -208,6 +208,5 @@ void to_binary(char *dec_input) {
     free(dec_after_dot);
     free(bin);
     return;
-
   }
 }
