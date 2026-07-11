@@ -129,7 +129,7 @@ void _display_dec_bin(char *bin, int negative) {
   );
 }
 
-void to_decimal_binary(char *dec_input) {
+void to_dec_bin(char *dec_input) {
   // e.g. 123 = 1111011
   if (is_positive(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);

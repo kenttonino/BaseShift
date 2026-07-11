@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./to_decimal_binary.c"
+#include "./to_dec_bin.c"
 #include "./to_decimal_octal.c"
 
 void _dec_description(void) {
@@ -100,7 +100,7 @@ void compute_decimal(void) {
       }
     }
 
-    to_decimal_binary(dec_input);
+    to_dec_bin(dec_input);
     add_new_line(1);
     to_decimal_octal(dec_input);
     add_new_line(2);
