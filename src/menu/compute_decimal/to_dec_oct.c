@@ -25,7 +25,7 @@ void to_dec_oct(char* dec_input) {
   if (is_positive(dec_input)) {
     printf("dec_input: %s", dec_input);
     add_new_line(1);
-    _display_dec_oct("123", 0);
+    _display_dec_oct("173", 0);
     return;
   }
 }
