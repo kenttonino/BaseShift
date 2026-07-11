@@ -38,7 +38,7 @@
 
 ## Development
 
-> - Install [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/), and [Valgrind](https://valgrind.org/).
+> - Install [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/), and [`Valgrind`](https://valgrind.org/).
 
 ```bash
 # Build and run the test.
