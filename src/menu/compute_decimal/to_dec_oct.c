@@ -30,34 +30,33 @@ char* _get_dec_oct(char* dec_input) {
   return reverse_string(oct_digits);
 }
 
-char* _get_dec_oct_dot(char* dec_input) {
-  char* end_ptr;
-  double double_dec_input = strtod(dec_input, &end_ptr);
-  int dec_powered = double_dec_input * pow(8, 8);
+// We will limit only the dot values to 8 octal bits.
+char* _get_dec_oct_with_dot(char *dec_dot_input) {
+  // Mutate the dec_dot_input parameter with prepended 0. on it.
+  _dec_dot_adder(dec_dot_input);
 
-  char char_dec_powered[1000];
-  sprintf(char_dec_powered, "%d", dec_powered);
+  static char after_dot_oct[9];
+  memset(after_dot_oct, 0, sizeof(char) * 9);
+  double float_dec = atof(dec_dot_input);
+  double dividend = float_dec;
+  for (int i = 0; i < 8; i++) {
+    double quotient = dividend * 8;
+    int int_quotient = (int) quotient;
+    char char_quotient[1000];
+    sprintf(char_quotient, "%d", int_quotient);
+    strcat(after_dot_oct, char_quotient);
 
-  static char oct_digits[1000];
-  memset(oct_digits, 0, sizeof(char) * 1000);
-  int dividend = dec_powered;
-
-  for (;;) {
-    if (dividend != 0) {
-      printf("dividend: %d", dividend % 8);
-      add_new_line(1);
-      int reminder = dividend % 8;
-      char char_reminder[1000];
-      sprintf(char_reminder, "%d", reminder);
-      strcat(oct_digits, char_reminder);
-      dividend = dividend / 8;
-      continue;
+    if (int_quotient < 0) {
+      dividend = quotient;
+    } else {
+      dividend = quotient - int_quotient;
     }
-
-    break;
   }
 
-  return reverse_string(oct_digits);
+  // Remind CPU that static char ends.
+  after_dot_oct[strlen(after_dot_oct)] = '\0';
+
+  return after_dot_oct;
 }
 
 void _display_dec_oct(char *oct, int negative) {
@@ -99,12 +98,11 @@ void to_dec_oct(char* dec_input) {
     char *dec_after_dot = malloc(sizeof(char) * 1000);
     strcpy(dec_before_dot, dotted_dec.before_dot);
     strcpy(dec_after_dot, dotted_dec.after_dot);
-    add_new_line(1);
 
     char *oct = malloc(sizeof(char) * 1000);
     strcpy(oct, _get_dec_oct(dec_before_dot));
     strcat(oct, ".");
-    strcat(oct, _get_dec_oct_dot(dec_after_dot));
+    strcat(oct, _get_dec_oct_with_dot(dec_after_dot));
     _display_dec_oct(oct, 0);
 
     free(dec);
