@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include "../../utils/utils.h"
 #include "./to_utils.h"
 #include "../helper/helper.h"
