@@ -116,13 +116,40 @@ void to_dec_oct(char* dec_input) {
     strcpy(dec, dec_input);
 
     char* positive_dec = malloc(sizeof(char) * 1000);
-    memmove(positive_dec, dec_input + 1, strlen(dec_input));
+    memmove(positive_dec, dec + 1, strlen(dec));
 
     char* oct = _get_dec_oct(positive_dec);
     _display_dec_oct(oct, 1);
 
     free(dec);
     free(positive_dec);
+    return;
+  }
+
+  if (is_negative_with_dot(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    char* positive_dec = malloc(sizeof(char) * 1000);
+    memmove(positive_dec, dec + 1, strlen(dec));
+    DottedDecimal dotted_dec = _get_dec_dotted(positive_dec);
+
+    char *dec_before_dot = malloc(sizeof(char) * 1000);
+    char *dec_after_dot = malloc(sizeof(char) * 1000);
+    strcpy(dec_before_dot, dotted_dec.before_dot);
+    strcpy(dec_after_dot, dotted_dec.after_dot);
+
+    char *oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, _get_dec_oct(dec_before_dot));
+    strcat(oct, ".");
+    strcat(oct, _get_dec_oct_with_dot(dec_after_dot));
+    _display_dec_oct(oct, 1);
+
+    free(dec);
+    free(positive_dec);
+    free(dec_before_dot);
+    free(dec_after_dot);
+    free(oct);
     return;
   }
 }
