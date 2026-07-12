@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "../../utils/utils.h"
 #include "./to_utils.h"
 #include "../helper/helper.h"
@@ -15,6 +16,36 @@ char* _get_dec_oct(char* dec_input) {
 
   for (;;) {
     if (dividend != 0) {
+      int reminder = dividend % 8;
+      char char_reminder[1000];
+      sprintf(char_reminder, "%d", reminder);
+      strcat(oct_digits, char_reminder);
+      dividend = dividend / 8;
+      continue;
+    }
+
+    break;
+  }
+
+  return reverse_string(oct_digits);
+}
+
+char* _get_dec_oct_dot(char* dec_input) {
+  char* end_ptr;
+  double double_dec_input = strtod(dec_input, &end_ptr);
+  int dec_powered = double_dec_input * pow(8, 8);
+
+  char char_dec_powered[1000];
+  sprintf(char_dec_powered, "%d", dec_powered);
+
+  static char oct_digits[1000];
+  memset(oct_digits, 0, sizeof(char) * 1000);
+  int dividend = dec_powered;
+
+  for (;;) {
+    if (dividend != 0) {
+      printf("dividend: %d", dividend % 8);
+      add_new_line(1);
       int reminder = dividend % 8;
       char char_reminder[1000];
       sprintf(char_reminder, "%d", reminder);
@@ -68,14 +99,13 @@ void to_dec_oct(char* dec_input) {
     char *dec_after_dot = malloc(sizeof(char) * 1000);
     strcpy(dec_before_dot, dotted_dec.before_dot);
     strcpy(dec_after_dot, dotted_dec.after_dot);
-    printf("dec_after_dot: %s", dec_after_dot);
     add_new_line(1);
 
     char *oct = malloc(sizeof(char) * 1000);
     strcpy(oct, _get_dec_oct(dec_before_dot));
     strcat(oct, ".");
-    strcat(oct, _get_dec_oct(dec_after_dot));
-    _display_dec_oct(oct, 1);
+    strcat(oct, _get_dec_oct_dot(dec_after_dot));
+    _display_dec_oct(oct, 0);
 
     free(dec);
     free(dec_before_dot);
