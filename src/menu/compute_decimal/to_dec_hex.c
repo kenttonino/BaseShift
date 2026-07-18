@@ -1,8 +1,11 @@
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
+#include <stdlib.h>
 
 char* _get_dec_hex(char* dec) {
-  printf("%s", dec);
+  char* dec_int_end_ptr;
+  int int_dec = strtol(dec, &dec_int_end_ptr, 10);
+  printf("%d", int_dec);
   add_new_line(1);
 
   return "7B";
