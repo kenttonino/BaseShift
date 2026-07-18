@@ -24,8 +24,6 @@ char* _get_dec_hex(char* dec) {
   for (;;) {
     if (dividend != 0) {
       int rem = dividend % 16;
-      printf("rem: %d", rem);
-      add_new_line(1);
       char char_rem[1000];
       sprintf(char_rem, "%d", rem);
       strcat(hex, _dec_hex_mapper(char_rem));

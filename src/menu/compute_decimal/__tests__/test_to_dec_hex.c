@@ -107,4 +107,10 @@ void test_to_dec_hex(void) {
   assert(strcmp(_dec_hex_mapper(rem), "F") == 0);
   text_green("_dec_hex_mapper -> should return F hexadecimal digit for 15 decimal reminder", 10);
   memset(rem, 0, sizeof(char) * 3);
+  add_new_line(1);
+
+  char dec[4];
+  memmove(dec, "123", 4);
+  assert(strcmp(_get_dec_hex(dec), "7B") == 0);
+  text_green("_get_dec_hex -> should return 7B hexadecimal digit for 123 decimal digits", 10);
 }
