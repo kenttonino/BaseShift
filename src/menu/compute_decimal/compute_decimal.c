@@ -4,6 +4,7 @@
 #include "../../utils/utils.h"
 #include "./to_dec_bin.c"
 #include "./to_dec_oct.c"
+#include "./to_dec_hex.c"
 
 void _dec_description(void) {
   text_blue("--------------------------------------------------------", 15);
@@ -103,6 +104,8 @@ void compute_decimal(void) {
     to_dec_bin(dec_input);
     add_new_line(1);
     to_dec_oct(dec_input);
+    add_new_line(1);
+    to_dec_hex(dec_input);
     add_new_line(2);
 
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
