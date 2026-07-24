@@ -67,6 +67,18 @@ void to_dec_hex(char* dec_input) {
     return;
   }
 
+  if (is_positive_with_dot(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    printf("dec: %s", dec);
+    add_new_line(1);
+    _display_dec_hex("7B.1999999A", 0);
+
+    free(dec);
+    return;
+  }
+
   if (is_negative(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
