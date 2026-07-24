@@ -66,4 +66,19 @@ void to_dec_hex(char* dec_input) {
     free(dec);
     return;
   }
+
+  if (is_negative(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+
+    char* positive_dec = malloc(sizeof(char) * 1000);
+    memcpy(positive_dec, dec_input + 1, strlen(dec_input));
+
+    char* hex = _get_dec_hex(positive_dec);
+    _display_dec_hex(hex, 1);
+
+    free(dec);
+    free(positive_dec);
+    return;
+  }
 }
