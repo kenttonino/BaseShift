@@ -62,4 +62,16 @@ void to_oct_bin(char* oct_input) {
     free(oct);
     return;
   }
+
+  if (is_negative(oct_input)) {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+
+    printf("oct: %s", oct);
+    add_new_line(1);
+    _display_oct_bin("001010011", 1);
+
+    free(oct);
+    return;
+  }
 }
