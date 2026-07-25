@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
+#include "./to_utils.h"
 
 char * _dec_hex_mapper(char* dec) {
   if (strcmp(dec, "10") == 0) return "A";
@@ -37,6 +38,32 @@ char* _get_dec_hex(char* dec) {
   return reverse_string(hex);
 }
 
+// Limit the result to 8 fractional digits.
+char* _get_dec_hex_with_dot(char* dec_dot) {
+  _dec_dot_adder(dec_dot);
+
+  static char dec_hex_dot[9];
+  memset(dec_hex_dot, 0, sizeof(char) * 9);
+  double double_dec_dot = atof(dec_dot);
+  double dividend = double_dec_dot;
+  for (int i = 0; i < 8; i++) {
+    double quotient = dividend * 16;
+    int int_quotient = (int) quotient;
+    char char_quotient[1000];
+    sprintf(char_quotient, "%d", int_quotient);
+    char* hex_mapped = _dec_hex_mapper(char_quotient);
+    strcat(dec_hex_dot, hex_mapped);
+
+    if (int_quotient < 0) {
+      dividend = quotient;
+    } else {
+      dividend = quotient - int_quotient;
+    }
+  }
+
+  return dec_hex_dot;
+}
+
 void _display_dec_hex(char *hex, int negative) {
   char neg_hex[1000] = "-";
   strcat(neg_hex, hex);
@@ -64,6 +91,29 @@ void to_dec_hex(char* dec_input) {
     _display_dec_hex(hex, 0);
 
     free(dec);
+    return;
+  }
+
+  if (is_positive_with_dot(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+    DottedDecimal dotted_dec = _get_dec_dotted(dec);
+
+    char* before_dot = malloc(sizeof(char) * 1000);
+    char* after_dot = malloc(sizeof(char) * 1000);
+    strcpy(before_dot, dotted_dec.before_dot);
+    strcpy(after_dot, dotted_dec.after_dot);
+
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_dec_hex(before_dot));
+    strcat(hex, ".");
+    strcat(hex, _get_dec_hex_with_dot(after_dot));
+    _display_dec_hex(hex, 0);
+
+    free(dec);
+    free(before_dot);
+    free(after_dot);
+    free(hex);
     return;
   }
 
