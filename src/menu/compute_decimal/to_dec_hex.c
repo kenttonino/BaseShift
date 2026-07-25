@@ -38,11 +38,30 @@ char* _get_dec_hex(char* dec) {
   return reverse_string(hex);
 }
 
+// Limit the result to 8 fractional digits.
 char* _get_dec_hex_with_dot(char* dec_dot) {
   _dec_dot_adder(dec_dot);
-  printf("dec_dot: %s", dec_dot);
-  add_new_line(1);
-  return "19999999";
+
+  static char dec_hex_dot[9];
+  memset(dec_hex_dot, 0, sizeof(char) * 9);
+  double double_dec_dot = atof(dec_dot);
+  double dividend = double_dec_dot;
+  for (int i = 0; i < 8; i++) {
+    double quotient = dividend * 16;
+    int int_quotient = (int) quotient;
+    char char_quotient[1000];
+    sprintf(char_quotient, "%d", int_quotient);
+    char* hex_mapped = _dec_hex_mapper(char_quotient);
+    strcat(dec_hex_dot, hex_mapped);
+
+    if (int_quotient < 0) {
+      dividend = quotient;
+    } else {
+      dividend = quotient - int_quotient;
+    }
+  }
+
+  return dec_hex_dot;
 }
 
 void _display_dec_hex(char *hex, int negative) {
