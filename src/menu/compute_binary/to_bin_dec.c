@@ -21,7 +21,7 @@ int _get_bin_dec(char *bin_input) {
   return dec;
 }
 
-double _get_bin_dec_with_dot(char *bin_input) {
+double _get_bin_dec_radixp(char *bin_input) {
   char *bin_before_dot = malloc(strlen(bin_input) + 1);
   char *bin_after_dot = malloc(strlen(bin_input) + 1);
   int is_after_dot = 0;
@@ -122,7 +122,7 @@ void to_bin_dec(char *bin_input) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    double dec = _get_bin_dec_with_dot(bin);
+    double dec = _get_bin_dec_radixp(bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 0);
@@ -139,7 +139,7 @@ void to_bin_dec(char *bin_input) {
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
 
-    double dec = _get_bin_dec_with_dot(positive_bin);
+    double dec = _get_bin_dec_radixp(positive_bin);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 1);
