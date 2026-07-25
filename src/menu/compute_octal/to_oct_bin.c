@@ -67,11 +67,14 @@ void to_oct_bin(char* oct_input) {
     char* oct = malloc(sizeof(char) * 1000);
     strcpy(oct, oct_input);
 
-    printf("oct: %s", oct);
-    add_new_line(1);
-    _display_oct_bin("001010011", 1);
+    char* positive_oct = malloc(sizeof(char) * 1000);
+    memmove(positive_oct, oct + 1, strlen(oct));
+
+    char* bin = _get_oct_bin(positive_oct);
+    _display_oct_bin(bin, 1);
 
     free(oct);
+    free(positive_oct);
     return;
   }
 }
