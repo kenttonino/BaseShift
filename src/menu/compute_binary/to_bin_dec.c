@@ -22,29 +22,29 @@ int _get_bin_dec(char *bin_input) {
 }
 
 double _get_bin_dec_radixp(char *bin_input) {
-  char *bin_before_dot = malloc(strlen(bin_input) + 1);
-  char *bin_after_dot = malloc(strlen(bin_input) + 1);
-  int is_after_dot = 0;
-  int counter_before_dot = 0;
-  int counter_after_dot = 0;
+  char *bin_before_radixp = malloc(strlen(bin_input) + 1);
+  char *bin_after_radixp = malloc(strlen(bin_input) + 1);
+  int is_after_radixp = 0;
+  int counter_before_radixp = 0;
+  int counter_after_radixp = 0;
   for (int i = 0; bin_input[i] != '\0'; i++) {
     if (bin_input[i] == '.') {
-      is_after_dot = 1;
+      is_after_radixp = 1;
       continue;
     }
 
-    if (is_after_dot) {
-      bin_after_dot[counter_after_dot++] = bin_input[i];
+    if (is_after_radixp) {
+      bin_after_radixp[counter_after_radixp++] = bin_input[i];
       continue;
     } else {
-      bin_before_dot[counter_before_dot++] = bin_input[i];
+      bin_before_radixp[counter_before_radixp++] = bin_input[i];
     }
   }
 
-  bin_before_dot[counter_before_dot] = '\0';
-  bin_after_dot[counter_after_dot] = '\0';
+  bin_before_radixp[counter_before_radixp] = '\0';
+  bin_after_radixp[counter_after_radixp] = '\0';
 
-  char *reversed_bin_input = reverse_string(bin_before_dot);
+  char *reversed_bin_input = reverse_string(bin_before_radixp);
   int reversed_bin_length = strlen(reversed_bin_input);
   double dec = 0;
 
@@ -53,16 +53,16 @@ double _get_bin_dec_radixp(char *bin_input) {
     dec = dec + (current_bin_int * pow(2, i));
   }
 
-  for (int i = 0; i < (int) strlen(bin_after_dot); i++) {
+  for (int i = 0; i < (int) strlen(bin_after_radixp); i++) {
     // Use the ASCII equivalent.
     // 0 -> 48
     // 1 -> 49
-    int current_bin_int = bin_after_dot[i] - '0';
+    int current_bin_int = bin_after_radixp[i] - '0';
     dec += current_bin_int * pow(2, -(i + 1));
   }
 
-  free(bin_before_dot);
-  free(bin_after_dot);
+  free(bin_before_radixp);
+  free(bin_after_radixp);
   return dec;
 }
 
