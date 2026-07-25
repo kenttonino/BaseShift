@@ -88,7 +88,7 @@ void to_dec_oct(char* dec_input) {
     return;
   }
 
-  if (is_positive_with_dot(dec_input)) {
+  if (is_positive_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
     DottedDecimal dotted_dec = _get_dec_dotted(dec_input);
@@ -126,7 +126,7 @@ void to_dec_oct(char* dec_input) {
     return;
   }
 
-  if (is_negative_with_dot(dec_input)) {
+  if (is_negative_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
 
