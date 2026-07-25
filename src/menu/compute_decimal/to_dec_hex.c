@@ -120,7 +120,6 @@ void to_dec_hex(char* dec_input) {
   if (is_negative(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-
     char* positive_dec = malloc(sizeof(char) * 1000);
     memcpy(positive_dec, dec_input + 1, strlen(dec_input));
 
@@ -129,6 +128,32 @@ void to_dec_hex(char* dec_input) {
 
     free(dec);
     free(positive_dec);
+    return;
+  }
+
+  if (is_negative_with_dot(dec_input)) {
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, dec_input);
+    char* positive_dec = malloc(sizeof(char) * 1000);
+    memcpy(positive_dec, dec + 1, strlen(dec));
+    DottedDecimal dotted_dec = _get_dec_dotted(positive_dec);
+
+    char* before_dot = malloc(sizeof(char) * 1000);
+    char* after_dot = malloc(sizeof(char) * 1000);
+    strcpy(before_dot, dotted_dec.before_dot);
+    strcpy(after_dot, dotted_dec.after_dot);
+
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_dec_hex(before_dot));
+    strcat(hex, ".");
+    strcat(hex, _get_dec_hex_with_dot(after_dot));
+    _display_dec_hex(hex, 1);
+
+    free(dec);
+    free(positive_dec);
+    free(before_dot);
+    free(after_dot);
+    free(hex);
     return;
   }
 }
