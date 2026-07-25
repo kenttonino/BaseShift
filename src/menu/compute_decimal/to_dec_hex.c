@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
+#include "./to_utils.h"
 
 char * _dec_hex_mapper(char* dec) {
   if (strcmp(dec, "10") == 0) return "A";
@@ -35,6 +36,13 @@ char* _get_dec_hex(char* dec) {
   }
 
   return reverse_string(hex);
+}
+
+char* _get_dec_hex_with_dot(char* dec_dot) {
+  _dec_dot_adder(dec_dot);
+  printf("dec_dot: %s", dec_dot);
+  add_new_line(1);
+  return "19999999";
 }
 
 void _display_dec_hex(char *hex, int negative) {
@@ -70,12 +78,23 @@ void to_dec_hex(char* dec_input) {
   if (is_positive_with_dot(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
+    DottedDecimal dotted_dec = _get_dec_dotted(dec);
 
-    printf("dec: %s", dec);
-    add_new_line(1);
-    _display_dec_hex("7B.1999999A", 0);
+    char* before_dot = malloc(sizeof(char) * 1000);
+    char* after_dot = malloc(sizeof(char) * 1000);
+    strcpy(before_dot, dotted_dec.before_dot);
+    strcpy(after_dot, dotted_dec.after_dot);
+
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_dec_hex(before_dot));
+    strcat(hex, ".");
+    strcat(hex, _get_dec_hex_with_dot(after_dot));
+    _display_dec_hex(hex, 0);
 
     free(dec);
+    free(before_dot);
+    free(after_dot);
+    free(hex);
     return;
   }
 
