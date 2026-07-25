@@ -60,6 +60,11 @@ int _oct_validate(char *oct_input) {
       break;
     }
 
+    if (isdigit(oct_input[i]) == 0) {
+      is_valid = 0;
+      break;
+    }
+
     static char oct_buffer[2];
     memset(oct_buffer, 0, sizeof(char) * 2);
     oct_buffer[0] = oct_input[i];
