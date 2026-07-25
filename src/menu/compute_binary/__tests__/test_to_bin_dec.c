@@ -11,5 +11,5 @@ void test_to_bin_dec(void) {
   add_new_line(1);
 
   assert(_get_bin_dec_radixp("1111.1") == 15.5);
-  text_green("_get_bin_radixp -> should return 15.5 for 1111.1 digits", 10);
+  text_green("_get_bin_dec_radixp -> should return 15.5 for 1111.1 digits", 10);
 }

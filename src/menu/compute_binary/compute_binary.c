@@ -19,7 +19,7 @@ void _bin_description(void) {
 int _bin_validate(char *bin_input) {
   int is_valid = 0;
   int input_length = strlen(bin_input);
-  int num_of_dots = 0;
+  int num_of_radixp = 0;
 
   for (int i = 0; i < input_length; i++) {
     // Check if there is a minus sign.
@@ -33,11 +33,11 @@ int _bin_validate(char *bin_input) {
       }
     }
 
-    // Check if its a dot.
+    // Check if its a radix point.
     if (bin_input[i] == '.') {
-      if (num_of_dots == 0) {
+      if (num_of_radixp == 0) {
         is_valid = 1;
-        num_of_dots++;
+        num_of_radixp++;
         continue;
       } else {
         is_valid = 0;
