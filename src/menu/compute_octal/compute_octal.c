@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./to_oct_bin.c"
@@ -59,13 +60,21 @@ int _oct_validate(char *oct_input) {
       break;
     }
 
+    static char oct_buffer[2];
+    memset(oct_buffer, 0, sizeof(char) * 2);
+    oct_buffer[0] = oct_input[i];
+    double double_current_oct = atof(oct_buffer);
+    int int_current_oct = (int) double_current_oct;
+    if (int_current_oct > 7) {
+      is_valid = 0;
+      break;
+    }
 
     is_valid = 1;
   }
 
   return is_valid;
 }
-
 
 void compute_octal(void) {
   char *oct_input = malloc(sizeof(char) * 1000);
