@@ -162,7 +162,6 @@ void _display_bin_oct(char *oct, int negative) {
 }
 
 void to_bin_oct(char *bin_input) {
-  // e.g. 1000 = 10
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
@@ -174,7 +173,6 @@ void to_bin_oct(char *bin_input) {
     return;
   }
 
-  // e.g. -1000 = -10
   if (is_negative(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
@@ -190,8 +188,7 @@ void to_bin_oct(char *bin_input) {
     return;
   }
 
-  // e.g. 1000.1000 = 10.4
-  if (is_positive_with_dot(bin_input)) {
+  if (is_positive_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
     DottedBinary dotted_bin = _get_bin_oct_dotted(bin);
@@ -214,8 +211,7 @@ void to_bin_oct(char *bin_input) {
     return;
   }
 
-  // e.g. -1000.1000 = -10.4
-  if (is_negative_with_dot(bin_input)) {
+  if (is_negative_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 

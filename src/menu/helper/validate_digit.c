@@ -9,7 +9,7 @@ int is_positive(char *input) {
   }
 }
 
-int is_positive_with_dot(char *input) {
+int is_positive_radixp(char *input) {
   if (strrchr(input, '-') == NULL && strrchr(input, '.') != NULL) {
     return 1;
   } else {
@@ -25,7 +25,7 @@ int is_negative(char *input) {
   }
 }
 
-int is_negative_with_dot(char *input) {
+int is_negative_radixp(char *input) {
   if (strrchr(input, '-') != NULL && strrchr(input, '.') != NULL) {
     return 1;
   } else {

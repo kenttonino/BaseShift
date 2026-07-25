@@ -99,7 +99,20 @@ void to_bin_dec(char *bin_input) {
     return;
   }
 
-  // E.g. -1000 = -8
+  if (is_positive_radixp(bin_input)) {
+    char *bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, bin_input);
+
+    double dec = _get_bin_dec_radixp(bin);
+    char dec_string[1000];
+    sprintf(dec_string, "%.2f", dec);
+    _display_bin_dec(dec_string, 0);
+
+    free(bin);
+    return;
+  }
+
+
   if (is_negative(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
@@ -117,22 +130,7 @@ void to_bin_dec(char *bin_input) {
     return;
   }
 
-  // E.g. 1000.1 = 8.500
-  if (is_positive_with_dot(bin_input)) {
-    char *bin = malloc(sizeof(char) * 1000);
-    strcpy(bin, bin_input);
-
-    double dec = _get_bin_dec_radixp(bin);
-    char dec_string[1000];
-    sprintf(dec_string, "%.2f", dec);
-    _display_bin_dec(dec_string, 0);
-
-    free(bin);
-    return;
-  }
-
-  // E.g. -1000.1 = -8.500
-  if (is_negative_with_dot(bin_input)) {
+  if (is_negative_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 

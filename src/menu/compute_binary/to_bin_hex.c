@@ -197,8 +197,7 @@ void to_bin_hex(char *bin_input) {
     return;
   }
 
-  // e.g. 1000.1 = 8.8
-  if (is_positive_with_dot(bin_input)) {
+  if (is_positive_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
     DottedBinary dotted_bin = _get_bin_hex_dotted_bin(bin);
@@ -221,7 +220,6 @@ void to_bin_hex(char *bin_input) {
     return;
   }
 
-  // e.g. -1000 = -8
   if (is_negative(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
@@ -237,8 +235,7 @@ void to_bin_hex(char *bin_input) {
     return;
   }
 
-  // e.g. -1000.1 = -8.8
-  if (is_negative_with_dot(bin_input)) {
+  if (is_negative_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
     char *positive_bin = malloc(sizeof(char) * 1000);
