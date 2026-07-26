@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./types.h"
 #include "../helper/helper.h"
 
 char *_bin_hex_zero_adder(char* bin_input) {
@@ -41,7 +40,7 @@ char *_bin_hex_zero_adder(char* bin_input) {
   return bin_input;
 }
 
-char *_bin_hex_zero_adder_with_dot(char *bin_input) {
+char *_bin_hex_zero_adder_radixp(char *bin_input) {
   int bin_len = strlen(bin_input);
   int bin_rem = bin_len % 4;
 
@@ -98,44 +97,41 @@ char *_bin_hex_mapper(char *bin_group) {
   return "0";
 }
 
-DottedBinary _get_bin_hex_dotted_bin(char *bin_input) {
-  // Store the binary in new variable.
+GenericInput _get_bin_hex_generic_input(char *bin) {
   static char bin_buffer[1000];
   memset(bin_buffer, 0, sizeof(char) * 1000);
-  memmove(bin_buffer, bin_input, strlen(bin_input));
+  memmove(bin_buffer, bin, strlen(bin));
 
-  // Separate the binary values before and after dot.
-  static char bin_before_dot[1000];
-  static char bin_after_dot[1000];
-  memset(bin_before_dot, 0, sizeof(char) * 1000);
-  memset(bin_after_dot, 0, sizeof(char) * 1000);
+  static char bin_before_radixp[1000];
+  static char bin_after_radixp[1000];
+  memset(bin_before_radixp, 0, sizeof(char) * 1000);
+  memset(bin_after_radixp, 0, sizeof(char) * 1000);
 
-  int is_after_dot = 0;
-  int counter_before_dot = 0;
-  int counter_after_dot = 0;
-  for (int i = 0; bin_input[i] != '\0'; i++) {
-    if (bin_input[i] == '.') {
-      is_after_dot = 1;
+  int is_after_radixp = 0;
+  int counter_before_radixp = 0;
+  int counter_after_radixp = 0;
+  for (int i = 0; bin[i] != '\0'; i++) {
+    if (bin[i] == '.') {
+      is_after_radixp = 1;
       continue;
     }
 
-    if (is_after_dot) {
-      bin_after_dot[counter_after_dot++] = bin_input[i];
+    if (is_after_radixp) {
+      bin_after_radixp[counter_after_radixp++] = bin[i];
       continue;
     } else {
-      bin_before_dot[counter_before_dot++] = bin_input[i];
+      bin_before_radixp[counter_before_radixp++] = bin[i];
     }
   }
 
-  // Reset to the null terminator to stop reading this variables.
-  bin_before_dot[counter_before_dot] = '\0';
-  bin_after_dot[counter_after_dot] = '\0';
+  bin_before_radixp[counter_before_radixp] = '\0';
+  bin_after_radixp[counter_after_radixp] = '\0';
 
-  DottedBinary dotted_bin;
-  dotted_bin.before_dot = _bin_hex_zero_adder(bin_before_dot);
-  dotted_bin.after_dot = _bin_hex_zero_adder_with_dot(bin_after_dot);
+  GenericInput generic_input;
+  generic_input.before_radixp = _bin_hex_zero_adder(bin_before_radixp);
+  generic_input.after_radixp = _bin_hex_zero_adder_radixp(bin_after_radixp);
 
-  return dotted_bin;
+  return generic_input;
 }
 
 char *_get_bin_hex(char *bin_input) {
@@ -197,31 +193,29 @@ void to_bin_hex(char *bin_input) {
     return;
   }
 
-  // e.g. 1000.1 = 8.8
-  if (is_positive_with_dot(bin_input)) {
+  if (is_positive_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
-    DottedBinary dotted_bin = _get_bin_hex_dotted_bin(bin);
+    GenericInput generic_input = _get_bin_hex_generic_input(bin);
 
-    char *bin_before_dot = malloc(sizeof(char) * 1000);
-    char *bin_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(bin_before_dot, dotted_bin.before_dot);
-    strcpy(bin_after_dot, dotted_bin.after_dot);
+    char *bin_before_radixp = malloc(sizeof(char) * 1000);
+    char *bin_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_radixp, generic_input.before_radixp);
+    strcpy(bin_after_radixp, generic_input.after_radixp);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_bin_hex(bin_before_dot));
+    strcpy(hex, _get_bin_hex(bin_before_radixp));
     strcat(hex, ".");
-    strcat(hex, _get_bin_hex(bin_after_dot));
+    strcat(hex, _get_bin_hex(bin_after_radixp));
     _display_bin_hex(hex, 0);
 
     free(bin);
-    free(bin_before_dot);
-    free(bin_after_dot);
+    free(bin_before_radixp);
+    free(bin_after_radixp);
     free(hex);
     return;
   }
 
-  // e.g. -1000 = -8
   if (is_negative(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
@@ -237,29 +231,29 @@ void to_bin_hex(char *bin_input) {
     return;
   }
 
-  // e.g. -1000.1 = -8.8
-  if (is_negative_with_dot(bin_input)) {
+  if (is_negative_radixp(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
+
     char *positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
-    DottedBinary dotted_bin = _get_bin_hex_dotted_bin(positive_bin);
+    GenericInput generic_input = _get_bin_hex_generic_input(positive_bin);
 
-    char *bin_before_dot = malloc(sizeof(char) * 1000);
-    char *bin_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(bin_before_dot, dotted_bin.before_dot);
-    strcpy(bin_after_dot, dotted_bin.after_dot);
+    char *bin_before_radixp = malloc(sizeof(char) * 1000);
+    char *bin_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_radixp, generic_input.before_radixp);
+    strcpy(bin_after_radixp, generic_input.after_radixp);
 
     char *hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_bin_hex(bin_before_dot));
+    strcpy(hex, _get_bin_hex(bin_before_radixp));
     strcat(hex, ".");
-    strcat(hex, _get_bin_hex(bin_after_dot));
+    strcat(hex, _get_bin_hex(bin_after_radixp));
     _display_bin_hex(hex, 1);
 
     free(bin);
     free(positive_bin);
-    free(bin_before_dot);
-    free(bin_after_dot);
+    free(bin_before_radixp);
+    free(bin_after_radixp);
     free(hex);
     return;
   }

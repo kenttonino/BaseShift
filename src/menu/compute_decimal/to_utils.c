@@ -1,58 +1,50 @@
 #include <string.h>
+#include "../helper/helper.h"
 
-typedef struct {
-  char* before_dot;
-  char* after_dot;
-} DottedDecimal;
-
-// e.g. 1 -> 0.1
-char *_dec_dot_adder(char* dec_after_dot_input) {
+char *_dec_radixp_adder(char* dec_after_radixp) {
   char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
-  memmove(dec_buffer + 2, dec_buffer, strlen(dec_after_dot_input) + 2);
+  memmove(dec_buffer + 2, dec_buffer, strlen(dec_after_radixp) + 2);
   dec_buffer[0] = '0';
   dec_buffer[1] = '.';
-  strcat(dec_buffer, dec_after_dot_input);
-  strcpy(dec_after_dot_input, dec_buffer);
-  return dec_after_dot_input;
+  strcat(dec_buffer, dec_after_radixp);
+  strcpy(dec_after_radixp, dec_buffer);
+  return dec_after_radixp;
 }
 
-DottedDecimal _get_dec_dotted(char* dec_input) {
-  // Store the decimal input in new variable.
+GenericInput _get_dec_generic_input(char* dec) {
   static char dec_buffer[1000];
   memset(dec_buffer, 0, sizeof(char) * 1000);
-  memmove(dec_buffer, dec_input, strlen(dec_input));
+  memmove(dec_buffer, dec, strlen(dec));
 
-  // Sanitized the decimal values before and after dot.
-  static char dec_before_dot[1000];
-  static char dec_after_dot[1000];
-  memset(dec_before_dot, 0, sizeof(char) * 1000);
-  memset(dec_after_dot, 0, sizeof(char) * 1000);
+  static char dec_before_radixp[1000];
+  static char dec_after_radixp[1000];
+  memset(dec_before_radixp, 0, sizeof(char) * 1000);
+  memset(dec_after_radixp, 0, sizeof(char) * 1000);
 
-  int is_after_dot = 0;
-  int counter_before_dot = 0;
-  int counter_after_dot = 0;
-  for (int i = 0; dec_input[i] != '\0'; i++) {
-    if (dec_input[i] == '.') {
-      is_after_dot = 1;
+  int is_after_radixp = 0;
+  int counter_before_radixp = 0;
+  int counter_after_radixp = 0;
+  for (int i = 0; dec[i] != '\0'; i++) {
+    if (dec[i] == '.') {
+      is_after_radixp = 1;
       continue;
     }
 
-    if (is_after_dot) {
-      dec_after_dot[counter_after_dot++] = dec_input[i];
+    if (is_after_radixp) {
+      dec_after_radixp[counter_after_radixp++] = dec[i];
       continue;
     } else {
-      dec_before_dot[counter_before_dot++] = dec_input[i];
+      dec_before_radixp[counter_before_radixp++] = dec[i];
     }
   }
 
-  // Reset to the null terminator to stop reading this variables.
-  dec_before_dot[counter_before_dot] = '\0';
-  dec_after_dot[counter_after_dot] = '\0';
+  dec_before_radixp[counter_before_radixp] = '\0';
+  dec_after_radixp[counter_after_radixp] = '\0';
 
-  DottedDecimal sanitized_dec;
-  sanitized_dec.before_dot = dec_before_dot;
-  sanitized_dec.after_dot = dec_after_dot;
+  GenericInput generic_input;
+  generic_input.before_radixp = dec_before_radixp;
+  generic_input.after_radixp = dec_after_radixp;
 
-  return sanitized_dec;
+  return generic_input;
 }

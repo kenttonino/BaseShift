@@ -29,21 +29,21 @@ void test_to_bin_hex(void) {
 
   memset(bin_input, 0, sizeof(char) * 5);
   memmove(bin_input, "1", sizeof(char) * 2);
-  assert(strcmp(_bin_hex_zero_adder_with_dot(bin_input), "1000") == 0);
-  text_green("_bin_hex_zero_adder_with_dot -> should return 1000 for 1 digit", 10);
+  assert(strcmp(_bin_hex_zero_adder_radixp(bin_input), "1000") == 0);
+  text_green("_bin_hex_zero_adder_radixp -> should return 1000 for 1 digit", 10);
   add_new_line(1);
   memset(bin_input, 0, sizeof(char) * 5);
   memmove(bin_input, "10", sizeof(char) * 3);
-  assert(strcmp(_bin_hex_zero_adder_with_dot(bin_input), "1000") == 0);
-  text_green("_bin_hex_zero_adder_with_dot -> should return 1000 for 10 digits", 10);
+  assert(strcmp(_bin_hex_zero_adder_radixp(bin_input), "1000") == 0);
+  text_green("_bin_hex_zero_adder_radixp -> should return 1000 for 10 digits", 10);
   add_new_line(1);
   memset(bin_input, 0, sizeof(char) * 5);
   memmove(bin_input, "100", sizeof(char) * 4);
-  assert(strcmp(_bin_hex_zero_adder_with_dot(bin_input), "1000") == 0);
-  text_green("_bin_hex_zero_adder_with_dot -> should return 1000 for 100 digits", 10);
+  assert(strcmp(_bin_hex_zero_adder_radixp(bin_input), "1000") == 0);
+  text_green("_bin_hex_zero_adder_radixp -> should return 1000 for 100 digits", 10);
   add_new_line(1);
   memset(bin_input, 0, sizeof(char) * 5);
   memmove(bin_input, "1000", sizeof(char) * 5);
-  assert(strcmp(_bin_hex_zero_adder_with_dot(bin_input), "1000") == 0);
-  text_green("_bin_hex_zero_adder_with_dot -> should return 1000 for 1000 digits", 10);
+  assert(strcmp(_bin_hex_zero_adder_radixp(bin_input), "1000") == 0);
+  text_green("_bin_hex_zero_adder_radixp -> should return 1000 for 1000 digits", 10);
 }

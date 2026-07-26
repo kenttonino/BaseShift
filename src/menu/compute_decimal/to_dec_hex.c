@@ -39,20 +39,20 @@ char* _get_dec_hex(char* dec) {
 }
 
 // Limit the result to 8 fractional digits.
-char* _get_dec_hex_with_dot(char* dec_dot) {
-  _dec_dot_adder(dec_dot);
+char* _get_dec_hex_radixp(char* dec_radixp) {
+  _dec_radixp_adder(dec_radixp);
 
-  static char dec_hex_dot[9];
-  memset(dec_hex_dot, 0, sizeof(char) * 9);
-  double double_dec_dot = atof(dec_dot);
-  double dividend = double_dec_dot;
+  static char hex[9];
+  memset(hex, 0, sizeof(char) * 9);
+  double double_dec_radixp = atof(dec_radixp);
+  double dividend = double_dec_radixp;
   for (int i = 0; i < 8; i++) {
     double quotient = dividend * 16;
     int int_quotient = (int) quotient;
     char char_quotient[1000];
     sprintf(char_quotient, "%d", int_quotient);
     char* hex_mapped = _dec_hex_mapper(char_quotient);
-    strcat(dec_hex_dot, hex_mapped);
+    strcat(hex, hex_mapped);
 
     if (int_quotient < 0) {
       dividend = quotient;
@@ -61,7 +61,7 @@ char* _get_dec_hex_with_dot(char* dec_dot) {
     }
   }
 
-  return dec_hex_dot;
+  return hex;
 }
 
 void _display_dec_hex(char *hex, int negative) {
@@ -83,6 +83,11 @@ void _display_dec_hex(char *hex, int negative) {
 }
 
 void to_dec_hex(char* dec_input) {
+  if (strlen(dec_input) == 1 && strcmp(dec_input, "0") == 0) {
+    _display_dec_hex("0", 0);
+    return;
+  }
+
   if (is_positive(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
@@ -94,25 +99,25 @@ void to_dec_hex(char* dec_input) {
     return;
   }
 
-  if (is_positive_with_dot(dec_input)) {
+  if (is_positive_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    DottedDecimal dotted_dec = _get_dec_dotted(dec);
+    GenericInput generic_input = _get_dec_generic_input(dec);
 
-    char* before_dot = malloc(sizeof(char) * 1000);
-    char* after_dot = malloc(sizeof(char) * 1000);
-    strcpy(before_dot, dotted_dec.before_dot);
-    strcpy(after_dot, dotted_dec.after_dot);
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
 
     char* hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_dec_hex(before_dot));
+    strcpy(hex, _get_dec_hex(before_radixp));
     strcat(hex, ".");
-    strcat(hex, _get_dec_hex_with_dot(after_dot));
+    strcat(hex, _get_dec_hex_radixp(after_radixp));
     _display_dec_hex(hex, 0);
 
     free(dec);
-    free(before_dot);
-    free(after_dot);
+    free(before_radixp);
+    free(after_radixp);
     free(hex);
     return;
   }
@@ -121,7 +126,7 @@ void to_dec_hex(char* dec_input) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
     char* positive_dec = malloc(sizeof(char) * 1000);
-    memcpy(positive_dec, dec_input + 1, strlen(dec_input));
+    memcpy(positive_dec, dec + 1, strlen(dec));
 
     char* hex = _get_dec_hex(positive_dec);
     _display_dec_hex(hex, 1);
@@ -131,28 +136,28 @@ void to_dec_hex(char* dec_input) {
     return;
   }
 
-  if (is_negative_with_dot(dec_input)) {
+  if (is_negative_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
     char* positive_dec = malloc(sizeof(char) * 1000);
     memcpy(positive_dec, dec + 1, strlen(dec));
-    DottedDecimal dotted_dec = _get_dec_dotted(positive_dec);
+    GenericInput generic_input = _get_dec_generic_input(positive_dec);
 
-    char* before_dot = malloc(sizeof(char) * 1000);
-    char* after_dot = malloc(sizeof(char) * 1000);
-    strcpy(before_dot, dotted_dec.before_dot);
-    strcpy(after_dot, dotted_dec.after_dot);
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
 
     char* hex = malloc(sizeof(char) * 1000);
-    strcpy(hex, _get_dec_hex(before_dot));
+    strcpy(hex, _get_dec_hex(before_radixp));
     strcat(hex, ".");
-    strcat(hex, _get_dec_hex_with_dot(after_dot));
+    strcat(hex, _get_dec_hex_radixp(after_radixp));
     _display_dec_hex(hex, 1);
 
     free(dec);
     free(positive_dec);
-    free(before_dot);
-    free(after_dot);
+    free(before_radixp);
+    free(after_radixp);
     free(hex);
     return;
   }
