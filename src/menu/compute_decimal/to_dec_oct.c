@@ -29,21 +29,20 @@ char* _get_dec_oct(char* dec_input) {
   return reverse_string(oct_digits);
 }
 
-// We will limit only the dot values to 8 octal bits.
-char* _get_dec_oct_with_dot(char *dec_dot_input) {
-  // Mutate the dec_dot_input parameter with prepended 0. on it.
-  _dec_dot_adder(dec_dot_input);
+// We will limit only the after radix point digits to 8 octal bits.
+char* _get_dec_oct_radixp(char *dec_radixp) {
+  _dec_radixp_adder(dec_radixp);
 
-  static char after_dot_oct[9];
-  memset(after_dot_oct, 0, sizeof(char) * 9);
-  double float_dec = atof(dec_dot_input);
-  double dividend = float_dec;
+  static char oct[9];
+  memset(oct, 0, sizeof(char) * 9);
+  double double_dec = atof(dec_radixp);
+  double dividend = double_dec;
   for (int i = 0; i < 8; i++) {
     double quotient = dividend * 8;
     int int_quotient = (int) quotient;
     char char_quotient[1000];
     sprintf(char_quotient, "%d", int_quotient);
-    strcat(after_dot_oct, char_quotient);
+    strcat(oct, char_quotient);
 
     if (int_quotient < 0) {
       dividend = quotient;
@@ -52,10 +51,9 @@ char* _get_dec_oct_with_dot(char *dec_dot_input) {
     }
   }
 
-  // Remind CPU that static char ends.
-  after_dot_oct[strlen(after_dot_oct)] = '\0';
+  oct[strlen(oct)] = '\0';
 
-  return after_dot_oct;
+  return oct;
 }
 
 void _display_dec_oct(char *oct, int negative) {
@@ -91,22 +89,22 @@ void to_dec_oct(char* dec_input) {
   if (is_positive_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    DottedDecimal dotted_dec = _get_dec_dotted(dec_input);
+    GenericInput generic_input = _get_dec_generic_input(dec);
 
-    char *dec_before_dot = malloc(sizeof(char) * 1000);
-    char *dec_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(dec_before_dot, dotted_dec.before_dot);
-    strcpy(dec_after_dot, dotted_dec.after_dot);
+    char *dec_before_radixp = malloc(sizeof(char) * 1000);
+    char *dec_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(dec_before_radixp, generic_input.before_radixp);
+    strcpy(dec_after_radixp, generic_input.after_radixp);
 
     char *oct = malloc(sizeof(char) * 1000);
-    strcpy(oct, _get_dec_oct(dec_before_dot));
+    strcpy(oct, _get_dec_oct(dec_before_radixp));
     strcat(oct, ".");
-    strcat(oct, _get_dec_oct_with_dot(dec_after_dot));
+    strcat(oct, _get_dec_oct_radixp(dec_after_radixp));
     _display_dec_oct(oct, 0);
 
     free(dec);
-    free(dec_before_dot);
-    free(dec_after_dot);
+    free(dec_before_radixp);
+    free(dec_after_radixp);
     free(oct);
     return;
   }
@@ -132,23 +130,23 @@ void to_dec_oct(char* dec_input) {
 
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
-    DottedDecimal dotted_dec = _get_dec_dotted(positive_dec);
+    GenericInput generic_input = _get_dec_generic_input(positive_dec);
 
-    char *dec_before_dot = malloc(sizeof(char) * 1000);
-    char *dec_after_dot = malloc(sizeof(char) * 1000);
-    strcpy(dec_before_dot, dotted_dec.before_dot);
-    strcpy(dec_after_dot, dotted_dec.after_dot);
+    char *dec_before_radixp = malloc(sizeof(char) * 1000);
+    char *dec_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(dec_before_radixp, generic_input.before_radixp);
+    strcpy(dec_after_radixp, generic_input.after_radixp);
 
     char *oct = malloc(sizeof(char) * 1000);
-    strcpy(oct, _get_dec_oct(dec_before_dot));
+    strcpy(oct, _get_dec_oct(dec_before_radixp));
     strcat(oct, ".");
-    strcat(oct, _get_dec_oct_with_dot(dec_after_dot));
+    strcat(oct, _get_dec_oct_radixp(dec_after_radixp));
     _display_dec_oct(oct, 1);
 
     free(dec);
     free(positive_dec);
-    free(dec_before_dot);
-    free(dec_after_dot);
+    free(dec_before_radixp);
+    free(dec_after_radixp);
     free(oct);
     return;
   }
