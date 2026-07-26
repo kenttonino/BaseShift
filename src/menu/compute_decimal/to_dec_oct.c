@@ -5,20 +5,20 @@
 #include "./to_utils.h"
 #include "../helper/helper.h"
 
-char* _get_dec_oct(char* dec_input) {
+char* _get_dec_oct(char* dec) {
   char* end_ptr;
-  int int_dec_input = strtol(dec_input, &end_ptr, 10);
+  int int_dec = strtol(dec, &end_ptr, 10);
 
-  static char oct_digits[1000];
-  memset(oct_digits, 0, sizeof(char) * 1000);
-  int dividend = int_dec_input;
+  static char oct[1000];
+  memset(oct, 0, sizeof(char) * 1000);
+  int dividend = int_dec;
 
   for (;;) {
     if (dividend != 0) {
       int reminder = dividend % 8;
       char char_reminder[1000];
       sprintf(char_reminder, "%d", reminder);
-      strcat(oct_digits, char_reminder);
+      strcat(oct, char_reminder);
       dividend = dividend / 8;
       continue;
     }
@@ -26,7 +26,7 @@ char* _get_dec_oct(char* dec_input) {
     break;
   }
 
-  return reverse_string(oct_digits);
+  return reverse_string(oct);
 }
 
 // We will limit only the after radix point digits to 8 octal bits.
