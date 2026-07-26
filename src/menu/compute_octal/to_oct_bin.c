@@ -15,15 +15,15 @@ char* _oct_bin_mapper(char* oct_digit) {
   return "000";
 }
 
-char* _get_oct_bin(char* oct_digits) {
+char* _get_oct_bin(char* oct) {
   static char bin[1000];
   memset(bin, 0, sizeof(char) * 1000);
-  int oct_digits_len = strlen(oct_digits);
+  int oct_len = strlen(oct);
   static char current_oct[2];
   memset(current_oct, 0, sizeof(char) * 2);
 
-  for (int i = 0; i < oct_digits_len; i++) {
-    current_oct[0] = oct_digits[i];
+  for (int i = 0; i < oct_len; i++) {
+    current_oct[0] = oct[i];
     current_oct[1] = '\0';
     char* current_bin = _oct_bin_mapper(current_oct);
     strcat(bin, current_bin);
