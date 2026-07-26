@@ -83,6 +83,11 @@ void _display_dec_hex(char *hex, int negative) {
 }
 
 void to_dec_hex(char* dec_input) {
+  if (strlen(dec_input) == 1 && strcmp(dec_input, "0") == 0) {
+    _display_dec_hex("0", 0);
+    return;
+  }
+
   if (is_positive(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
