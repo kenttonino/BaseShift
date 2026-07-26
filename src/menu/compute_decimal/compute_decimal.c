@@ -56,6 +56,11 @@ int _dec_validate(char *dec_input) {
       }
     }
 
+    if (isdigit(dec_input[i]) == 0) {
+      is_valid = 0;
+      break;
+    }
+
     if (isalpha(dec_input[i])) {
       is_valid = 0;
       break;
