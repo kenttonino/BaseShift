@@ -14,6 +14,6 @@ void test_to_dec_bin(void) {
 
   char dec_dot_input[5];
   memmove(dec_dot_input, "123", sizeof(char) * 4);
-  assert(strcmp(_get_dec_bin_with_dot(dec_dot_input), "00011111") == 0);
-  text_green("_get_dec_bin_with_dot -> should return 00011111 for 123 inputs", 10);
+  assert(strcmp(_get_dec_bin_radixp(dec_dot_input), "00011111") == 0);
+  text_green("_get_dec_bin_radixp -> should return 00011111 for 123 inputs", 10);
 }
