@@ -75,6 +75,11 @@ void _display_dec_oct(char *oct, int negative) {
 }
 
 void to_dec_oct(char* dec_input) {
+  if (strlen(dec_input) == 1 && strcmp(dec_input, "0") == 0) {
+    _display_dec_oct("0", 0);
+    return;
+  }
+
   if (is_positive(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
