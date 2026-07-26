@@ -13,8 +13,8 @@ void test_to_dec_oct(void) {
   text_green("_get_dec_oct -> should return 173 for 123 inputs", 10);
   add_new_line(1);
 
-  char dec_dot_input[2];
-  memmove(dec_dot_input, "1", sizeof(char) * 2);
-  assert(strcmp(_get_dec_oct_with_dot(dec_dot_input), "06314631") == 0);
-  text_green("_get_dec_oct_with_dot -> should return 06314631 for 1 dec dot input", 10);
+  char dec_radixp_input[2];
+  memmove(dec_radixp_input, "1", sizeof(char) * 2);
+  assert(strcmp(_get_dec_oct_radixp(dec_radixp_input), "06314631") == 0);
+  text_green("_get_dec_oct_radixp -> should return 06314631 for 1 dec dot input", 10);
 }
