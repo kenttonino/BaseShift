@@ -158,7 +158,7 @@ void _display_bin_oct(char *oct, int negative) {
 }
 
 void to_bin_oct(char *bin_input) {
-  if (strlen(bin_input) == 1 && strcmp(bin_input, "-")) {
+  if (strlen(bin_input) == 1 && strcmp(bin_input, "-") == 0) {
     _display_bin_oct("0", 0);
     return;
   }
