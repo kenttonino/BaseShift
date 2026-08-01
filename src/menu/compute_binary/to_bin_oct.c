@@ -158,6 +158,11 @@ void _display_bin_oct(char *oct, int negative) {
 }
 
 void to_bin_oct(char *bin_input) {
+  if (strlen(bin_input) == 1 && strcmp(bin_input, "-")) {
+    _display_bin_oct("0", 0);
+    return;
+  }
+
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
