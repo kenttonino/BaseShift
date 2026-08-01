@@ -77,6 +77,11 @@ void _display_dec_bin(char *bin, int negative) {
 }
 
 void to_dec_bin(char *dec_input) {
+  if (strlen(dec_input) == 1 && strcmp(dec_input, "-") == 0) {
+    _display_dec_bin("0", 0);
+    return;
+  }
+
   if (strlen(dec_input) == 1 && strcmp(dec_input, "0") == 0) {
     _display_dec_bin("0", 0);
     return;

@@ -85,7 +85,11 @@ void _display_bin_dec(char *dec, int negative) {
 }
 
 void to_bin_dec(char *bin_input) {
-  // E.g. 1000 = 8
+  if (strlen(bin_input) == 1 && strcmp(bin_input, "-") == 0) {
+    _display_bin_dec("0", 0);
+    return;
+  }
+
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
