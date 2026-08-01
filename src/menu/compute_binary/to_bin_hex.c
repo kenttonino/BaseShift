@@ -181,7 +181,11 @@ void _display_bin_hex(char *hex, int negative) {
 }
 
 void to_bin_hex(char *bin_input) {
-  // e.g. 1000 = 8
+  if (strlen(bin_input) == 1 && strcmp(bin_input, "-") == 0) {
+    _display_bin_hex("0", 1);
+    return;
+  }
+
   if (is_positive(bin_input)) {
     char *bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
