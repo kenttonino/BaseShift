@@ -51,6 +51,16 @@ void _display_oct_bin(char *bin, int negative) {
 }
 
 void to_oct_bin(char* oct_input) {
+  if (strlen(oct_input) == 1 && strcmp(oct_input, "0") == 0) {
+    _display_oct_bin("0", 0);
+    return;
+  }
+
+  if (strlen(oct_input) == 1 && strcmp(oct_input, "-") == 0) {
+    _display_oct_bin("0", 0);
+    return;
+  }
+
   if (is_positive(oct_input)) {
     char* oct = malloc(sizeof(char) * 1000);
     strcpy(oct, oct_input);
