@@ -3,7 +3,6 @@
 #include <string.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-#include "./to_utils.h"
 
 char* _get_dec_bin(char *dec) {
   char *end_ptr;
@@ -28,12 +27,16 @@ char* _get_dec_bin(char *dec) {
     break;
   }
 
-  return reverse_string(bin);
+  if (strlen(bin) == 0) {
+    return "0";
+  } else {
+    return reverse_string(bin);
+  }
 }
 
 // We will limit only the binary dot values to 8 fractional bits.
 char* _get_dec_bin_radixp(char *dec_radixp) {
-  _dec_radixp_adder(dec_radixp);
+  radixp_adder(dec_radixp);
 
   static char bin[9];
   memset(bin, 0, sizeof(char) * 9);
@@ -101,7 +104,7 @@ void to_dec_bin(char *dec_input) {
   if (is_positive_radixp(dec_input)) {
     char *dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    GenericInput generic_input = _get_dec_generic_input(dec);
+    GenericInput generic_input = get_generic_input(dec);
 
     char *dec_before_radixp = malloc(sizeof(char) * 1000);
     char *dec_after_radixp = malloc(sizeof(char) * 1000);
@@ -142,7 +145,7 @@ void to_dec_bin(char *dec_input) {
 
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
-    GenericInput generic_input = _get_dec_generic_input(positive_dec);
+    GenericInput generic_input = get_generic_input(positive_dec);
 
     char *dec_before_radixp = malloc(sizeof(char) * 1000);
     char *dec_after_radixp = malloc(sizeof(char) * 1000);

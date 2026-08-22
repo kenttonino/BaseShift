@@ -73,6 +73,13 @@ void to_oct_bin(char* oct_input) {
     return;
   }
 
+  if (is_positive_radixp(oct_input))  {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+    _display_oct_bin("1010011.001", 0);
+    return;
+  }
+
   if (is_negative(oct_input)) {
     char* oct = malloc(sizeof(char) * 1000);
     strcpy(oct, oct_input);

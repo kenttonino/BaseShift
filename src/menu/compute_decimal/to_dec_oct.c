@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../utils/utils.h"
-#include "./to_utils.h"
 #include "../helper/helper.h"
 
 char* _get_dec_oct(char* dec) {
@@ -31,7 +30,7 @@ char* _get_dec_oct(char* dec) {
 
 // We will limit only the after radix point digits to 8 octal bits.
 char* _get_dec_oct_radixp(char *dec_radixp) {
-  _dec_radixp_adder(dec_radixp);
+  radixp_adder(dec_radixp);
 
   static char oct[9];
   memset(oct, 0, sizeof(char) * 9);
@@ -99,7 +98,7 @@ void to_dec_oct(char* dec_input) {
   if (is_positive_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    GenericInput generic_input = _get_dec_generic_input(dec);
+    GenericInput generic_input = get_generic_input(dec);
 
     char *dec_before_radixp = malloc(sizeof(char) * 1000);
     char *dec_after_radixp = malloc(sizeof(char) * 1000);
@@ -140,7 +139,7 @@ void to_dec_oct(char* dec_input) {
 
     char* positive_dec = malloc(sizeof(char) * 1000);
     memmove(positive_dec, dec + 1, strlen(dec));
-    GenericInput generic_input = _get_dec_generic_input(positive_dec);
+    GenericInput generic_input = get_generic_input(positive_dec);
 
     char *dec_before_radixp = malloc(sizeof(char) * 1000);
     char *dec_after_radixp = malloc(sizeof(char) * 1000);
