@@ -10,6 +10,9 @@ build-test:
 	gcc -g ${WARNING_FLAGS} -o ./bin/tests/compute_decimal_tests ./src/menu/compute_decimal/__tests__/compute_decimal_tests.c -lm
 	gcc -g ${WARNING_FLAGS} -o ./bin/tests/helper_tests ./src/menu/helper/__tests__/helper_tests.c
 
+create-tag-index:
+	ctags -R *
+
 run-test: build-test
 	# e.g. make run-test bin="binary_tests"
 	./bin/tests/${bin}
