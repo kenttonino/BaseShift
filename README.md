@@ -38,7 +38,19 @@
 
 ## Development
 
-> - Install [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/), and [`Valgrind`](https://valgrind.org/).
+> - Install [`GNU Make`](https://www.gnu.org/software/make/), [`GNU Debugger (GDB)`](https://www.sourceware.org/gdb/), [`GNU Compiler Collection (GCC)`](https://gcc.gnu.org/onlinedocs/), and [`Valgrind`](https://valgrind.org/)
+
+> - For easy search and navigation of codebase, install [ctags](https://github.com/universal-ctags/ctags).
+
+```bash
+# Index the codebase with ctags.
+ctags -R *
+
+# In Neovim/Vim search for file.
+:tag <name>
+```
+
+> - Below the are the development commands.
 
 ```bash
 # Build and run the test.
