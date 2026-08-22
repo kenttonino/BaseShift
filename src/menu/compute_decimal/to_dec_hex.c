@@ -3,7 +3,6 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "../helper/helper.h"
-#include "./to_utils.h"
 
 char * _dec_hex_mapper(char* dec) {
   if (strcmp(dec, "10") == 0) return "A";
@@ -40,7 +39,7 @@ char* _get_dec_hex(char* dec) {
 
 // Limit the result to 8 fractional digits.
 char* _get_dec_hex_radixp(char* dec_radixp) {
-  _dec_radixp_adder(dec_radixp);
+  radixp_adder(dec_radixp);
 
   static char hex[9];
   memset(hex, 0, sizeof(char) * 9);
@@ -107,7 +106,7 @@ void to_dec_hex(char* dec_input) {
   if (is_positive_radixp(dec_input)) {
     char* dec = malloc(sizeof(char) * 1000);
     strcpy(dec, dec_input);
-    GenericInput generic_input = _get_dec_generic_input(dec);
+    GenericInput generic_input = get_generic_input(dec);
 
     char* before_radixp = malloc(sizeof(char) * 1000);
     char* after_radixp = malloc(sizeof(char) * 1000);
@@ -146,7 +145,7 @@ void to_dec_hex(char* dec_input) {
     strcpy(dec, dec_input);
     char* positive_dec = malloc(sizeof(char) * 1000);
     memcpy(positive_dec, dec + 1, strlen(dec));
-    GenericInput generic_input = _get_dec_generic_input(positive_dec);
+    GenericInput generic_input = get_generic_input(positive_dec);
 
     char* before_radixp = malloc(sizeof(char) * 1000);
     char* after_radixp = malloc(sizeof(char) * 1000);
