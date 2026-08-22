@@ -21,29 +21,7 @@ int _get_bin_dec(char *bin_input) {
   return dec;
 }
 
-double _get_bin_dec_radixp(char *bin_input) {
-  char *bin_before_radixp = malloc(strlen(bin_input) + 1);
-  char *bin_after_radixp = malloc(strlen(bin_input) + 1);
-  int is_after_radixp = 0;
-  int counter_before_radixp = 0;
-  int counter_after_radixp = 0;
-  for (int i = 0; bin_input[i] != '\0'; i++) {
-    if (bin_input[i] == '.') {
-      is_after_radixp = 1;
-      continue;
-    }
-
-    if (is_after_radixp) {
-      bin_after_radixp[counter_after_radixp++] = bin_input[i];
-      continue;
-    } else {
-      bin_before_radixp[counter_before_radixp++] = bin_input[i];
-    }
-  }
-
-  bin_before_radixp[counter_before_radixp] = '\0';
-  bin_after_radixp[counter_after_radixp] = '\0';
-
+double _get_bin_dec_radixp(char* bin_before_radixp, char* bin_after_radixp) {
   char *reversed_bin_input = reverse_string(bin_before_radixp);
   int reversed_bin_length = strlen(reversed_bin_input);
   double dec = 0;
@@ -61,8 +39,6 @@ double _get_bin_dec_radixp(char *bin_input) {
     dec += current_bin_int * pow(2, -(i + 1));
   }
 
-  free(bin_before_radixp);
-  free(bin_after_radixp);
   return dec;
 }
 
@@ -91,7 +67,7 @@ void to_bin_dec(char *bin_input) {
   }
 
   if (is_positive(bin_input)) {
-    char *bin = malloc(sizeof(char) * 1000);
+    char* bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
     int dec = _get_bin_dec(bin);
@@ -104,15 +80,23 @@ void to_bin_dec(char *bin_input) {
   }
 
   if (is_positive_radixp(bin_input)) {
-    char *bin = malloc(sizeof(char) * 1000);
+    char* bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
+    GenericInput generic_input = get_generic_input(bin);
 
-    double dec = _get_bin_dec_radixp(bin);
+    char* bin_before_radixp = malloc(sizeof(char) * 1000);
+    char* bin_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_radixp, generic_input.before_radixp);
+    strcpy(bin_after_radixp, generic_input.after_radixp);
+
+    double dec = _get_bin_dec_radixp(bin_before_radixp, bin_after_radixp);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 0);
 
     free(bin);
+    free(bin_before_radixp);
+    free(bin_after_radixp);
     return;
   }
 
@@ -135,19 +119,27 @@ void to_bin_dec(char *bin_input) {
   }
 
   if (is_negative_radixp(bin_input)) {
-    char *bin = malloc(sizeof(char) * 1000);
+    char* bin = malloc(sizeof(char) * 1000);
     strcpy(bin, bin_input);
 
-    char *positive_bin = malloc(sizeof(char) * 1000);
+    char* positive_bin = malloc(sizeof(char) * 1000);
     memmove(positive_bin, bin + 1, strlen(bin));
+    GenericInput generic_input = get_generic_input(positive_bin);
 
-    double dec = _get_bin_dec_radixp(positive_bin);
+    char* bin_before_radixp = malloc(sizeof(char) * 1000);
+    char* bin_after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(bin_before_radixp, generic_input.before_radixp);
+    strcpy(bin_after_radixp, generic_input.after_radixp);
+
+    double dec = _get_bin_dec_radixp(bin_before_radixp, bin_after_radixp);
     char dec_string[1000];
     sprintf(dec_string, "%.2f", dec);
     _display_bin_dec(dec_string, 1);
 
     free(bin);
     free(positive_bin);
+    free(bin_before_radixp);
+    free(bin_after_radixp);
     return;
   }
 }
