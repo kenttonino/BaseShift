@@ -27,7 +27,11 @@ char* _get_dec_bin(char *dec) {
     break;
   }
 
-  return reverse_string(bin);
+  if (strlen(bin) == 0) {
+    return "0";
+  } else {
+    return reverse_string(bin);
+  }
 }
 
 // We will limit only the binary dot values to 8 fractional bits.
