@@ -17,11 +17,8 @@ run-test: build-test
 	# e.g. make run-test bin="binary_tests"
 	./bin/tests/${bin}
 
-run-valgrind: build
-	valgrind --leak-check=full --leak-resolution=high --track-origins=yes -s ./bin/main
-
 run-gdb: build
 	gdb ./bin/main
 
 run: build
-	./bin/main
+	valgrind --leak-check=full --leak-resolution=high --track-origins=yes -s ./bin/main

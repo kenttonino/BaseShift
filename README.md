@@ -56,12 +56,9 @@ ctags -R *
 # Build and run the test.
 make run-test bin=compute_binary_tests
 
-# Build and run the program using Valgrind.
-make run-valgrind
-
 # Build and run the program using GDB.
 make run-gdb
 
-# Build and run the program.
+# Build and run the program with Valgrind.
 make run
 ```
