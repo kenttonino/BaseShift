@@ -19,7 +19,7 @@
 | `Decimal to Binary` | `✅` |
 | `Decimal to Octal` | `✅` |
 | `Decimal to Hexadecimal` | `✅` |
-| `Octal to Binary` | `TODO` |
+| `Octal to Binary` | `✅` |
 | `Octal to Decimal` | `TODO` |
 | `Octal to Hexadecimal` | `TODO` |
 | `Hexadecimal to Binary` | `TODO` |
