@@ -4,6 +4,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./to_oct_bin.c"
+#include "./to_oct_dec.c"
 
 void _oct_description(void) {
   text_blue("--------------------------------------------------------", 15);
@@ -114,6 +115,8 @@ void compute_octal(void) {
     }
 
     to_oct_bin(oct_input);
+    add_new_line(1);
+    to_oct_dec(oct_input);
     add_new_line(2);
 
     printf("%-16sTry again (1-yes, 0-no):%s ", WHITE, RESET);
