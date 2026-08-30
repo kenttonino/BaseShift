@@ -40,7 +40,7 @@ void _display_oct_dec(char *dec, int negative) {
   strcat(neg_dec, dec);
 
   printf(
-      "%-16s[%s %sDeciaml%s %s]%s : %s%s%s",
+      "%-16s[%s %sDecimal%s %s]%s : %s%s%s",
       BLUE,
       RESET,
       GREEN,
@@ -100,6 +100,33 @@ void to_oct_dec(char* oct_input) {
 
     free(oct);
     free(positive_oct);
+    return;
+  }
+
+  if (is_negative_radixp(oct_input)) {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+
+    char* positive_oct = malloc(sizeof(char) * 1000);
+    memmove(positive_oct, oct + 1, strlen(oct));
+    GenericInput generic_input = get_generic_input(positive_oct);
+
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
+
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, _get_oct_dec(before_radixp));
+    strcat(dec, ".");
+    strcat(dec, _get_oct_dec_radixp(after_radixp));
+    _display_oct_dec(dec, 1);
+
+    free(oct);
+    free(positive_oct);
+    free(before_radixp);
+    free(after_radixp);
+    free(dec);
     return;
   }
 }
