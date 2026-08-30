@@ -18,6 +18,23 @@ char* _get_oct_dec(char* oct) {
   return sdec;
 }
 
+char* _get_oct_dec_radixp(char* oct_radixp) {
+  int oct_radixp_len = strlen(oct_radixp);
+  int exponent = -1;
+  double dec_radixp = 0;
+  for (int i = 0; i < oct_radixp_len; i++) {
+    dec_radixp = dec_radixp + ((oct_radixp[i] - '0') * pow(8, exponent));
+    exponent = exponent - 1;
+  }
+
+  static char sdec_radixp[1000];
+  memset(sdec_radixp, 0, sizeof(char) * 1000);
+  sprintf(sdec_radixp, "%f", dec_radixp);
+  memmove(sdec_radixp, sdec_radixp + 2, strlen(sdec_radixp));
+
+  return sdec_radixp;
+}
+
 void _display_oct_dec(char *dec, int negative) {
   char neg_dec[1000] = "-";
   strcat(neg_dec, dec);
@@ -45,6 +62,29 @@ void to_oct_dec(char* oct_input) {
     _display_oct_dec(dec, 0);
 
     free(oct);
+    return;
+  }
+
+  if (is_positive_radixp(oct_input)) {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+    GenericInput generic_input = get_generic_input(oct);
+
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
+
+    char* dec = malloc(sizeof(char) * 1000);
+    strcpy(dec, _get_oct_dec(before_radixp));
+    strcat(dec, ".");
+    strcat(dec, _get_oct_dec_radixp(after_radixp));
+    _display_oct_dec(dec, 0);
+
+    free(oct);
+    free(before_radixp);
+    free(after_radixp);
+    free(dec);
     return;
   }
 
