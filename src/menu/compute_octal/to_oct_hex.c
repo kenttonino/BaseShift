@@ -5,7 +5,7 @@ char* _get_oct_hex(char* oct) {
   printf("oct: %s", oct);
   add_new_line(1);
   return "53";
-};
+}
 
 void _display_oct_hex(char *hex, int negative) {
   char neg_hex[1000] = "-";
@@ -30,7 +30,7 @@ void to_oct_hex(char* oct_input) {
     char* oct = malloc(sizeof(char) * 1000);
     strcpy(oct, oct_input);
 
-    char* hex = _get_oct_hex(hex);
+    char* hex = _get_oct_hex(oct);
     _display_oct_hex(hex, 0);
 
     free(oct);
