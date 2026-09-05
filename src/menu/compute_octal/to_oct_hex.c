@@ -1,16 +1,6 @@
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-
-char* _oct_bin_converter(char* oct) {
-  if (strcmp(oct, "1") == 0) return "001";
-  if (strcmp(oct, "2") == 0) return "010";
-  if (strcmp(oct, "3") == 0) return "011";
-  if (strcmp(oct, "4") == 0) return "100";
-  if (strcmp(oct, "5") == 0) return "101";
-  if (strcmp(oct, "6") == 0) return "110";
-  if (strcmp(oct, "7") == 0) return "111";
-  return "000";
-}
+#include "./utils.h"
 
 char* _get_oct_hex(char* oct) {
   int oct_len = strlen(oct);
@@ -20,7 +10,7 @@ char* _get_oct_hex(char* oct) {
   memset(current_oct, 0, sizeof(char) * 2);
   for (int i = 0; i < oct_len; i++) {
     current_oct[0] = oct[i];
-    char* bin = _oct_bin_converter(current_oct);
+    char* bin = get_oct_bin_mapper(current_oct);
     strcat(oct_bin, bin);
   }
 
