@@ -1,6 +1,7 @@
 #include <string.h>
 
-char* get_oct_bin_mapper(char* oct) {
+// Return a 3 digits binary equivalent of octal.
+char* get_oct_bin_3d_mapper(char* oct) {
   if (strcmp(oct, "1") == 0) return "001";
   if (strcmp(oct, "2") == 0) return "010";
   if (strcmp(oct, "3") == 0) return "011";

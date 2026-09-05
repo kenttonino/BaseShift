@@ -10,7 +10,7 @@ char* _get_oct_hex(char* oct) {
   memset(current_oct, 0, sizeof(char) * 2);
   for (int i = 0; i < oct_len; i++) {
     current_oct[0] = oct[i];
-    char* bin = get_oct_bin_mapper(current_oct);
+    char* bin = get_oct_bin_3d_mapper(current_oct);
     strcat(oct_bin, bin);
   }
 

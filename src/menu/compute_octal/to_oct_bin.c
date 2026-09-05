@@ -15,7 +15,7 @@ char* _get_oct_bin(char* oct) {
   for (int i = 0; i < oct_len; i++) {
     current_oct[0] = oct[i];
     current_oct[1] = '\0';
-    char* current_bin = get_oct_bin_mapper(current_oct);
+    char* current_bin = get_oct_bin_3d_mapper(current_oct);
     strcat(bin, current_bin);
   }
 
