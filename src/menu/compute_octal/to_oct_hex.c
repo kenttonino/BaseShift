@@ -4,37 +4,41 @@
 
 // Add zero to make it divisible by 4.
 // Used the binaries mapped from octal values.
-void _get_oct_hex_zero_adder(char* oct_bin) {
+char* _get_oct_hex_zero_adder(char* oct_bin) {
   int oct_bin_len = strlen(oct_bin);
   int oct_bin_mod = oct_bin_len % 4;
-  static char temp_oct_bin[1000];
-  memset(temp_oct_bin, 0, sizeof(char) * 1000);
 
   if (oct_bin_mod == 1) {
+    char temp_oct_bin[1000];
+    memset(temp_oct_bin, 0, sizeof(char) * 1000);
     temp_oct_bin[0] = '0';
     temp_oct_bin[1] = '0';
     temp_oct_bin[2] = '0';
     strcat(temp_oct_bin, oct_bin);
     strcpy(oct_bin, temp_oct_bin);
-    return;
+    return oct_bin;
   }
 
   if (oct_bin_mod == 2) {
+    char temp_oct_bin[1000];
+    memset(temp_oct_bin, 0, sizeof(char) * 1000);
     temp_oct_bin[0] = '0';
     temp_oct_bin[1] = '0';
     strcat(temp_oct_bin, oct_bin);
     strcpy(oct_bin, temp_oct_bin);
-    return;
+    return oct_bin;
   }
 
   if (oct_bin_mod == 3) {
+    char temp_oct_bin[1000];
+    memset(temp_oct_bin, 0, sizeof(char) * 1000);
     temp_oct_bin[0] = '0';
     strcat(temp_oct_bin, oct_bin);
     strcpy(oct_bin, temp_oct_bin);
-    return;
+    return oct_bin;
   }
 
-  return;
+  return oct_bin;
 }
 
 char* _get_oct_hex(char* oct) {
@@ -50,7 +54,7 @@ char* _get_oct_hex(char* oct) {
   }
 
   // Mutate the oct_bin to make it divisible by 4.
-  // _get_oct_hex_zero_adder(oct_bin);
+  _get_oct_hex_zero_adder(oct_bin);
   printf("oct_bin: %s", oct_bin);
   add_new_line(1);
 
