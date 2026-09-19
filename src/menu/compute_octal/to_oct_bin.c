@@ -3,17 +3,7 @@
 #include <string.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-
-char* _oct_bin_mapper(char* oct_digit) {
-  if (strcmp(oct_digit, "1") == 0) return "001";
-  if (strcmp(oct_digit, "2") == 0) return "010";
-  if (strcmp(oct_digit, "3") == 0) return "011";
-  if (strcmp(oct_digit, "4") == 0) return "100";
-  if (strcmp(oct_digit, "5") == 0) return "101";
-  if (strcmp(oct_digit, "6") == 0) return "110";
-  if (strcmp(oct_digit, "7") == 0) return "111";
-  return "000";
-}
+#include "./utils.h"
 
 char* _get_oct_bin(char* oct) {
   static char bin[1000];
@@ -25,7 +15,7 @@ char* _get_oct_bin(char* oct) {
   for (int i = 0; i < oct_len; i++) {
     current_oct[0] = oct[i];
     current_oct[1] = '\0';
-    char* current_bin = _oct_bin_mapper(current_oct);
+    char* current_bin = get_oct_bin_3d_mapper(current_oct);
     strcat(bin, current_bin);
   }
 
