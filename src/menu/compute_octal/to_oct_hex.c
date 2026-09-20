@@ -55,6 +55,10 @@ char* _get_oct_hex(char* oct) {
 
   // Mutate the oct_bin to make it divisible by 4.
   _get_oct_hex_zero_adder(oct_bin);
+
+  // TODO: Handle the convertion of binaries to hex.
+  int counter = 0;
+  for (int i = 0; i < strlen(oct_bin); i++) {}
   printf("oct_bin: %s", oct_bin);
   add_new_line(1);
 
