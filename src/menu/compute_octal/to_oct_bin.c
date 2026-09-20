@@ -41,12 +41,8 @@ void _display_oct_bin(char *bin, int negative) {
 }
 
 void to_oct_bin(char* oct_input) {
-  if (strlen(oct_input) == 1 && strcmp(oct_input, "0") == 0) {
-    _display_oct_bin("0", 0);
-    return;
-  }
-
-  if (strlen(oct_input) == 1 && strcmp(oct_input, "-") == 0) {
+  ZeroPrefix zero_prefix = is_zero_only(oct_input);
+  if (zero_prefix.zero_only == 1) {
     _display_oct_bin("0", 0);
     return;
   }
