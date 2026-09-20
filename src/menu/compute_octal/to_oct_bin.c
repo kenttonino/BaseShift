@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-#include "./utils.h"
+#include "./compute_octal_utils.h"
 
 char* _get_oct_bin(char* oct) {
   static char bin[1000];

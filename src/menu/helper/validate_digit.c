@@ -41,10 +41,13 @@ ZeroPrefix is_zero_only(char* input) {
   int zero_only = 1;
   int num_zero_prefix = 0;
   for (size_t i = 0; i < strlen(input); i++) {
+<<<<<<< HEAD
     if (i == 0 && input[i] == '-') {
       continue;
     }
 
+=======
+>>>>>>> ae7d12d (feat: is_zero_only mapper)
     if (input[i] == '0') {
       num_zero_prefix++;
       continue;

@@ -3,6 +3,7 @@
 #include "./reverse_string.c"
 #include "./validate_digit.c"
 #include "./generic_input.c"
+#include "./mapper.c"
 
 extern char* radixp_adder(char* input);
 extern GenericInput get_generic_input(char* input);
@@ -12,6 +13,10 @@ extern int is_negative(char *input);
 extern int is_negative_radixp(char *input);
 extern int is_positive(char *input);
 extern int is_positive_radixp(char *input);
+<<<<<<< HEAD
 extern ZeroPrefix is_zero_only(char* input);
+=======
+extern ZeroPrefix is_zero_only(char *input);
+>>>>>>> ae7d12d (feat: is_zero_only mapper)
 
 #endif
