@@ -32,3 +32,30 @@ int is_negative_radixp(char *input) {
     return 0;
   }
 }
+
+typedef struct {
+  int zero_only;
+  int num_zero_prefix;
+} ZeroPrefix;
+ZeroPrefix is_zero_only(char* input) {
+  int zero_only = 1;
+  int num_zero_prefix = 0;
+  for (size_t i = 0; i < strlen(input); i++) {
+    if (i == 0 && input[i] == '-') {
+      continue;
+    }
+
+    if (input[i] == '0') {
+      num_zero_prefix++;
+      continue;
+    } else {
+      zero_only = 0;
+      break;
+    }
+  }
+
+  ZeroPrefix zero_prefix;
+  zero_prefix.zero_only = zero_only;
+  zero_prefix.num_zero_prefix = num_zero_prefix;
+  return zero_prefix;
+}
