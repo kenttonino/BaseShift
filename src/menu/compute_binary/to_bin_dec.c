@@ -61,7 +61,8 @@ void _display_bin_dec(char *dec, int negative) {
 }
 
 void to_bin_dec(char *bin_input) {
-  if (strlen(bin_input) == 1 && strcmp(bin_input, "-") == 0) {
+  ZeroPrefix zero_prefix = is_zero_only(bin_input);
+  if (zero_prefix.zero_only == 1) {
     _display_bin_dec("0", 0);
     return;
   }

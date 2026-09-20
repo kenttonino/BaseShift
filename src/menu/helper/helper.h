@@ -11,5 +11,6 @@ extern int is_negative(char *input);
 extern int is_negative_radixp(char *input);
 extern int is_positive(char *input);
 extern int is_positive_radixp(char *input);
+extern ZeroPrefix is_zero_only(char* input);
 
 #endif

@@ -82,12 +82,8 @@ void _display_dec_hex(char *hex, int negative) {
 }
 
 void to_dec_hex(char* dec_input) {
-  if (strlen(dec_input) == 1 && strcmp(dec_input, "-") == 0) {
-    _display_dec_hex("0", 0);
-    return;
-  }
-
-  if (strlen(dec_input) == 1 && strcmp(dec_input, "0") == 0) {
+  ZeroPrefix zero_prefix = is_zero_only(dec_input);
+  if (zero_prefix.zero_only == 1) {
     _display_dec_hex("0", 0);
     return;
   }

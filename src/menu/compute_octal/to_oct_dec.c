@@ -54,6 +54,12 @@ void _display_oct_dec(char *dec, int negative) {
 }
 
 void to_oct_dec(char* oct_input) {
+  ZeroPrefix zero_prefix = is_zero_only(oct_input);
+  if (zero_prefix.zero_only == 1) {
+    _display_oct_dec("0", 0);
+    return;
+  }
+
   if (is_positive(oct_input)) {
     char* oct = malloc(sizeof(char) * 1000);
     strcpy(oct, oct_input);
