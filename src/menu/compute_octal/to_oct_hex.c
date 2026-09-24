@@ -1,6 +1,7 @@
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
-#include "./utils.h"
+#include "./compute_octal_utils.h"
+#include "../helper/helper.h"
 
 // Add zero to make it divisible by 4.
 // Used the binaries mapped from octal values.
@@ -54,11 +55,43 @@ char* _get_oct_hex(char* oct) {
   }
 
   // Mutate the oct_bin to make it divisible by 4.
-  _get_oct_hex_zero_adder(oct_bin);
-  printf("oct_bin: %s", oct_bin);
-  add_new_line(1);
+  char* bin_zero_added = _get_oct_hex_zero_adder(oct_bin);
 
-  return "53";
+  // Handle the hex value mapping.
+  static char hex[1000];
+  static char hex_buffer[5];
+  memset(hex, 0, sizeof(char) * 1000);
+  memset(hex_buffer, 0, sizeof(char) * 5);
+  int counter = 0;
+  for (size_t i = 0; i <= strlen(bin_zero_added); i++) {
+    if (counter == 4) {
+      char* hex_mapped = get_bin_hex_mapper(hex_buffer);
+      if (strlen(hex) == 0) {
+        strcpy(hex, hex_mapped);
+      } else {
+        strcat(hex, hex_mapped);
+      }
+
+      memset(hex_buffer, 0, sizeof(char) * 5);
+      hex_buffer[0] = bin_zero_added[i];
+      counter = 1;
+      continue;
+    } else {
+      hex_buffer[counter] = bin_zero_added[i];
+      counter++;
+    }
+  }
+
+  // Some hex values have zero char at index 0.
+  // Remove it, its not necessary.
+  static char clean_hex[1000];
+  memset(clean_hex, 0, sizeof(clean_hex));
+  if (hex[0] == '0') {
+    memmove(clean_hex, hex + 1, strlen(hex));
+    return clean_hex;
+  } else {
+    return hex;
+  }
 }
 
 void _display_oct_hex(char *hex, int negative) {
