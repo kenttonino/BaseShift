@@ -82,7 +82,16 @@ char* _get_oct_hex(char* oct) {
     }
   }
 
-  return hex;
+  // Some hex values have zero char at index 0.
+  // Remove it, its not necessary.
+  static char clean_hex[1000];
+  memset(clean_hex, 0, sizeof(clean_hex));
+  if (hex[0] == '0') {
+    memmove(clean_hex, hex + 1, strlen(hex));
+    return clean_hex;
+  } else {
+    return hex;
+  }
 }
 
 void _display_oct_hex(char *hex, int negative) {
