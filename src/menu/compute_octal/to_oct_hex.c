@@ -2,6 +2,7 @@
 #include "../../utils/utils.h"
 #include "./compute_octal_utils.h"
 #include "../helper/helper.h"
+#include <string.h>
 
 // Add zero to make it divisible by 4.
 // Used the binaries mapped from octal values.
@@ -127,6 +128,20 @@ void to_oct_hex(char* oct_input) {
     _display_oct_hex(hex, 0);
 
     free(oct);
+    return;
+  }
+
+  if (is_negative(oct_input)) {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+    char* positive_oct = malloc(sizeof(char) * 1000);
+    memmove(positive_oct, oct + 1, strlen(oct));
+
+    char* hex = _get_oct_hex(positive_oct);
+    _display_oct_hex(hex, 1);
+
+    free(oct);
+    free(positive_oct);
     return;
   }
 }
