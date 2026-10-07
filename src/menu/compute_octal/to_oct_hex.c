@@ -5,8 +5,8 @@
 #include <string.h>
 
 // Add zero to make it divisible by 4.
-// Used the binaries mapped from octal values.
-char* _get_oct_hex_zero_adder(char* oct_bin) {
+// Eg. 1010011 = 01010011
+char* _get_oct_hex_before_zero_adder(char* oct_bin) {
   int oct_bin_len = strlen(oct_bin);
   int oct_bin_mod = oct_bin_len % 4;
 
@@ -43,6 +43,30 @@ char* _get_oct_hex_zero_adder(char* oct_bin) {
   return oct_bin;
 }
 
+// Add zero to make it divisible by 4.
+// E.g. 1010011 = 10100110
+char * _get_oct_hex_after_zero_adder(char* oct_bin) {
+  int oct_bin_len = strlen(oct_bin);
+  int oct_bin_mod = oct_bin_len % 4;
+
+  if (oct_bin_mod == 1) {
+    strcat(oct_bin, "000");
+    return oct_bin;
+  }
+
+  if (oct_bin_mod == 2) {
+    strcat(oct_bin, "00");
+    return oct_bin;
+  }
+
+  if (oct_bin_mod == 3) {
+    strcat(oct_bin, "0");
+    return oct_bin;
+  }
+
+  return oct_bin;
+}
+
 char* _get_oct_hex(char* oct) {
   int oct_len = strlen(oct);
   static char oct_bin[1000];
@@ -56,7 +80,7 @@ char* _get_oct_hex(char* oct) {
   }
 
   // Mutate the oct_bin to make it divisible by 4.
-  char* bin_zero_added = _get_oct_hex_zero_adder(oct_bin);
+  char* bin_zero_added = _get_oct_hex_before_zero_adder(oct_bin);
 
   // Handle the hex value mapping.
   static char hex[1000];
@@ -93,6 +117,49 @@ char* _get_oct_hex(char* oct) {
   } else {
     return hex;
   }
+}
+
+char* _get_oct_hex_radixp(char* oct) {
+  int oct_len = strlen(oct);
+  static char oct_bin[1000];
+  static char current_oct[2];
+  memset(oct_bin, 0, sizeof(char) * 1000);
+  memset(current_oct, 0, sizeof(char) * 2);
+  for (int i = 0; i < oct_len; i++) {
+    current_oct[0] = oct[i];
+    char* bin = get_oct_bin_3d_mapper(current_oct);
+    strcat(oct_bin, bin);
+  }
+
+  // Add zero at the end to make it divisible by 4.
+  char* bin_zero_added = _get_oct_hex_after_zero_adder(oct_bin);
+
+  int bin_zero_added_len = strlen(bin_zero_added);
+  static char hex[1000];
+  static char hex_buffer[5];
+  memset(hex, 0, sizeof(char) * 1000);
+  memset(hex, 0, sizeof(char) * 5);
+  int counter = 0;
+  for (int i = 0; i <= bin_zero_added_len; i++ ) {
+    if (counter == 4) {
+      char* hex_mapped = get_bin_hex_mapper(hex_buffer);
+      if (strlen(hex) == 0) {
+        strcpy(hex, hex_mapped);
+      } else {
+        strcat(hex, hex_mapped);
+      }
+
+      memset(hex_buffer, 0, sizeof(char) * 5);
+      hex_buffer[0] = bin_zero_added[i];
+      counter = 1;
+      continue;
+    } else {
+      hex_buffer[counter] = bin_zero_added[i];
+      counter++;
+    }
+  }
+
+  return hex;
 }
 
 void _display_oct_hex(char *hex, int negative) {
@@ -142,11 +209,9 @@ void to_oct_hex(char* oct_input) {
     strcpy(after_radixp, generic_input.after_radixp);
 
     char* hex = malloc(sizeof(char) * 1000);
-    printf("%s", after_radixp);
-    add_new_line(1);
     strcpy(hex, _get_oct_hex(before_radixp));
     strcat(hex, ".");
-    strcat(hex, "298");
+    strcat(hex, _get_oct_hex_radixp(after_radixp));
     _display_oct_hex(hex, 0);
 
     free(oct);
