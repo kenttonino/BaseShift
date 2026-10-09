@@ -234,4 +234,30 @@ void to_oct_hex(char* oct_input) {
     free(positive_oct);
     return;
   }
+
+  if (is_negative_radixp(oct_input)) {
+    char* oct = malloc(sizeof(char) * 1000);
+    strcpy(oct, oct_input);
+    char* positive_oct = malloc(sizeof(char) * 1000);
+    memmove(positive_oct, oct + 1, strlen(oct));
+
+    GenericInput generic_input = get_generic_input(positive_oct);
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
+
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, _get_oct_hex(before_radixp));
+    strcat(hex, ".");
+    strcat(hex, _get_oct_hex_radixp(after_radixp));
+    _display_oct_hex(hex, 1);
+
+    free(oct);
+    free(positive_oct);
+    free(before_radixp);
+    free(after_radixp);
+    free(hex);
+    return;
+  }
 }
