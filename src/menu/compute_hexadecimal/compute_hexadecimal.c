@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../../utils/utils.h"
 #include "./to_hex_bin.c"
+#include "./to_hex_dec.c"
 
 void _hex_description() {
   text_blue("--------------------------------------------------------", 15);
@@ -114,7 +115,7 @@ void compute_hexadecimal(void) {
 
     to_hex_bin(hex_input);
     add_new_line(1);
-    to_oct_dec(oct_input);
+    to_hex_dec(hex_input);
     add_new_line(1);
     to_oct_hex(oct_input);
     add_new_line(2);
