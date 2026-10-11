@@ -1,5 +1,7 @@
 WARNING_FLAGS = -Werror -Wfatal-errors -Wpedantic -Wall -Wextra
 
+.PHONY: build build-test create-tag-index run-test run-gdb run
+
 build:
 	# -lm: Explicitly link agains the math library (libm).
 	# -g: Generate a debugging information.

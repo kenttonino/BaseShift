@@ -1,5 +1,6 @@
 #include <string.h>
 #include <string.h>
+#include "./helper_types.h"
 
 int is_positive(char *input) {
   if (strrchr(input, '-') == NULL && strrchr(input, '.') == NULL) {
@@ -33,10 +34,6 @@ int is_negative_radixp(char *input) {
   }
 }
 
-typedef struct {
-  int zero_only;
-  int num_zero_prefix;
-} ZeroPrefix;
 ZeroPrefix is_zero_only(char* input) {
   int zero_only = 1;
   int num_zero_prefix = 0;
