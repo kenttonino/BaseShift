@@ -1,6 +1,7 @@
 #include "./menu/compute_binary/compute_binary.h"
 #include "./menu/compute_decimal/compute_decimal.h"
 #include "./menu/compute_octal/compute_octal.h"
+#include "./menu/compute_hexadecimal/compute_hexadecimal.h"
 #include "./menu/main/menu_main.h"
 #include "./utils/utils.h"
 
@@ -49,6 +50,7 @@ int main(void) {
     }
 
     if (option == 4) {
+      compute_hexadecimal();
       invalid_option = 0;
       continue;
     }
