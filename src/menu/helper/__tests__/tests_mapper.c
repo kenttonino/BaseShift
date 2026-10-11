@@ -101,4 +101,7 @@ void test_mapper(void) {
   assert(strcmp(get_bin_hex_mapper(bin), "F") == 0);
   text_green("get_bin_hex_mapper -> should return F hex for 1111 binary", 10);
   memset(bin, 0, sizeof(char) * 5);
+  add_new_line(1);
+
+  memmove(bin, "0000", sizeof(char) * 5);
 }
