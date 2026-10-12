@@ -3,12 +3,13 @@
 #include "./reverse_string.c"
 #include "./validate_digit.c"
 #include "./generic_input.c"
+#include "./map_hex_bin.c"
 #include "./mapper.c"
 
 extern char* radixp_adder(char* input);
 extern GenericInput get_generic_input(char* input);
 extern char* get_bin_hex_mapper(char* bin);
-extern char* get_hex_bin_mapper(char* hex);
+extern char* map_hex_bin(char* hex);
 extern char* reverse_string(char* input);
 extern int is_negative(char* input);
 extern int is_negative_radixp(char* input);

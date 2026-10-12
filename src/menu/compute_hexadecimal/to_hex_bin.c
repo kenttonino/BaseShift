@@ -11,7 +11,7 @@ char* _get_hex_to_bin(char* hex) {
   memset(current_hex, 0, sizeof(char) * 2);
   for (int i = 0; i < hex_len; i++) {
     current_hex[0] = hex[i];
-    char* current_bin = get_hex_bin_mapper(current_hex);
+    char* current_bin = map_hex_bin(current_hex);
     if (strlen(bin) == 0) {
       strcpy(bin, current_bin);
     } else {
