@@ -28,6 +28,14 @@ void to_hex_bin(char* hex_input) {
     return;
   }
 
-  _display_hex_bin("TODO", 0);
-  return;
+  if (is_positive(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+    printf("hex: %s", hex);
+    add_new_line(1);
+
+    _display_hex_bin("000100100011", 0);
+    free(hex);
+    return;
+  }
 }
