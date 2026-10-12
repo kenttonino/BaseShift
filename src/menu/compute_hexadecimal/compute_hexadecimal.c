@@ -133,8 +133,6 @@ void compute_hexadecimal(void) {
       }
     }
 
-    printf("hex_input: %s", hex_input);
-    add_new_line(1);
     to_hex_bin(hex_input);
     add_new_line(1);
     to_hex_dec(hex_input);

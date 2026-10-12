@@ -52,7 +52,6 @@ void to_oct_bin(char* oct_input) {
     strcpy(oct, oct_input);
 
     char* bin = _get_oct_bin(oct);
-
     _display_oct_bin(bin, 0);
 
     free(oct);

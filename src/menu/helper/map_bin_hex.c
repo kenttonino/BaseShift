@@ -2,7 +2,7 @@
 
 // Convert 4 digits binary to hex equivalent.
 // E.g. 1111 -> F
-char* get_bin_hex_mapper(char* bin) {
+char* map_bin_hex(char* bin) {
   if (strcmp(bin, "0001") == 0) return "1";
   if (strcmp(bin, "0010") == 0) return "2";
   if (strcmp(bin, "0011") == 0) return "3";

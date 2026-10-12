@@ -90,7 +90,7 @@ char* _get_oct_hex(char* oct) {
   int counter = 0;
   for (size_t i = 0; i <= strlen(bin_zero_added); i++) {
     if (counter == 4) {
-      char* hex_mapped = get_bin_hex_mapper(hex_buffer);
+      char* hex_mapped = map_bin_hex(hex_buffer);
       if (strlen(hex) == 0) {
         strcpy(hex, hex_mapped);
       } else {
@@ -142,7 +142,7 @@ char* _get_oct_hex_radixp(char* oct) {
   int counter = 0;
   for (int i = 0; i <= bin_zero_added_len; i++ ) {
     if (counter == 4) {
-      char* hex_mapped = get_bin_hex_mapper(hex_buffer);
+      char* hex_mapped = map_bin_hex(hex_buffer);
       if (strlen(hex) == 0) {
         strcpy(hex, hex_mapped);
       } else {
