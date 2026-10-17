@@ -132,6 +132,27 @@ void to_hex_dec(char* hex_input) {
     return;
   }
 
-  _display_hex_dec("TODO", 0);
-  return;
+  if (is_negative_radixp(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+    char* positive_hex = malloc(sizeof(char) * 1000);
+    memmove(positive_hex, hex + 1, strlen(hex));
+    GenericInput generic_input = get_generic_input(positive_hex);
+
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
+
+    char* dec_before_radixp = _get_hex_to_dec(before_radixp);
+    char* dec_after_radixp = _get_hex_to_dec_radixp(after_radixp);
+    char* dec_sum = _get_hex_to_dec_sum(dec_before_radixp, dec_after_radixp);
+    _display_hex_dec(dec_sum, 1);
+
+    free(hex);
+    free(positive_hex);
+    free(before_radixp);
+    free(after_radixp);
+    return;
+  }
 }
