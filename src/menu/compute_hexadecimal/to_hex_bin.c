@@ -60,4 +60,18 @@ void to_hex_bin(char* hex_input) {
     free(hex);
     return;
   }
+
+  if (is_negative(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+    char* positive_hex = malloc(sizeof(char) * 1000);
+    memmove(positive_hex, hex + 1, strlen(hex));
+
+    char* bin = _get_hex_to_bin(positive_hex);
+    _display_hex_bin(bin, 1);
+
+    free(hex);
+    free(positive_hex);
+    return;
+  }
 }
