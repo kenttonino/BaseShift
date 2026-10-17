@@ -97,4 +97,30 @@ void to_hex_bin(char* hex_input) {
     free(positive_hex);
     return;
   }
+
+  if (is_negative_radixp(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+    char* positive_hex = malloc(sizeof(char) * 1000);
+    memmove(positive_hex, hex + 1, strlen(hex));
+    GenericInput generic_input = get_generic_input(positive_hex);
+
+    char* before_radixp = malloc(sizeof(char) * 1000);
+    char* after_radixp = malloc(sizeof(char) * 1000);
+    strcpy(before_radixp, generic_input.before_radixp);
+    strcpy(after_radixp, generic_input.after_radixp);
+
+    char* bin = malloc(sizeof(char) * 1000);
+    strcpy(bin, _get_hex_to_bin(before_radixp));
+    strcat(bin, ".");
+    strcat(bin, _get_hex_to_bin(after_radixp));
+    _display_hex_bin(bin, 1);
+
+    free(hex);
+    free(positive_hex);
+    free(before_radixp);
+    free(after_radixp);
+    free(bin);
+    return;
+  }
 }
