@@ -28,6 +28,18 @@ void to_hex_dec(char* hex_input) {
     return;
   }
 
+  if (is_positive(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+
+    printf("hex: %s", hex);
+    add_new_line(1);
+    _display_hex_dec("291", 0);
+
+    free(hex);
+    return;
+  }
+
   _display_hex_dec("TODO", 0);
   return;
 }
