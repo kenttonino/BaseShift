@@ -23,7 +23,7 @@
 | `Octal to Decimal` | `✅` |
 | `Octal to Hexadecimal` | `✅` |
 | `Hexadecimal to Binary` | `✅` |
-| `Hexadecimal to Decimal` | `TODO` |
+| `Hexadecimal to Decimal` | `✅` |
 | `Hexadecimal to Octal` | `TODO` |
 
 
