@@ -3,7 +3,7 @@
 #include "../helper.h"
 
 void test_map_bin_hex(void) {
-  text_white("[ Testing mapper Functions ] ", 10);
+  text_white("[ Testing map_bin_hex Function ] ", 10);
   add_new_line(1);
 
   char bin[5];
