@@ -110,6 +110,20 @@ void to_hex_oct(char* hex_input) {
     return;
   }
 
+  if (is_negative(hex_input)) {
+    char* hex = malloc(sizeof(char) * 1000);
+    strcpy(hex, hex_input);
+    char* positive_hex = malloc(sizeof(char) * 1000);
+    memmove(positive_hex, hex + 1, strlen(hex));
+
+    char* oct = _get_hex_to_oct(positive_hex);
+    _display_hex_oct(oct, 1);
+
+    free(hex);
+    free(positive_hex);
+    return;
+  }
+
   _display_hex_oct("TODO", 0);
   return;
 }
