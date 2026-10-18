@@ -3,13 +3,9 @@
 #include "../helper/helper.h"
 #include "../../utils/utils.h"
 
-char* _get_hex_to_oct(char* hex) {
-  // Stage 1 = Map the hex character to equivalent 4 digits binary.
+// Map the hex character to equivalent 4 digits binary.
+void _stage_one(char* hex, char* hex_bin, char* current_hex) {
   int hex_len = strlen(hex);
-  static char hex_bin[1000];
-  static char current_hex[2];
-  memset(hex_bin, 0, sizeof(char) * 1000);
-  memset(hex_bin, 0, sizeof(char) * 1000);
   for (int i = 0; i < hex_len; i++) {
     current_hex[0] = hex[i];
     char* current_hex_bin = map_hex_bin(current_hex);
@@ -21,11 +17,11 @@ char* _get_hex_to_oct(char* hex) {
 
     memset(current_hex, 0, sizeof(char) * 2);
   }
+}
 
-  // Stage 2 = Check if its divisible by 3.
+void _stage_two(char* hex_bin, char* oct_bin) {
   int hex_bin_len = strlen(hex_bin);
   int hex_bin_reminder = hex_bin_len % 3;
-  static char oct_bin[1000];
   memset(oct_bin, 0, sizeof(char) * 1000);
   if (hex_bin_reminder == 1) {
     oct_bin[0] = '0';
@@ -39,14 +35,11 @@ char* _get_hex_to_oct(char* hex) {
   if (hex_bin_reminder == 0) {
     strcpy(oct_bin, hex_bin);
   }
+}
 
-  // Stage 3 = Group by 3 digits, then get the equivalent octal value.
+void _stage_three(char* oct, char* oct_group, char* oct_bin) {
   int oct_bin_len = strlen(oct_bin);
-  static char oct[1000];
-  static char oct_group[4];
   int counter = 0;
-  memset(oct, 0, sizeof(char) * 1000);
-  memset(oct_group, 0, sizeof(char) * 4);
   for (int i = 0; i <= oct_bin_len; i++) {
     if (counter == 3) {
       char* current_oct = map_bin_oct(oct_group);
@@ -64,6 +57,24 @@ char* _get_hex_to_oct(char* hex) {
       counter = counter + 1;
     }
   }
+}
+
+char* _get_hex_to_oct(char* hex) {
+  static char hex_bin[1000];
+  static char current_hex[2];
+  memset(hex_bin, 0, sizeof(char) * 1000);
+  memset(hex_bin, 0, sizeof(char) * 1000);
+  _stage_one(hex, hex_bin, current_hex);
+
+  static char oct_bin[1000];
+  memset(oct_bin, 0, sizeof(char) * 1000);
+  _stage_two(hex_bin, oct_bin);
+
+  static char oct[1000];
+  static char oct_group[4];
+  memset(oct, 0, sizeof(char) * 1000);
+  memset(oct_group, 0, sizeof(char) * 4);
+  _stage_three(oct, oct_group, oct_bin);
 
   // Stage 4 = If index zero of octal is zero character, remove it.
   if (oct[0] == '0') {
